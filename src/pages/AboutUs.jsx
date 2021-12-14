@@ -17,12 +17,12 @@ function AboutUs() {
                     About <span className={styles.yellow}>Infion</span>
                 </h1>
                 <p className={styles.desc}>
-                    INFION is stands for Infinity Discussion. This website
-                    builded to complete one of the task in alterra academy. The
+                    INFION is stands for Infinity Discussion. This website was
+                    built to complete one of the task in alterra academy. The
                     purpose of INFINION is to connect people around the world in
                     many forum group discussion. So they can join on our forum
-                    and make some comment. But they can also make discussion in
-                    this website.
+                    and make some comments. But they can also create discussion
+                    in this website.
                 </p>
             </div>
             <div>
