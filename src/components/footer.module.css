@@ -1,0 +1,38 @@
+.container {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 95%;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 60px;
+}
+
+.infion {
+  width: 120px;
+}
+
+.titleBuilder,
+.titlePages,
+.titleContact {
+  font-size: 14px;
+}
+
+.contentBuilder,
+.contentPages {
+  font-size: 13px;
+}
+
+.title {
+  font-size: 14px !important;
+  color: #fff;
+}
+
+@media only screen and (max-width: 600px) {
+  .contact,
+  .infion {
+    margin-top: 10px;
+  }
+}
