@@ -1,7 +1,7 @@
 import logo from '../assets/img/logo.svg'
-import styles from './navbar.module.css'
+import styles from './header.module.css'
 
-const Navbar = ()=> {
+const Header = ()=> {
     return (
         <>
             <nav className="navbar navbar-expand-lg">
@@ -48,4 +48,4 @@ const Navbar = ()=> {
     )
 }
 
-export default Navbar
+export default Header
