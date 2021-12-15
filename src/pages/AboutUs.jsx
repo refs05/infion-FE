@@ -1,6 +1,10 @@
 import React from "react";
 import styles from "./AboutUs.module.css";
 
+//import components
+import Header from "../components/header";
+import Footer from "../components/footer";
+
 //import svgs
 import Golang from "../assets/img/Golang.svg";
 import Javascript from "../assets/img/Javascript.svg";
@@ -12,6 +16,7 @@ import ReactSVG from "../assets/img/React.svg";
 function AboutUs() {
     return (
         <div>
+            <Header />
             <div>
                 <h1>
                     About <span className={styles.yellow}>Infion</span>
@@ -36,6 +41,7 @@ function AboutUs() {
                     <img src={ReactSVG} alt="React.sgv" />
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }
