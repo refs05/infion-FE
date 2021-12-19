@@ -6,7 +6,7 @@ import "./App.css";
 
 //import pages
 import AboutUs from "./pages/AboutUs";
-import Agreement from "./pages/Agreement";
+import Agreement from "./pages/agreement/Agreement";
 
 function App() {
     return (

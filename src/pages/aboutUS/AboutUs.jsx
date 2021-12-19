@@ -2,16 +2,16 @@ import React from "react";
 import styles from "./AboutUs.module.css";
 
 //import components
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Header from "../components/header/header";
+import Footer from "../components/footer/footer";
 
 //import svgs
-import Golang from "../assets/img/Golang.svg";
-import Javascript from "../assets/img/Javascript.svg";
-import Html from "../assets/img/Html.svg";
-import Bootstrap from "../assets/img/Bootstrap.svg";
-import Css from "../assets/img/Css.svg";
-import ReactSVG from "../assets/img/React.svg";
+import Golang from "../../assets/img/Golang.svg";
+import Javascript from "../../assets/img/Javascript.svg";
+import Html from "../../assets/img/Html.svg";
+import Bootstrap from "../../assets/img/Bootstrap.svg";
+import Css from "../../assets/img/Css.svg";
+import ReactSVG from "../../assets/img/React.svg";
 
 function AboutUs() {
     return (
