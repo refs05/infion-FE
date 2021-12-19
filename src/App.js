@@ -4,15 +4,16 @@ import './App.css'
 //import pages
 import AboutUs from "./pages/AboutUs";
 import Loading from "./components/loading/Loading";
-import Footer from "./components/footer";
+import ListComments from "./components/comment/listComment";
 
 function App() {
     return (
-        <Router>
-            <Switch>
-                <Route path="/About" exact component={AboutUs} />
-            </Switch>
-        </Router>
+        // <Router>
+        //     <Switch>
+        //         <Route path="/About" exact component={AboutUs} />
+        //     </Switch>
+        // </Router>
+        <ListComments />
     );
 }
 
