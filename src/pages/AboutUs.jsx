@@ -6,12 +6,12 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 
 //import svgs
-import Golang from "../assets/img/Golang.svg";
-import Javascript from "../assets/img/Javascript.svg";
-import Html from "../assets/img/Html.svg";
-import Bootstrap from "../assets/img/Bootstrap.svg";
-import Css from "../assets/img/Css.svg";
-import ReactSVG from "../assets/img/React.svg";
+import golang from "../../assets/img/golang.svg";
+import javascript from "../../assets/img/javascript.svg";
+import html from "../../assets/img/html.svg";
+import bootstrap from "../../assets/img/bootstrap.svg";
+import css from "../../assets/img/css.svg";
+import react from "../../assets/img/react.svg";
 
 function AboutUs() {
     return (
@@ -33,12 +33,12 @@ function AboutUs() {
             <div>
                 <p className={styles.built}>BUILT WITH</p>
                 <div className={styles.logos}>
-                    <img src={Golang} alt="Golang.sgv" />
-                    <img src={Javascript} alt="Javascript.sgv" />
-                    <img src={Html} alt="Html.sgv" />
-                    <img src={Bootstrap} alt="Bootstrap.sgv" />
-                    <img src={Css} alt="Css.sgv" />
-                    <img src={ReactSVG} alt="React.sgv" />
+                    <img src={golang} alt="golang.svg" />
+                    <img src={javascript} alt="javascript.svg" />
+                    <img src={html} alt="html.svg" />
+                    <img src={bootstrap} alt="bootstrap.svg" />
+                    <img src={css} alt="css.svg" />
+                    <img src={react} alt="react.svg" />
                 </div>
             </div>
             <Footer />
