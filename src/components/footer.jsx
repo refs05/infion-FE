@@ -1,10 +1,10 @@
 import styles from './footer.module.css'
-import logo from '../assets/img/logo.svg'
-import infion from '../assets/img/infion.svg'
-import gmail from '../assets/img/gmail.svg'
-import ig from '../assets/img/instagram.svg'
-import twitter from '../assets/img/twitter.svg'
-import fb from '../assets/img/facebook.svg'
+import logo from '../../assets/img/logo.svg'
+import infion from '../../assets/img/infion.svg'
+import gmail from '../../assets/img/gmail.svg'
+import ig from '../../assets/img/instagram.svg'
+import twitter from '../../assets/img/twitter.svg'
+import fb from '../../assets/img/facebook.svg'
 
 const Footer = ()=> {
     return (
