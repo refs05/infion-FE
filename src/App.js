@@ -1,19 +1,21 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import './App.css'
+import "./App.css";
+
+//import components
+// import Loading from "./components/loading/Loading";
 
 //import pages
-import AboutUs from "./pages/AboutUs";
-import Loading from "./components/loading/Loading";
-import ListComments from "./components/comment/listComment";
+import AboutUs from "./pages/aboutUs";
+import Agreement from "./pages/agreement";
 
 function App() {
     return (
-        // <Router>
-        //     <Switch>
-        //         <Route path="/About" exact component={AboutUs} />
-        //     </Switch>
-        // </Router>
-        <ListComments />
+        <Router>
+            <Switch>
+                <Route path="/about" exact component={AboutUs} />
+                <Route path="/agreement" exact component={Agreement} />
+            </Switch>
+        </Router>
     );
 }
 
