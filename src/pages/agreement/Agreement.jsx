@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./Agreement.module.css";
 
 //import components
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Header from "../../components/header/header";
+import Footer from "../../components/footer/footer";
 
 function Agreement() {
     return (
