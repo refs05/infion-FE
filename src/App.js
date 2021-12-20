@@ -5,8 +5,8 @@ import "./App.css";
 // import Loading from "./components/loading/Loading";
 
 //import pages
-import AboutUs from "./pages/aboutUS/AboutUs";
-import Agreement from "./pages/agreement/Agreement";
+import AboutUs from "./pages/aboutUS/aboutUs";
+import Agreement from "./pages/agreement/agreement";
 
 function App() {
     return (

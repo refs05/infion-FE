@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Agreement.module.css";
+import styles from "./agreement.module.css";
 
 //import components
 import Header from "../../components/header/header";
