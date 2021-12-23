@@ -5,7 +5,7 @@ import styles from "./aboutUs.module.css";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 
-//import svgs
+//import svg
 import golang from "../../assets/img/golang.svg";
 import javascript from "../../assets/img/javascript.svg";
 import html from "../../assets/img/html.svg";
