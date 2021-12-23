@@ -1,26 +1,17 @@
 import React from "react";
-import styles from "./AboutUs.module.css";
+import styles from "./aboutUs.module.css";
 
 //import components
-import Header from "../components/header/header";
-import Footer from "../components/footer/footer";
+import Header from "../../components/header/header";
+import Footer from "../../components/footer/footer";
 
 //import svgs
-<<<<<<< HEAD:src/pages/AboutUs.jsx
 import golang from "../../assets/img/golang.svg";
 import javascript from "../../assets/img/javascript.svg";
 import html from "../../assets/img/html.svg";
 import bootstrap from "../../assets/img/bootstrap.svg";
 import css from "../../assets/img/css.svg";
 import react from "../../assets/img/react.svg";
-=======
-import Golang from "../../assets/img/Golang.svg";
-import Javascript from "../../assets/img/Javascript.svg";
-import Html from "../../assets/img/Html.svg";
-import Bootstrap from "../../assets/img/Bootstrap.svg";
-import Css from "../../assets/img/Css.svg";
-import ReactSVG from "../../assets/img/React.svg";
->>>>>>> fixStrukturFolder:src/pages/aboutUS/AboutUs.jsx
 
 function AboutUs() {
     return (
