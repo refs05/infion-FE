@@ -2,6 +2,8 @@ import ListComment from "../../components/comment/listComment"
 import Footer from "../../components/footer/footer"
 import Header from "../../components/header/header"
 import back from '../../assets/img/back.svg'
+import axios from "axios"
+import { useEffect, useState } from "react"
 import upArrow from '../../assets/img/upArrow.svg'
 
 //temporary
@@ -16,8 +18,29 @@ import imgThread from '../../assets/img/imgThreadEg.svg'
 import { mockRank } from "../../mockData/mockRankUser"
 import Leaderboard from "../../components/leaderboard/leaderboard"
 
+
 const DetailPage = ()=> {
     console.log(mockRank)
+
+    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState([])
+
+    useEffect(()=> {
+        const fetchData = async () =>{
+            setLoading(true);
+            try {
+              const {data: response} = await axios.get('http://localhost:8000/threads/1');
+              setData(response);
+            } catch (error) {
+              console.error(error.message);
+            }
+            setLoading(false);
+          }
+      
+          fetchData();
+    }, [])
+
+    console.log(data?.data)
     return (
         <>
             <Header />
@@ -27,7 +50,7 @@ const DetailPage = ()=> {
                         <img src={back} alt="" className="me-1" style={{width:"30px"}} type="button"/>
                         <div type="button">Back</div>
                     </div>
-                    <div className="title fs-3 mb-3">Badan Geologi Perbarui Peta Kawasan Rawan Bencana di Sekitar Gunung Semeru</div>
+                    <div className="title fs-3 mb-3">{data?.data.title}</div> 
                     <div className="headThread d-flex justify-content-between mb-3">
                         <div className="first">
                             <div className="date">09 December 2020</div>
