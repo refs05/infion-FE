@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './Loading.css';
+import './loading.css';
 
 function Loading(){
 return(
