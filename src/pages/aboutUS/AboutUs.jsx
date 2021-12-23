@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./aboutUs.module.css";
 
 //import components
-import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
+import Footer from "../../components/footer/footer";
 
 //import svg
 import golang from "../../assets/img/golang.svg";
