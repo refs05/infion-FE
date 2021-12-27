@@ -3,8 +3,9 @@ import Footer from "../../components/footer/footer"
 import Header from "../../components/header/header"
 import back from '../../assets/img/back.svg'
 import axios from "axios"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import upArrow from '../../assets/img/upArrow.svg'
+import bullet from '../../assets/img/bullet.svg'
 
 //temporary
 import likeThread from '../../assets/img/likeThread.svg'
@@ -17,6 +18,7 @@ import imgThread from '../../assets/img/imgThreadEg.svg'
 //mockRank
 import { mockRank } from "../../mockData/mockRankUser"
 import Leaderboard from "../../components/leaderboard/leaderboard"
+import { mockThreadsSide } from "../../mockData/mockSideThread"
 
 
 const DetailPage = ()=> {
@@ -50,7 +52,7 @@ const DetailPage = ()=> {
                         <img src={back} alt="" className="me-1" style={{width:"30px"}} type="button"/>
                         <div type="button">Back</div>
                     </div>
-                    <div className="title fs-3 mb-3">{data?.data.title}</div> 
+                    <div className="title fs-3 mb-3">{data?.data?.title}</div> 
                     <div className="headThread d-flex justify-content-between mb-3">
                         <div className="first">
                             <div className="date">09 December 2020</div>
@@ -83,24 +85,30 @@ const DetailPage = ()=> {
                 </div>
                 <div className="sideContent col-sm-3 m-auto">
                     <Leaderboard data={mockRank}/>
-                    <div className="leaderboard border border-white rounded p-1 mt-3 d-none d-sm-block">
-                        <div className="title d-flex justify-content-center fs-5">Newest</div>
+                    <div className="leaderboard border rounded-3 p-1 mt-3 d-none d-sm-block">
+                        <div className="title d-flex justify-content-center fs-6">Newest</div>
                         <div className="wrap">
-                            <div className="content fst-italic" type="button">Keclakaan di Jalan Tol meningkat, amankah Jalan Tol di Indonesia</div>
-                            <div className="content fst-italic" type="button">Keclakaan di Jalan Tol meningkat, amankah Jalan Tol di Indonesia</div>
-                            <div className="content fst-italic" type="button">Keclakaan di Jalan Tol meningkat, amankah Jalan Tol di Indonesia</div>
-                            <div className="content fst-italic" type="button">Keclakaan di Jalan Tol meningkat, amankah Jalan Tol di Indonesia</div>
-                            <div className="content fst-italic" type="button">Keclakaan di Jalan Tol meningkat, amankah Jalan Tol di Indonesia</div>
+                            {mockThreadsSide.map((item, index)=> (
+                                <React.Fragment key={index}>
+                                    <div className="d-flex align-items-start">
+                                        <img className=" me-1" src={bullet} alt="" style={{width: "8px", marginTop: "6px"}}/> 
+                                        <div className="content fst-italic" type="button" style={{fontSize: "14px"}}>{item.title}</div>
+                                    </div>
+                                </React.Fragment>
+                            ))}
                         </div>
                     </div>
-                    <div className="leaderboard border border-white rounded p-1 mt-3">
-                        <div className="title d-flex justify-content-center fs-5">See Also</div>
+                    <div className="leaderboard border rounded-3 p-1 mt-3">
+                        <div className="title d-flex justify-content-center fs-6">See Also</div>
                         <div className="wrap">
-                            <div className="content fst-italic" type="button">  Keclakaan di Jalan Tol meningkat, amankah Jalan Tol di Indonesia</div>
-                            <div className="content fst-italic" type="button">Keclakaan di Jalan Tol meningkat, amankah Jalan Tol di Indonesia</div>
-                            <div className="content fst-italic" type="button">Keclakaan di Jalan Tol meningkat, amankah Jalan Tol di Indonesia</div>
-                            <div className="content fst-italic" type="button">Keclakaan di Jalan Tol meningkat, amankah Jalan Tol di Indonesia</div>
-                            <div className="content fst-italic" type="button">Keclakaan di Jalan Tol meningkat, amankah Jalan Tol di Indonesia</div>
+                            {mockThreadsSide.map((item, index)=> (
+                                <React.Fragment key={index}>
+                                    <div className="d-flex align-items-start">
+                                        <img className=" me-1" src={bullet} alt="" style={{width: "8px", marginTop: "6px"}}/> 
+                                        <div className="content fst-italic" type="button" style={{fontSize: "14px"}}>{item.title}</div>
+                                    </div>
+                                </React.Fragment>
+                            ))}
                         </div>
                     </div>
                     {/* <div className="toUp border border-white">
