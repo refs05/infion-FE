@@ -1,0 +1,39 @@
+h1 {
+    /* margin: 0% 50%; */
+    text-align: center;
+    font-weight: bold;
+    font-size: 36;
+}
+
+.desc {
+    margin: 40px 15% 0%;
+    font-size: 24;
+}
+
+.yellow {
+    color: #ffcf00;
+}
+
+.built {
+    /* margin: 0% 50%; */
+    text-align: center;
+    margin-top: 25px;
+}
+
+.logos {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 33.333333%;
+    width: 35%;
+    margin: auto;
+}
+
+.logos img {
+    margin: 10px;
+}
+
+/* clean */
