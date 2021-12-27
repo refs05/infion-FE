@@ -8,11 +8,11 @@ const SubComments = ({data})=> {
     const [editComment, setEditComment] = useState(false)
     return (
         <div className="col-11">
-            <div className="d-flex bd-highlight mb-1">
+            <div className="d-flex bd-highlight mb-1 align-items-center">
                 <div className="p-2 bd-highlight">
-                    <img src={userImg} className="rounded-circle" alt="profile"/>
+                    <img src={userImg} className="rounded-circle" alt="profile" style={{width: "55px"}}/>
                 </div>
-                <div className="p-2 bd-highlight d-flex align-items-center">
+                <div className="p-2 bd-highlight">
                     {data.username}
                 </div>
                 <div className="ms-auto p-2 bd-highlight">
@@ -45,7 +45,7 @@ const SubComments = ({data})=> {
                     </div>
                     <div className="d-flex bd-highlight mb-1">
                         <div className="m-2 bd-highlight d-flex bd-highlight mb-1 align-items-center">
-                            {data.likeStatus ? <img src={liked} alt="" className="me-2" type="button"/> : <img src={like} alt="" className="me-2" type="button"/>}
+                            {data.likeStatus ? <img src={liked} alt="" className="me-2" type="button" style={{width: "26px"}}/> : <img src={like} alt="" className="me-2" type="button" style={{width: "26px"}}/>}
                             {data.like}
                         </div>
                     </div>
