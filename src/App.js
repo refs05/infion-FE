@@ -5,7 +5,7 @@ import "./App.css";
 // import Loading from "./components/loading/Loading";
 
 //import pages
-import AboutUs from "./pages/aboutUS/aboutUs";
+import AboutUs from "./pages/aboutUs/aboutUs";
 import Agreement from "./pages/agreement/agreement";
 import DetailPage from "./pages/detailPage/detailPage";
 
