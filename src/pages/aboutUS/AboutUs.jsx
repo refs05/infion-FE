@@ -27,7 +27,7 @@ function AboutUs() {
                     purpose of INFINION is to connect people around the world in
                     many forum group discussion. So they can join on our forum
                     and make some comments. But they can also create discussion
-                    in this website..
+                    in this website.
                 </p>
             </div>
             <div>
