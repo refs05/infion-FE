@@ -14,11 +14,11 @@ const Comments = ({data})=> {
     return (
         <>
             <div className="container-sm border rounded-3 mb-3">
-                <div className="d-flex bd-highlight mb-1">
+                <div className="d-flex align-items-center bd-highlight mb-1">
                     <div className="p-2 bd-highlight">
-                        <img src={userImg} className="rounded-circle" alt="profile"/>
+                        <img src={userImg} className="rounded-circle" alt="profile" style={{width: "55px"}}/>
                     </div>
-                    <div className="p-2 bd-highlight d-flex align-items-center">
+                    <div className="p-2 bd-highlight">
                         {data.username}
                     </div>
                     <div className="ms-auto p-2 bd-highlight">
@@ -30,7 +30,7 @@ const Comments = ({data})=> {
                                 <li><a className="dropdown-item" href="#">Delete</a></li>
                             </ul>
                         </div>
-                        <div className="ms-auto p-2 bd-highlight">{data.updated_at == null ? data.created_at : data.updated_at}</div>
+                        <div className="ms-auto p-2 bd-highlight fs-6">{data.updated_at == null ? data.created_at : data.updated_at}</div>
                     </div>
                 </div>
                 {editComment ? 
@@ -51,11 +51,11 @@ const Comments = ({data})=> {
                     </div>
                     <div className="d-flex bd-highlight mb-1">
                         <div className="m-2 bd-highlight d-flex bd-highlight mb-1 align-items-center">
-                            {data.likeStatus ? <img src={liked} alt="" className="me-2" type="button"/> : <img src={like} alt="" className="me-2" type="button"/>}
+                            {data.likeStatus ? <img src={liked} alt="" className="me-2" type="button" style={{width: "26px"}}/> : <img src={like} alt="" className="me-2" type="button" style={{width: "26px"}}/>}
                             {data.like}
                         </div>
                         <div className="m-2 bd-highlight d-flex bd-highlight mb-1 align-items-center">
-                            <img src={comment} alt="" className="me-2"/>
+                            <img src={comment} alt="" className="me-2" style={{width: "26px"}}/>
                             {data.subComment.length}
                         </div>
                         <div type="button" className="ms-auto me-3 bd-highlight d-flex align-items-center" onClick={()=> setSubComment(!subComment)}>Reply</div>
