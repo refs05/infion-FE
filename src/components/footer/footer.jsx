@@ -10,13 +10,13 @@ const Footer = ()=> {
     return (
         <>
         <hr />
-        <div className={styles.container}>
-            <div className={styles.wrapLogo}>
+        <div className="row m-auto" style={{width: "95%"}}>
+            <div className="col">
                 <a className={`navbar-brand ${styles.title}`} href="#">
                     <img src={logo} alt="logo" className={styles.logo}/>INFION
                 </a>
             </div>
-            <div className="builder">
+            <div className="col">
                 <div className={styles.titleBuilder}>
                     Made By Kelompok 9 :
                 </div>
@@ -30,7 +30,7 @@ const Footer = ()=> {
                     Waldo Felix
                 </div>
             </div>
-            <div className="pages">
+            <div className="col">
                 <div className={styles.titlePages}>
                     Pages
                 </div>
@@ -47,17 +47,19 @@ const Footer = ()=> {
                     About Us
                 </div>
             </div>
-            <div className={styles.contact}>
-                <div className={styles.titleContact}>
-                    Contact Us
+            <div className="col-sm-5 row">
+                <div className="col">
+                    <div className={styles.titleContact}>
+                        Contact Us
+                    </div>
+                    <img src={gmail} alt="Gmail" />
+                    <img src={ig} alt="Instagram" />
+                    <img src={twitter} alt="Twitter" />
+                    <img src={fb} alt="Facebook" />
                 </div>
-                <img src={gmail} alt="Gmail" />
-                <img src={ig} alt="Instagram" />
-                <img src={twitter} alt="Twitter" />
-                <img src={fb} alt="Facebook" />
-            </div>
-            <div className="standfor">
-                <img src={infion} alt="Infion" className={styles.infion}/>
+                <div className="col">
+                    <img src={infion} alt="Infion" className={styles.infion}/>
+                </div>
             </div>
         </div>
         </>
