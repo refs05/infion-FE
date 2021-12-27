@@ -28,7 +28,6 @@ function AboutUs() {
                     many forum group discussion. So they can join on our forum
                     and make some comments. But they can also create discussion
                     in this website.
-                    {/* clean */}
                 </p>
             </div>
             <div>
