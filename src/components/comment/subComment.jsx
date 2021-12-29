@@ -23,7 +23,7 @@ const SubComments = ({ data }) => {
             {data.updated_at == null ? (
               ""
             ) : (
-              <div className="me-3">
+              <div className="me-3" style={{fontSize: "14px"}}>
                 <em>edited</em>
               </div>
             )}
@@ -55,7 +55,7 @@ const SubComments = ({ data }) => {
               </li>
             </ul>
           </div>
-          <div className="ms-auto p-2 bd-highlight">
+          <div className="ms-auto p-2 bd-highlight" style={{fontSize: "14px"}}>
             {data.updated_at == null ? data.created_at : data.updated_at}
           </div>
         </div>
@@ -83,7 +83,7 @@ const SubComments = ({ data }) => {
         </div>
       ) : (
         <>
-          <div className="ms-3">
+          <div className="ms-3" style={{fontSize: "15px"}}>
             <p>{data.content}</p>
           </div>
           <div className="d-flex bd-highlight mb-1">

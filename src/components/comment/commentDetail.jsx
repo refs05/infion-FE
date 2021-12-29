@@ -13,7 +13,7 @@ const Comments = ({ data }) => {
   const [editComment, setEditComment] = useState(false);
   return (
     <>
-      <div className="container-sm border rounded-3 mb-3">
+      <div className="border rounded-3 mb-3 px-2">
         <div className="d-flex align-items-center bd-highlight mb-1">
           <div className="p-2 bd-highlight">
             <img
@@ -29,7 +29,7 @@ const Comments = ({ data }) => {
               {data.updated_at == null ? (
                 ""
               ) : (
-                <div className="me-3">
+                <div className="me-3" style={{fontSize: "14px"}}>
                   <em>edited</em>
                 </div>
               )}
@@ -60,7 +60,7 @@ const Comments = ({ data }) => {
                 </li>
               </ul>
             </div>
-            <div className="ms-auto p-2 bd-highlight fs-6">
+            <div className="ms-auto p-2 bd-highlight" style={{fontSize: "14px"}}>
               {data.updated_at == null ? data.created_at : data.updated_at}
             </div>
           </div>
@@ -88,7 +88,7 @@ const Comments = ({ data }) => {
           </div>
         ) : (
           <>
-            <div className="ms-3">
+            <div className="ms-3" style={{fontSize: "15px"}}>
               <p>{data.content}</p>
             </div>
             <div className="d-flex bd-highlight mb-1">
