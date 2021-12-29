@@ -46,24 +46,24 @@ const DetailPage = ()=> {
     return (
         <>
             <Header />
+            <div className="d-flex align-items-center" style={{width: "93%", margin: "0 auto"}}>
+                <img src={back} alt="" className="me-1" style={{width:"30px"}} type="button"/>
+                <div type="button">Back</div>
+            </div>
             <div className="container row m-auto">
                 <div className="detail col-sm-9">
-                    <div className="back d-flex align-items-center mb-3">
-                        <img src={back} alt="" className="me-1" style={{width:"30px"}} type="button"/>
-                        <div type="button">Back</div>
-                    </div>
                     <div className="title fs-3 mb-3">{data?.data?.title}</div> 
                     <div className="headThread d-flex justify-content-between mb-3">
                         <div className="first">
-                            <div className="date">09 December 2020</div>
-                            <div className="follower">199 Followers</div>
+                            <div className="date" style={{fontSize: "14px"}}>09 December 2020</div>
+                            <div className="follower" style={{color: "#3F6FE3", fontSize: "14px"}}>199 Followers</div>
                         </div>
-                        <div className="second">
-                            <div className="creator">Oleh : Valez Fuera</div>
-                            <div className="follow" style={{color: "#3F6FE3"}} type="button">Follow</div>
+                        <div className="second d-flex flex-column align-items-end">
+                            <div className="creator" style={{fontSize: "14px"}}>Oleh : Valez Fuera</div>
+                            <div className="follow" style={{color: "#3F6FE3", fontSize: "14px"}} type="button">Follow</div>
                         </div>
                     </div>
-                    <div className="imgThread mb-3">
+                    <div className="imgThread mb-3 rounded-2">
                         <img src={imgThread} alt="" className="img-fluid w-100"/>
                     </div>
                     <div className="infoThread d-flex mb-3">
@@ -83,10 +83,10 @@ const DetailPage = ()=> {
                     <div className="titleComment fs-4">Comment</div>
                     <ListComment />
                 </div>
-                <div className="sideContent col-sm-3 m-auto">
+                <div className="sideContent col-sm-3 mt-5">
                     <Leaderboard data={mockRank}/>
-                    <div className="leaderboard border rounded-3 p-1 mt-3 d-none d-sm-block">
-                        <div className="title d-flex justify-content-center fs-6">Newest</div>
+                    <div className="border rounded-3 p-1 mt-4 d-none d-sm-block">
+                        <div className="title d-flex justify-content-center fs-6 mb-1">Newest</div>
                         <div className="wrap">
                             {mockThreadsSide.map((item, index)=> (
                                 <React.Fragment key={index}>
@@ -98,8 +98,8 @@ const DetailPage = ()=> {
                             ))}
                         </div>
                     </div>
-                    <div className="leaderboard border rounded-3 p-1 mt-3">
-                        <div className="title d-flex justify-content-center fs-6">See Also</div>
+                    <div className="border rounded-3 p-1 mt-4">
+                        <div className="title d-flex justify-content-center fs-6 mb-1">See Also</div>
                         <div className="wrap">
                             {mockThreadsSide.map((item, index)=> (
                                 <React.Fragment key={index}>

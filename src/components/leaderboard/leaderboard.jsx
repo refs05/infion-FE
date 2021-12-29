@@ -5,8 +5,8 @@ import React from 'react'
 
 const Leaderboard = ({data}) => {
     return (
-        <div className="leaderboard border rounded-3 p-1 mt-3">
-            <div className="title d-flex justify-content-center fs-6">Leaderboard</div>
+        <div className="leaderboard border rounded-3 p-1">
+            <div className="title d-flex justify-content-center fs-6 mb-1">Leaderboard</div>
             {data.map((item, index)=> (
                 <React.Fragment key={index}>
                     <div className="name" style={{fontSize: "14px"}}>{index+1}. {item.username}</div>
