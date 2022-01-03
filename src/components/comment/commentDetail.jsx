@@ -6,6 +6,7 @@ import liked from "../../assets/img/liked.svg";
 import SubComments from "./subComment";
 import CreateComments from "./createComment";
 import { useState } from "react";
+import './commentDetail.css'
 
 const Comments = ({ data }) => {
   console.log(data);
@@ -29,7 +30,7 @@ const Comments = ({ data }) => {
               {data.updated_at == null ? (
                 ""
               ) : (
-                <div className="me-3" style={{fontSize: "14px"}}>
+                <div className="me-3 fs-8">
                   <em>edited</em>
                 </div>
               )}
@@ -60,7 +61,7 @@ const Comments = ({ data }) => {
                 </li>
               </ul>
             </div>
-            <div className="ms-auto p-2 bd-highlight" style={{fontSize: "14px"}}>
+            <div className="ms-auto p-2 bd-highlight fs-8">
               {data.updated_at == null ? data.created_at : data.updated_at}
             </div>
           </div>
@@ -88,7 +89,7 @@ const Comments = ({ data }) => {
           </div>
         ) : (
           <>
-            <div className="ms-3" style={{fontSize: "15px"}}>
+            <div className="ms-3 fs-7">
               <p>{data.content}</p>
             </div>
             <div className="d-flex bd-highlight mb-1">
@@ -97,17 +98,16 @@ const Comments = ({ data }) => {
                   <img
                     src={liked}
                     alt=""
-                    className="me-2"
+                    className="me-2 likeCom"
                     type="button"
-                    style={{ width: "26px" }}
+
                   />
                 ) : (
                   <img
                     src={like}
                     alt=""
-                    className="me-2"
+                    className="me-2 likeCom"
                     type="button"
-                    style={{ width: "26px" }}
                   />
                 )}
                 {data.like}
@@ -116,8 +116,7 @@ const Comments = ({ data }) => {
                 <img
                   src={comment}
                   alt=""
-                  className="me-2"
-                  style={{ width: "26px" }}
+                  className="me-2 likeCom"
                 />
                 {data.subComment.length}
               </div>

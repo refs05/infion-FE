@@ -1,0 +1,29 @@
+.back {
+    width: 93%;
+    margin: 0 auto;
+}
+
+.back img {
+    width: 30px;
+}
+
+.fs-7 {
+    font-size: 15px;
+}
+
+.fs-8 {
+    font-size: 14px;
+}
+
+.follower {
+    color: #3f6fe3;
+}
+
+.info img {
+    width: 45px;
+}
+
+.side img {
+    width: 8px;
+    margin-top: 6px;
+}

@@ -1,0 +1,15 @@
+.content {
+    font-size: 13px;
+}
+
+.bullet img {
+    width: 14px;
+}
+
+.cardText {
+    font-size: 14px;
+}
+
+.like img, .comment img {
+    width: 25px;
+}
