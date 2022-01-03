@@ -1,0 +1,39 @@
+body {
+  background: white;
+}
+
+.sidebar {
+  background-color: #151515;
+  color: white;
+}
+
+.gambar {
+  margin-top: 100px;
+}
+
+.gambar img {
+  width: 80px;
+}
+
+.profile img {
+  width: 80px;
+  height: 80px;
+}
+
+.nav {
+  height: 50px;
+  background-color: #3F6FE3;
+}
+
+.logout {
+  top: 300px;
+  left: 40px;
+}
+
+.reported {
+  background: #EBE7E7;
+}
+
+.arrow img {
+  width: 30px;
+}
