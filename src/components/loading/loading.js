@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import logo from "../../assets/img/logo.svg";
 import "./loading.css";
 
 function Loading() {

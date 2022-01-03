@@ -3,18 +3,18 @@ import userImg from "../../assets/img/userImg.svg";
 import like from "../../assets/img/love.svg";
 import liked from "../../assets/img/liked.svg";
 import { useState } from "react";
+import './subComment.css'
 
 const SubComments = ({ data }) => {
   const [editComment, setEditComment] = useState(false);
   return (
     <div className="col-11">
       <div className="d-flex bd-highlight mb-1 align-items-center">
-        <div className="p-2 bd-highlight">
+        <div className="p-2 bd-highlight profile">
           <img
             src={userImg}
             className="rounded-circle"
             alt="profile"
-            style={{ width: "55px" }}
           />
         </div>
         <div className="p-2 bd-highlight">{data.username}</div>
@@ -23,7 +23,7 @@ const SubComments = ({ data }) => {
             {data.updated_at == null ? (
               ""
             ) : (
-              <div className="me-3" style={{fontSize: "14px"}}>
+              <div className="me-3 fs-8">
                 <em>edited</em>
               </div>
             )}
@@ -55,7 +55,7 @@ const SubComments = ({ data }) => {
               </li>
             </ul>
           </div>
-          <div className="ms-auto p-2 bd-highlight" style={{fontSize: "14px"}}>
+          <div className="ms-auto p-2 bd-highlight fs-8">
             {data.updated_at == null ? data.created_at : data.updated_at}
           </div>
         </div>
@@ -83,7 +83,7 @@ const SubComments = ({ data }) => {
         </div>
       ) : (
         <>
-          <div className="ms-3" style={{fontSize: "15px"}}>
+          <div className="ms-3 fs-7">
             <p>{data.content}</p>
           </div>
           <div className="d-flex bd-highlight mb-1">
@@ -92,17 +92,15 @@ const SubComments = ({ data }) => {
                 <img
                   src={liked}
                   alt=""
-                  className="me-2"
+                  className="me-2 likeCom"
                   type="button"
-                  style={{ width: "26px" }}
                 />
               ) : (
                 <img
                   src={like}
                   alt=""
-                  className="me-2"
+                  className="me-2 likeCom"
                   type="button"
-                  style={{ width: "26px" }}
                 />
               )}
               {data.like}

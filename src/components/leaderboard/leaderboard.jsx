@@ -2,23 +2,24 @@ import commentUser from '../../assets/img/commentUser.svg'
 import likeUser from '../../assets/img/likeUser.svg'
 import followerUser from '../../assets/img/followerUser.svg'
 import React from 'react'
+import './leaderboard.css'
 
 const Leaderboard = ({data}) => {
     return (
-        <div className="leaderboard border rounded-3 p-1">
-            <div className="title d-flex justify-content-center fs-6 mb-1">Leaderboard</div>
+        <div className="border rounded-3 p-1">
+            <div className="d-flex justify-content-center fs-6 mb-1">Leaderboard</div>
             {data.map((item, index)=> (
                 <React.Fragment key={index}>
-                    <div className="name" style={{fontSize: "14px"}}>{index+1}. {item.username}</div>
-                    <div className="info d-flex ms-3">
-                        <div className="comment d-flex align-items-center me-3" style={{fontSize: "14px"}}>
-                            <img src={commentUser} alt="" style={{width: "15px"}}/>{item.comment}
+                    <div className="fs-8">{index+1}. {item.username}</div>
+                    <div className="d-flex ms-3">
+                        <div className="d-flex align-items-center me-3 fs-8 icon">
+                            <img src={commentUser} alt=""/>{item.comment}
                         </div>
-                        <div className="like d-flex align-items-center me-3">
-                            <img src={likeUser} alt="" style={{width: "15px"}}/>{item.like}
+                        <div className="d-flex align-items-center me-3 icon">
+                            <img src={likeUser} alt=""/>{item.like}
                         </div>
-                        <div className="follower d-flex align-items-center">
-                            <img src={followerUser} alt="" style={{width: "15px"}}/>{item.follower}
+                        <div className="d-flex align-items-center icon">
+                            <img src={followerUser} alt=""/>{item.follower}
                         </div>
                     </div>
                 </React.Fragment>

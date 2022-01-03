@@ -10,7 +10,7 @@ const Footer = ()=> {
     return (
         <>
         <hr />
-        <div className="row m-auto" style={{width: "95%"}}>
+        <div className={`row m-auto ${styles.wrap}`}>
             <div className="col">
                 <a className={`navbar-brand ${styles.title}`} href="#">
                     <img src={logo} alt="logo" className={styles.logo}/>INFION
