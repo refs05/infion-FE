@@ -90,7 +90,7 @@ const Comments = ({ data }) => {
         ) : (
           <>
             <div className="ms-3 fs-7">
-              <p>{data.content}</p>
+              <p>{data.comment}</p>
             </div>
             <div className="d-flex bd-highlight mb-1">
               <div className="m-2 bd-highlight d-flex bd-highlight mb-1 align-items-center">
@@ -118,7 +118,7 @@ const Comments = ({ data }) => {
                   alt=""
                   className="me-2 likeCom"
                 />
-                {data.subComment.length}
+                {/* {data.subComment.length} */}
               </div>
               <div
                 type="button"
@@ -131,11 +131,11 @@ const Comments = ({ data }) => {
           </>
         )}
 
-        <div className="d-flex justify-content-end">
+        {/* <div className="d-flex justify-content-end">
           {data.subComment.map((item, index) => (
             <SubComments data={item} key={index} />
           ))}
-        </div>
+        </div> */}
         {subComment ? (
           <div className="d-flex justify-content-end">
             <CreateComments />

@@ -5,14 +5,48 @@ import orderBullet from "../../assets/img/bulletFilter.svg"
 import like from "../../assets/img/love.svg";
 import comment from "../../assets/img/comment.svg";
 import './listThread.css'
-
+import { useEffect } from "react";
+import axios from "axios";
+import { useState } from "react";
 //mockRank
 import { mockRank } from "../../mockData/mockRankUser"
 
 //dummyData
 import imgThread from '../../assets/img/imgThreadEg.svg'
+import { Link } from "react-router-dom";
+import { map } from "lodash";
 
-const ListThread = ()=> {
+
+
+const ListThread = (props)=> {
+
+    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState([])
+
+    useEffect(()=> {
+        const fetchData = async () =>{
+            setLoading(true);
+            try {
+              const {data: response} = await axios.get(`http://localhost:8000/threads/list`);
+              setData(response);
+            } catch (error) {
+              console.error(error.message);
+            }
+            setLoading(false);
+          }
+      
+          fetchData();
+    }, [])
+
+   
+    const listThread = data?.data
+    const titles = listThread?.map(item => (
+        item.title.toLowerCase().replace(/\s/g, "-")
+    ))
+
+    console.log(titles)
+    console.log(props.data)
+
     return (
         <>
             <Header/>
@@ -105,60 +139,35 @@ const ListThread = ()=> {
                             <div className="viewmore">View more...</div>
                         </div>
                         <div class="card-group">
-                            <div class="card bg-transparent p-2 border-0">
-                                <img src={imgThread} class="card-img-top" alt="..." className="mb-1"/>
-                                <p class="card-text cardText" >This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div className="d-flex justify-content-between">
-                                    <div className="d-flex">
-                                        <div className="like d-flex align-items-center me-3">
-                                            <img src={like} alt=""/>
-                                            18
-                                        </div>
-                                        <div className="comment d-flex align-items-center">
-                                            <img src={comment} alt=""/>
-                                            18
-                                        </div>
+                            {data?.data?.map((item, index) => (
+                                <div class="card bg-transparent p-2 border-0" key={index}>
+                                    <img src={item.img} class="card-img-top adjust" alt="..." className="mb-1"/>
+                                    {/* <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`}>
+                                    <p class="card-text cardText" onClick={()=>props.data(item.title.toLowerCase().replace(/\s/g, "-"))}>{item.title}</p>
+                                    </Link> */}
+                                    <Link to={`/forum/${item.id}`} className="link">
+                                    <div className="wrapText my-2">
+                                        {item.title}
                                     </div>
-                                    <div className="follow d-flex align-items-center">Follow</div>
-                                </div>
-                                <p class="card-text text-end"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                            <div class="card bg-transparent p-2 border-0">
-                                <img src={imgThread} class="card-img-top" alt="..." className="mb-1"/>
-                                <p class="card-text cardText" >This card has supporting text below as a natural lead-in to additional content.sssssssssssssssssssssssssssssssssssss</p>
-                                <div className="info d-flex justify-content-between">
-                                    <div className="detail d-flex">
-                                        <div className="like d-flex align-items-center me-3">
-                                            <img src={like} alt="" />
-                                            18
+                                    
+                                    </Link>
+                                    
+                                    <div className="d-flex justify-content-between">
+                                        <div className="d-flex">
+                                            <div className="like d-flex align-items-center me-3">
+                                                <img src={like} alt=""/>
+                                                {item.like_count}
+                                            </div>
+                                            <div className="comment d-flex align-items-center">
+                                                <img src={comment} alt=""/>
+                                                {item.comment_count}
+                                            </div>
                                         </div>
-                                        <div className="comment d-flex align-items-center">
-                                            <img src={comment} alt="" />
-                                            18
-                                        </div>
+                                        <div className="follow d-flex align-items-center">Follow</div>
                                     </div>
-                                    <div className="follow d-flex align-items-center">Follow</div>
+                                    <p class="card-text text-end"><small class="text-muted">Last updated 3 mins ago</small></p>
                                 </div>
-                                <p class="card-text text-end"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                            <div class="card bg-transparent p-2 border-0">
-                                <img src={imgThread} class="card-img-top" alt="..." className="mb-1"/>
-                                <p class="card-text cardText" >This is a wider card with supporting text below as a natural lead-in to additional content.sssssssssssssssss</p>
-                                <div className="info d-flex justify-content-between">
-                                    <div className="detail d-flex">
-                                        <div className="like d-flex align-items-center me-3">
-                                            <img src={like} alt="" />
-                                            18
-                                        </div>
-                                        <div className="comment d-flex align-items-center">
-                                            <img src={comment} alt="" />
-                                            18
-                                        </div>
-                                    </div>
-                                    <div className="follow d-flex align-items-center">Follow</div>
-                                </div>
-                                <p class="card-text text-end"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
+                            ))}
                         </div>
                     </div>
                     <div className="bag mb-4">
@@ -167,60 +176,35 @@ const ListThread = ()=> {
                             <div className="viewmore">View more...</div>
                         </div>
                         <div class="card-group">
-                            <div class="card bg-transparent p-2 border-0">
-                                <img src={imgThread} class="card-img-top" alt="..." className="mb-1"/>
-                                <p class="card-text cardText" >This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div className="info d-flex justify-content-between">
-                                    <div className="detail d-flex">
-                                        <div className="like d-flex align-items-center me-3">
-                                            <img src={like} alt="" />
-                                            18
-                                        </div>
-                                        <div className="comment d-flex align-items-center">
-                                            <img src={comment} alt="" />
-                                            18
-                                        </div>
+                        {data?.data?.map((item, index) => (
+                                <div class="card bg-transparent p-2 border-0" key={index}>
+                                    <img src={item.img} class="card-img-top adjust" alt="..." className="mb-1"/>
+                                    {/* <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`}>
+                                    <p class="card-text cardText" onClick={()=>props.data(item.title.toLowerCase().replace(/\s/g, "-"))}>{item.title}</p>
+                                    </Link> */}
+                                    <Link to={`/forum/${item.id}`} className="link">
+                                    <div className="wrapText my-2">
+                                        {item.title}
                                     </div>
-                                    <div className="follow d-flex align-items-center">Follow</div>
-                                </div>
-                                <p class="card-text text-end"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                            <div class="card bg-transparent p-2 border-0">
-                                <img src={imgThread} class="card-img-top" alt="..." className="mb-1"/>
-                                <p class="card-text cardText" >This card has supporting text below as a natural lead-in to additional content.sssssssssssssssssssssssssssssssssssss</p>
-                                <div className="info d-flex justify-content-between">
-                                    <div className="detail d-flex">
-                                        <div className="like d-flex align-items-center me-3">
-                                            <img src={like} alt="" />
-                                            18
+                                    
+                                    </Link>
+                                    
+                                    <div className="d-flex justify-content-between">
+                                        <div className="d-flex">
+                                            <div className="like d-flex align-items-center me-3">
+                                                <img src={like} alt=""/>
+                                                {item.like_count}
+                                            </div>
+                                            <div className="comment d-flex align-items-center">
+                                                <img src={comment} alt=""/>
+                                                {item.comment_count}
+                                            </div>
                                         </div>
-                                        <div className="comment d-flex align-items-center">
-                                            <img src={comment} alt="" />
-                                            18
-                                        </div>
+                                        <div className="follow d-flex align-items-center">Follow</div>
                                     </div>
-                                    <div className="follow d-flex align-items-center">Follow</div>
+                                    <p class="card-text text-end"><small class="text-muted">Last updated 3 mins ago</small></p>
                                 </div>
-                                <p class="card-text text-end"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                            <div class="card bg-transparent p-2 border-0">
-                                <img src={imgThread} class="card-img-top" alt="..." className="mb-1"/>
-                                <p class="card-text cardText">This is a wider card with supporting text below as a natural lead-in to additional content.sssssssssssssssss</p>
-                                <div className="info d-flex justify-content-between">
-                                    <div className="detail d-flex">
-                                        <div className="like d-flex align-items-center me-3">
-                                            <img src={like} alt="" />
-                                            18
-                                        </div>
-                                        <div className="comment d-flex align-items-center">
-                                            <img src={comment} alt="" />
-                                            18
-                                        </div>
-                                    </div>
-                                    <div className="follow d-flex align-items-center">Follow</div>
-                                </div>
-                                <p class="card-text text-end"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
+                            ))}
                         </div>
                     </div>
                     <div className="bag mb-4">
@@ -229,60 +213,35 @@ const ListThread = ()=> {
                             <div className="viewmore">View more...</div>
                         </div>
                         <div class="card-group">
-                            <div class="card bg-transparent p-2 border-0">
-                                <img src={imgThread} class="card-img-top" alt="..." className="mb-1"/>
-                                <p class="card-text cardText" >This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div className="info d-flex justify-content-between">
-                                    <div className="detail d-flex">
-                                        <div className="like d-flex align-items-center me-3">
-                                            <img src={like} alt="" />
-                                            18
-                                        </div>
-                                        <div className="comment d-flex align-items-center">
-                                            <img src={comment} alt="" />
-                                            18
-                                        </div>
+                        {data?.data?.map((item, index) => (
+                                <div class="card bg-transparent p-2 border-0" key={index}>
+                                    <img src={item.img} class="card-img-top adjust" alt="..." className="mb-1"/>
+                                    {/* <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`}>
+                                    <p class="card-text cardText" onClick={()=>props.data(item.title.toLowerCase().replace(/\s/g, "-"))}>{item.title}</p>
+                                    </Link> */}
+                                    <Link to={`/forum/${item.id}`} className="link">
+                                    <div className="wrapText my-2">
+                                        {item.title}
                                     </div>
-                                    <div className="follow d-flex align-items-center">Follow</div>
-                                </div>
-                                <p class="card-text text-end"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                            <div class="card bg-transparent p-2 border-0">
-                                <img src={imgThread} class="card-img-top" alt="..." className="mb-1"/>
-                                <p class="card-text cardText" >This card has supporting text below as a natural lead-in to additional content.sssssssssssssssssssssssssssssssssssss</p>
-                                <div className="info d-flex justify-content-between">
-                                    <div className="detail d-flex">
-                                        <div className="like d-flex align-items-center me-3">
-                                            <img src={like} alt="" />
-                                            18
+                                    
+                                    </Link>
+                                    
+                                    <div className="d-flex justify-content-between">
+                                        <div className="d-flex">
+                                            <div className="like d-flex align-items-center me-3">
+                                                <img src={like} alt=""/>
+                                                {item.like_count}
+                                            </div>
+                                            <div className="comment d-flex align-items-center">
+                                                <img src={comment} alt=""/>
+                                                {item.comment_count}
+                                            </div>
                                         </div>
-                                        <div className="comment d-flex align-items-center">
-                                            <img src={comment} alt="" />
-                                            18
-                                        </div>
+                                        <div className="follow d-flex align-items-center">Follow</div>
                                     </div>
-                                    <div className="follow d-flex align-items-center">Follow</div>
+                                    <p class="card-text text-end"><small class="text-muted">Last updated 3 mins ago</small></p>
                                 </div>
-                                <p class="card-text text-end"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                            <div class="card bg-transparent p-2 border-0">
-                                <img src={imgThread} class="card-img-top" alt="..." className="mb-1"/>
-                                <p class="card-text cardText" >This is a wider card with supporting text below as a natural lead-in to additional content.sssssssssssssssss</p>
-                                <div className="info d-flex justify-content-between">
-                                    <div className="detail d-flex">
-                                        <div className="like d-flex align-items-center me-3">
-                                            <img src={like} alt="" />
-                                            18
-                                        </div>
-                                        <div className="comment d-flex align-items-center">
-                                            <img src={comment} alt="" />
-                                            18
-                                        </div>
-                                    </div>
-                                    <div className="follow d-flex align-items-center">Follow</div>
-                                </div>
-                                <p class="card-text text-end"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>
