@@ -24,6 +24,7 @@ import { mockThreadsSide } from "../../mockData/mockSideThread"
 
 const DetailPage = ()=> {
     console.log(mockRank)
+    let role = "common"
 
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([])
@@ -67,15 +68,54 @@ const DetailPage = ()=> {
                     <div className="mb-3 rounded-2">
                         <img src={imgThread} alt="" className="img-fluid w-100"/>
                     </div>
-                    <div className="d-flex mb-3">
-                        <div className="ms-2 me-2 info">
-                            <img src={likeThread} alt="" className="img-fluid" type="button"/>
+                    <div className="d-flex justify-content-between mb-3">
+                        <div className="action d-flex">
+                            <div className="ms-2 me-2 info">
+                                <img src={likeThread} alt="" className="img-fluid" type="button"/>
+                            </div>
+                            <div className="ms-2 me-2 info">
+                                <img src={commentThread} alt="" className="img-fluid" type="button"/>
+                            </div>
+                            <div className="ms-2 me-2 info">
+                                <img src={followThread} alt="" className="img-fluid" type="button"/>
+                            </div>
                         </div>
-                        <div className="ms-2 me-2 info">
-                            <img src={commentThread} alt="" className="img-fluid" type="button"/>
-                        </div>
-                        <div className="ms-2 me-2 info">
-                            <img src={followThread} alt="" className="img-fluid" type="button"/>
+                        <div className="moderator">
+                            <div className={ role == 'common' ? `reportHide d-flex align-items-center justify-content-center rounded-circle` : `report d-flex align-items-center justify-content-center rounded-circle`} type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Report
+                            </div>
+                            <div class="modal fade textBlack" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Report Thread</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body ">
+                                        <div className="d-flex align-items-center mb-2">
+                                            <div className="me-4 reportContent">ID Thread</div>
+                                            <input type="text" />
+                                        </div>
+                                        <div className="d-flex align-items-center mb-2">
+                                            <div className="me-4 reportContent">ID Reporter</div>
+                                            <input type="text" />
+                                        </div>
+                                        <div className="d-flex align-items-center mb-2">
+                                            <div className="me-4 reportContent">Reporter</div>
+                                            <input type="text" />
+                                        </div>
+                                        <div className="">
+                                            <div className="me-4">Reason for report this thread</div>
+                                            <textarea name="" id="" cols="55" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Send</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="mb-3">Liputan6.com, Jakarta Pemerintah melalui Badan Geologi Kementerian Energi dan Sumber Daya Mineral (ESDM)  menurunkan tim ahli untuk memperbarui peta Kawasan Rawan Bencana Gunung Semeru di Jawa Timur.
