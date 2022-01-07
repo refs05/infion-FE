@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./aboutUs.module.css";
 
 //import components
-import Header from "../../components/header/header";
+import {Header, HeaderLogged} from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 
 //import svg
@@ -16,7 +16,7 @@ import react from "../../assets/img/react.svg";
 function AboutUs() {
     return (
         <div>
-            <Header />
+            <HeaderLogged />
             <div>
                 <h1>
                     About <span className={styles.yellow}>Infion</span>

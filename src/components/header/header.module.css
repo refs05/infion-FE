@@ -1,8 +1,24 @@
 .logo {
-  width: 60px;
+  width: 6vh;
 }
 
 .title {
   font-size: 14px !important;
   color: #fff;
+}
+
+.profileSize {
+  width: 40px;
+}
+
+.notifSize {
+  width: 28px;
+}
+
+.wrap {
+  flex-grow: 1;
+}
+
+.grow {
+  flex-grow: 2;
 }
