@@ -7,7 +7,7 @@ const ListComment = (props)=> {
     console.log(props)
     return (
         <>
-            {props.data?.comment?.map((item, index) => <Comments data={item} key={index}/>)}
+            {props.data?.data?.map((item, index) => <Comments data={item} key={index}/>)}
             {/* <Comments data={props?.data}/> */}
             {/* {props.subComment?.map((item, index) => <Comments data={item} key={index}/>)} */}
             <div className="container-sm border rounded-3">

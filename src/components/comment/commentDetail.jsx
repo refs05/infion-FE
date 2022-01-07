@@ -110,7 +110,7 @@ const Comments = ({ data }) => {
                     type="button"
                   />
                 )}
-                {data.like}
+                {data.like_count}
               </div>
               <div className="m-2 bd-highlight d-flex bd-highlight mb-1 align-items-center">
                 <img
@@ -118,7 +118,7 @@ const Comments = ({ data }) => {
                   alt=""
                   className="me-2 likeCom"
                 />
-                {/* {data.subComment.length} */}
+                {data?.replies?.length}
               </div>
               <div
                 type="button"
@@ -131,11 +131,11 @@ const Comments = ({ data }) => {
           </>
         )}
 
-        {/* <div className="d-flex justify-content-end">
-          {data.subComment.map((item, index) => (
+        <div className="d-flex flex-column align-items-end">
+          {data?.replies?.map((item, index) => (
             <SubComments data={item} key={index} />
           ))}
-        </div> */}
+        </div>
         {subComment ? (
           <div className="d-flex justify-content-end">
             <CreateComments />

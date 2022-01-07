@@ -22,6 +22,6 @@
 }
 
 .adjust {
-    width: 224px;
-    height: 125px;
+    width: 224px!important;
+    height: 125px!important;
 }

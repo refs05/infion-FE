@@ -33,9 +33,6 @@ const DetailPage = ()=> {
     const [loadingComment, setLoadingComment] = useState(true);
     const [dataComment, setDataComment] = useState([])
 
-    const [loadingSubComment, setLoadingSubComment] = useState(true);
-    const [dataSubComment, setDataSubComment] = useState([])
-
     useEffect(()=> {
         const fetchData = async () =>{
             setLoading(true);
@@ -67,28 +64,10 @@ const DetailPage = ()=> {
           fetchData();
     }, [])
 
-    useEffect(()=> {
-        const fetchData = async () =>{
-            setLoadingSubComment(true);
-            try {
-              const {data: response} = await axios.get(`http://localhost:8000/replies/listbycomment/${firstWord}`);
-              setDataSubComment(response   );
-            } catch (error) {
-              console.error(error.message);
-            }
-            setLoadingSubComment(false);
-          }
-      
-          fetchData();
-    }, [])
-
-
     const dataDetail = data?.data
     const dataComments = dataComment?.data 
-    const dataSubComments = dataSubComment?.data
     console.log(data?.data)
     console.log(dataComment?.data)
-    console.log(dataSubComment?.data)
     return (
         <>
             <Header />
@@ -126,7 +105,7 @@ const DetailPage = ()=> {
                     <div className="mb-3">{dataDetail?.content}
                     </div>
                     <div className="titleComment fs-4">Comment</div>
-                    <ListComment data={{comment: dataComments, subComment: dataSubComments}}/>
+                    <ListComment data={dataComment}/>
                 </div>
                 <div className="sideContent col-sm-3 mt-5">
                     <Leaderboard data={mockRank}/>

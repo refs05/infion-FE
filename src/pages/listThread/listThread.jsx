@@ -141,10 +141,7 @@ const ListThread = (props)=> {
                         <div class="card-group">
                             {data?.data?.map((item, index) => (
                                 <div class="card bg-transparent p-2 border-0" key={index}>
-                                    <img src={item.img} class="card-img-top adjust" alt="..." className="mb-1"/>
-                                    {/* <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`}>
-                                    <p class="card-text cardText" onClick={()=>props.data(item.title.toLowerCase().replace(/\s/g, "-"))}>{item.title}</p>
-                                    </Link> */}
+                                    <img src={item.img} alt="..." className="card-img-top adjust mb-1"/>
                                     <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
                                     <div className="wrapText my-2">
                                         {item.title}
@@ -178,11 +175,8 @@ const ListThread = (props)=> {
                         <div class="card-group">
                         {data?.data?.map((item, index) => (
                                 <div class="card bg-transparent p-2 border-0" key={index}>
-                                    <img src={item.img} class="card-img-top adjust" alt="..." className="mb-1"/>
-                                    {/* <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`}>
-                                    <p class="card-text cardText" onClick={()=>props.data(item.title.toLowerCase().replace(/\s/g, "-"))}>{item.title}</p>
-                                    </Link> */}
-                                    <Link to={`/forum/${item.id}`} className="link">
+                                    <img src={item.img} alt="..." className="card-img-top adjust mb-1"/>
+                                    <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
                                     <div className="wrapText my-2">
                                         {item.title}
                                     </div>
@@ -215,11 +209,8 @@ const ListThread = (props)=> {
                         <div class="card-group">
                         {data?.data?.map((item, index) => (
                                 <div class="card bg-transparent p-2 border-0" key={index}>
-                                    <img src={item.img} class="card-img-top adjust" alt="..." className="mb-1"/>
-                                    {/* <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`}>
-                                    <p class="card-text cardText" onClick={()=>props.data(item.title.toLowerCase().replace(/\s/g, "-"))}>{item.title}</p>
-                                    </Link> */}
-                                    <Link to={`/forum/${item.id}`} className="link">
+                                    <img src={item.img} alt="..." className="card-img-top adjust mb-1"/>
+                                    <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
                                     <div className="wrapText my-2">
                                         {item.title}
                                     </div>
