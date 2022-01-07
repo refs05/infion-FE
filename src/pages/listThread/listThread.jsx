@@ -145,7 +145,7 @@ const ListThread = (props)=> {
                                     {/* <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`}>
                                     <p class="card-text cardText" onClick={()=>props.data(item.title.toLowerCase().replace(/\s/g, "-"))}>{item.title}</p>
                                     </Link> */}
-                                    <Link to={`/forum/${item.id}`} className="link">
+                                    <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
                                     <div className="wrapText my-2">
                                         {item.title}
                                     </div>

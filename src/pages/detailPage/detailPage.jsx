@@ -14,9 +14,6 @@ import likeThread from '../../assets/img/likeThread.svg'
 import commentThread from '../../assets/img/commentThread.svg'
 import followThread from '../../assets/img/followThread.svg'
 
-//dummy data
-import imgThread from '../../assets/img/imgThreadEg.svg'
-
 //mockRank
 import { mockRank } from "../../mockData/mockRankUser"
 import Leaderboard from "../../components/leaderboard/leaderboard"
@@ -25,9 +22,11 @@ import { mockThreadsSide } from "../../mockData/mockSideThread"
 
 
 const DetailPage = ()=> {
-    // console.log(mockRank)
     let { id } = useParams()
-    console.log(id)
+    
+    let firstWord = id.split("-")[0]
+    console.log (firstWord)
+
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([])
 
@@ -41,7 +40,7 @@ const DetailPage = ()=> {
         const fetchData = async () =>{
             setLoading(true);
             try {
-              const {data: response} = await axios.get(`http://localhost:8000/threads/${id}`);
+              const {data: response} = await axios.get(`http://localhost:8000/threads/${firstWord}`);
               setData(response);
             } catch (error) {
               console.error(error.message);
@@ -57,7 +56,7 @@ const DetailPage = ()=> {
         const fetchData = async () =>{
             setLoadingComment(true);
             try {
-              const {data: response} = await axios.get(`http://localhost:8000/comments/listbythread/${id}`);
+              const {data: response} = await axios.get(`http://localhost:8000/comments/listbythread/${firstWord}`);
               setDataComment(response   );
             } catch (error) {
               console.error(error.message);
@@ -72,7 +71,7 @@ const DetailPage = ()=> {
         const fetchData = async () =>{
             setLoadingSubComment(true);
             try {
-              const {data: response} = await axios.get(`http://localhost:8000/replies/listbycomment/${id}`);
+              const {data: response} = await axios.get(`http://localhost:8000/replies/listbycomment/${firstWord}`);
               setDataSubComment(response   );
             } catch (error) {
               console.error(error.message);
