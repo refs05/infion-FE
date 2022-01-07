@@ -1,5 +1,5 @@
 import Footer from "../../components/footer/footer"
-import Header from "../../components/header/header"
+import {Header, HeaderLogged} from "../../components/header/header"
 import Leaderboard from "../../components/leaderboard/leaderboard"
 import orderBullet from "../../assets/img/bulletFilter.svg"
 import like from "../../assets/img/love.svg";

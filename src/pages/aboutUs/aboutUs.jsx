@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./aboutUs.module.css";
 
 //import components
-import Header from "../../components/header/header";
+import {Header, HeaderLogged} from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 
 //import svg
