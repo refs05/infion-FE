@@ -21,12 +21,12 @@ const Header = (props)=> {
                                 <a className="nav-link active text-reset" aria-current="page" href="#">Home</a>
                             </li>
                             <li className="nav-item  mx-sm-5">
-                                <Link to={`/threads`}>
-                                    <a className="nav-link text-reset" href="#">Threads</a>
+                                <Link to={`/threads`} className={`${styles.link}`}>
+                                    <a className={`nav-link text-reset`} href="#">Threads</a>
                                 </Link>
                             </li>
                             <li className="nav-item  mx-sm-5">
-                                <Link to={`/about`}>
+                                <Link to={`/about`} className={`${styles.link}`}>
                                     <a className="nav-link text-reset" href="#">About Us</a>
                                 </Link>
                             </li>
@@ -66,12 +66,12 @@ const HeaderLogged = (props)=> {
                                 <a className="nav-link active text-reset" aria-current="page" href="#">Home</a>
                             </li>
                             <li className="nav-item  mx-sm-5">
-                                <Link to={`/threads`}>
+                                <Link to={`/threads`} className={`${styles.link}`}>
                                     <a className="nav-link text-reset" href="#">Threads</a>
                                 </Link>
                             </li>
                             <li className="nav-item  mx-sm-5">
-                                <Link to={`/about`}>
+                                <Link to={`/about`} className={`${styles.link}`}>
                                     <a className="nav-link text-reset" href="#">About Us</a>
                                 </Link>
                             </li>
