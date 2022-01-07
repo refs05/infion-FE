@@ -16,7 +16,7 @@ import react from "../../assets/img/react.svg";
 function AboutUs() {
     return (
         <div>
-            <HeaderLogged />
+            <Header />
             <div>
                 <h1>
                     About <span className={styles.yellow}>Infion</span>
