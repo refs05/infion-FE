@@ -109,27 +109,27 @@ const DetailPage = ()=> {
                 </div>
                 <div className="sideContent col-sm-3 mt-5">
                     <Leaderboard data={mockRank}/>
-                    <div className="border rounded-3 p-1 mt-4 d-none d-sm-block">
+                    <div className="border rounded-3 p-2 mt-4 d-none d-sm-block">
                         <div className="title d-flex justify-content-center fs-6 mb-1">Newest</div>
                         <div className="wrap">
                             {mockThreadsSide.map((item, index)=> (
                                 <React.Fragment key={index}>
                                     <div className="d-flex align-items-start side">
                                         <img className=" me-1" src={bullet} alt="" /> 
-                                        <div className="content fst-italic fs-8" type="button">{item.title}</div>
+                                        <div className="fs-8" type="button">{item.title}</div>
                                     </div>
                                 </React.Fragment>
                             ))}
                         </div>
                     </div>
-                    <div className="border rounded-3 p-1 mt-4">
+                    <div className="border rounded-3 p-2 mt-4">
                         <div className="title d-flex justify-content-center fs-6 mb-1">See Also</div>
                         <div className="wrap">
                             {mockThreadsSide.map((item, index)=> (
                                 <React.Fragment key={index}>
                                     <div className="d-flex align-items-start side">
                                         <img className=" me-1" src={bullet} alt=""/> 
-                                        <div className="content fst-italic fs-8" type="button">{item.title}</div>
+                                        <div className="fs-8" type="button">{item.title}</div>
                                     </div>
                                 </React.Fragment>
                             ))}

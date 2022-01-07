@@ -38,15 +38,6 @@ const ListThread = (props)=> {
           fetchData();
     }, [])
 
-   
-    const listThread = data?.data
-    const titles = listThread?.map(item => (
-        item.title.toLowerCase().replace(/\s/g, "-")
-    ))
-
-    console.log(titles)
-    console.log(props.data)
-
     return (
         <>
             <Header/>
@@ -141,9 +132,10 @@ const ListThread = (props)=> {
                         <div class="card-group">
                             {data?.data?.map((item, index) => (
                                 <div class="card bg-transparent p-2 border-0" key={index}>
-                                    <img src={item.img} alt="..." className="card-img-top adjust mb-1"/>
+                                    
                                     <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
-                                    <div className="wrapText my-2">
+                                    <img src={item.img} alt="..." className="card-img-top adjust mb-1"/>
+                                    <div className="wrapText my-2 fs-6">
                                         {item.title}
                                     </div>
                                     
@@ -175,9 +167,10 @@ const ListThread = (props)=> {
                         <div class="card-group">
                         {data?.data?.map((item, index) => (
                                 <div class="card bg-transparent p-2 border-0" key={index}>
-                                    <img src={item.img} alt="..." className="card-img-top adjust mb-1"/>
+                                    
                                     <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
-                                    <div className="wrapText my-2">
+                                    <img src={item.img} alt="..." className="card-img-top adjust mb-1"/>
+                                    <div className="wrapText my-2 fs-6">
                                         {item.title}
                                     </div>
                                     
@@ -209,9 +202,10 @@ const ListThread = (props)=> {
                         <div class="card-group">
                         {data?.data?.map((item, index) => (
                                 <div class="card bg-transparent p-2 border-0" key={index}>
-                                    <img src={item.img} alt="..." className="card-img-top adjust mb-1"/>
+                                    
                                     <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
-                                    <div className="wrapText my-2">
+                                    <img src={item.img} alt="..." className="card-img-top adjust mb-1"/>
+                                    <div className="wrapText my-2 fs-6">
                                         {item.title}
                                     </div>
                                     

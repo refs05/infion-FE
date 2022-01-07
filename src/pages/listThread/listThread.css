@@ -25,3 +25,11 @@
     width: 224px!important;
     height: 125px!important;
 }
+
+.follow, .like, .comment {
+    font-size: 15px;
+}
+
+.card-text {
+    font-size: 14px;
+}
