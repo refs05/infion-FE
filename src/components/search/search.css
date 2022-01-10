@@ -1,0 +1,16 @@
+.resultDisplay {
+    top: 33px;
+    z-index: 9;
+    justify-content: center;
+    background: white;
+    border-radius: 5px;
+}
+
+.resultHidden {
+    display: none;
+}
+
+.result {
+    padding: 2px 10px;
+    color: black;
+}

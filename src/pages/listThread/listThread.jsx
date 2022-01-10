@@ -15,6 +15,7 @@ import { mockRank } from "../../mockData/mockRankUser"
 import imgThread from '../../assets/img/imgThreadEg.svg'
 import { Link } from "react-router-dom";
 import { map } from "lodash";
+import Search from "../../components/search/search";
 
 
 
@@ -41,15 +42,7 @@ const ListThread = (props)=> {
     return (
         <>
             <Header/>
-            <div class="container mb-4">
-                <div class="row height d-flex justify-content-center align-items-center">
-                    <div class="col-md-7">
-                        <div class="search d-flex">
-                            <input type="text" class="form-control" placeholder="Search here..."/> 
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Search data={data}/>
             <div className="container m-auto row">
                 <div className="leftContent col-sm-2">
                     <div className="filter border rounded-3 p-3 mb-4">
