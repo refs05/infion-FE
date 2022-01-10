@@ -6,19 +6,19 @@ import './leaderboard.css'
 
 const Leaderboard = ({data}) => {
     return (
-        <div className="border rounded-3 p-1">
+        <div className="border rounded-3 p-2">
             <div className="d-flex justify-content-center fs-6 mb-1">Leaderboard</div>
             {data.map((item, index)=> (
                 <React.Fragment key={index}>
                     <div className="fs-8">{index+1}. {item.username}</div>
                     <div className="d-flex ms-3">
-                        <div className="d-flex align-items-center me-3 fs-8 icon">
+                        <div className="d-flex align-items-center me-3 icon fs-8">
                             <img src={commentUser} alt=""/>{item.comment}
                         </div>
-                        <div className="d-flex align-items-center me-3 icon">
+                        <div className="d-flex align-items-center me-3 icon fs-8">
                             <img src={likeUser} alt=""/>{item.like}
                         </div>
-                        <div className="d-flex align-items-center icon">
+                        <div className="d-flex align-items-center icon fs-8">
                             <img src={followerUser} alt=""/>{item.follower}
                         </div>
                     </div>

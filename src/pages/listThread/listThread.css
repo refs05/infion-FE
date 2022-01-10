@@ -6,10 +6,30 @@
     width: 14px;
 }
 
-.cardText {
-    font-size: 14px;
-}
-
 .like img, .comment img {
     width: 25px;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.wrapText {
+    height: 80px;
+    overflow: hidden;
+    font-size: 14px;
+    color: white;
+}
+
+.adjust {
+    width: 224px!important;
+    height: 125px!important;
+}
+
+.follow, .like, .comment {
+    font-size: 15px;
+}
+
+.card-text {
+    font-size: 14px;
 }

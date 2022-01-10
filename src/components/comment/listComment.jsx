@@ -3,10 +3,13 @@ import { mockComment } from "../../mockData/mockComment"
 import userImg from '../../assets/img/userImg.svg'
 import './listComment.css'
 
-const ListComment = ()=> {
+const ListComment = (props)=> {
+    console.log(props)
     return (
         <>
-            {mockComment.map((item, index) => <Comments data={item} key={index}/>)}
+            {props.data?.data?.map((item, index) => <Comments data={item} key={index}/>)}
+            {/* <Comments data={props?.data}/> */}
+            {/* {props.subComment?.map((item, index) => <Comments data={item} key={index}/>)} */}
             <div className="container-sm border rounded-3">
                 <div className="d-flex bd-highlight mb-1 align-items-center mt-2">
                     <div className="p-2 bd-highlight profile">
