@@ -24,7 +24,7 @@ import { mockThreadsSide } from "../../mockData/mockSideThread"
 
 const DetailPage = ()=> {
     console.log(mockRank)
-    let role = "common"
+    let role = "moderator"
 
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([])
@@ -84,35 +84,35 @@ const DetailPage = ()=> {
                             <div className={ role == 'common' ? `reportHide d-flex align-items-center justify-content-center rounded-circle` : `report d-flex align-items-center justify-content-center rounded-circle`} type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Report
                             </div>
-                            <div class="modal fade textBlack" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Report Thread</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body ">
-                                        <div className="d-flex align-items-center mb-2">
-                                            <div className="me-4 reportContent">ID Thread</div>
-                                            <input type="text" />
+                            <div class="modal fade textBlack " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog ">
+                                    <div class="modal-content borderReport">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Report Thread</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div className="d-flex align-items-center mb-2">
-                                            <div className="me-4 reportContent">ID Reporter</div>
-                                            <input type="text" />
+                                        <div className="modal-body">
+                                            <div className="d-flex align-items-center mb-2">
+                                                <div className="me-4 reportContent">ID Thread</div>
+                                                <input type="text" className="bg-input rounded-3 px-1" value="2" readOnly/>
+                                            </div>
+                                            <div className="d-flex align-items-center mb-2">
+                                                <div className="me-4 reportContent">ID Reporter</div>
+                                                <input type="text" className="bg-input rounded-3 px-1" value="20" readOnly/>
+                                            </div>
+                                            <div className="d-flex align-items-center mb-2">
+                                                <div className="me-4 reportContent">Reporter</div>
+                                                <input type="text" className="bg-input rounded-3 px-1" value="andi_23" readOnly/>
+                                            </div>
+                                            <div className="">
+                                                <div className="me-4">Reason for report this thread</div>
+                                                <textarea name="" id="" cols="55" rows="4" className="rounded-3 px-1"></textarea>
+                                            </div>
                                         </div>
-                                        <div className="d-flex align-items-center mb-2">
-                                            <div className="me-4 reportContent">Reporter</div>
-                                            <input type="text" />
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary bg-send">Send</button>
                                         </div>
-                                        <div className="">
-                                            <div className="me-4">Reason for report this thread</div>
-                                            <textarea name="" id="" cols="55" rows="4"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Send</button>
-                                    </div>
                                     </div>
                                 </div>
                             </div>
