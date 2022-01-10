@@ -1,6 +1,6 @@
 import ListComment from "../../components/comment/listComment"
 import Footer from "../../components/footer/footer"
-import Header from "../../components/header/header"
+import {Header, HeaderLogged} from "../../components/header/header"
 import back from '../../assets/img/back.svg'
 import axios from "axios"
 import React, { useEffect, useState } from "react"
@@ -26,6 +26,9 @@ const DetailPage = ()=> {
     
     let firstWord = id.split("-")[0]
     console.log (firstWord)
+
+    console.log(mockRank)
+    let role = "moderator"
 
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([])
@@ -91,15 +94,54 @@ const DetailPage = ()=> {
                     <div className="mb-3 rounded-2">
                         <img src={data?.data?.img} alt="" className="img-fluid w-100"/>
                     </div>
-                    <div className="d-flex mb-3">
-                        <div className="ms-2 me-2 info">
-                            <img src={likeThread} alt="" className="img-fluid" type="button"/>
+                    <div className="d-flex justify-content-between mb-3">
+                        <div className="action d-flex">
+                            <div className="ms-2 me-2 info">
+                                <img src={likeThread} alt="" className="img-fluid" type="button"/>
+                            </div>
+                            <div className="ms-2 me-2 info">
+                                <img src={commentThread} alt="" className="img-fluid" type="button"/>
+                            </div>
+                            <div className="ms-2 me-2 info">
+                                <img src={followThread} alt="" className="img-fluid" type="button"/>
+                            </div>
                         </div>
-                        <div className="ms-2 me-2 info">
-                            <img src={commentThread} alt="" className="img-fluid" type="button"/>
-                        </div>
-                        <div className="ms-2 me-2 info">
-                            <img src={followThread} alt="" className="img-fluid" type="button"/>
+                        <div className="moderator">
+                            <div className={ role == 'common' ? `reportHide d-flex align-items-center justify-content-center rounded-circle` : `report d-flex align-items-center justify-content-center rounded-circle`} type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Report
+                            </div>
+                            <div class="modal fade textBlack " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog ">
+                                    <div class="modal-content borderReport">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Report Thread</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div className="modal-body">
+                                            <div className="d-flex align-items-center mb-2">
+                                                <div className="me-4 reportContent">ID Thread</div>
+                                                <input type="text" className="bg-input rounded-3 px-1" value="2" readOnly/>
+                                            </div>
+                                            <div className="d-flex align-items-center mb-2">
+                                                <div className="me-4 reportContent">ID Reporter</div>
+                                                <input type="text" className="bg-input rounded-3 px-1" value="20" readOnly/>
+                                            </div>
+                                            <div className="d-flex align-items-center mb-2">
+                                                <div className="me-4 reportContent">Reporter</div>
+                                                <input type="text" className="bg-input rounded-3 px-1" value="andi_23" readOnly/>
+                                            </div>
+                                            <div className="">
+                                                <div className="me-4">Reason for report this thread</div>
+                                                <textarea name="" id="" cols="55" rows="4" className="rounded-3 px-1"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary bg-send">Send</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="mb-3">{dataDetail?.content}

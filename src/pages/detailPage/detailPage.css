@@ -27,3 +27,39 @@
     width: 8px;
     margin-top: 6px;
 }
+
+.reportHide {
+    width: 45px;
+    height: 45px;
+    background-color: red;
+    font-size: 12px;
+    visibility: hidden;
+}
+
+.report {
+    width: 45px;
+    height: 45px;
+    background-color: red;
+    font-size: 12px;
+}
+
+.textBlack {
+    color: black!important;
+}
+
+.reportContent {
+    width: 100px;
+}
+
+.borderReport {
+    border-radius: 20px!important;
+}
+
+.bg-input {
+    background: #c4c4c4;
+}
+
+.bg-send {
+    background: #6D05CD!important;
+    border-color: #6D05CD!important;
+}
