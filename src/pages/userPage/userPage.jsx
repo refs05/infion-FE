@@ -20,9 +20,7 @@ const DetailPage = () => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const { data: response } = await axios.get(
-                    `http://localhost:8000/user/${id}`
-                );
+                const { data: response } = await axios.get(`http://localhost:8000/user/${id}`);
                 setData(response);
             } catch (error) {
                 console.error(error.message);
@@ -59,55 +57,35 @@ const DetailPage = () => {
                 <div className="col-10">
                     <div className="row d-flex justify-content-evenly">
                         <div className="border rounded-3 p-2 mt-4 d-none d-sm-block col-5">
-                            <div className="title border rounded-3 box-title px-1 ms-3">
-                                Account
-                            </div>
+                            <div className="title border rounded-3 box-title px-1 ms-3">Account</div>
                             <div className="row mt-2">
                                 <div className="col d-flex justify-content-center">
                                     <div className="d-flex flex-column">
-                                        <div className="d-flex justify-content-center">
-                                            Follower
-                                        </div>
-                                        <div className="d-flex justify-content-center">
-                                            {data?.data?.follower_count}
-                                        </div>
+                                        <div className="d-flex justify-content-center">Follower</div>
+                                        <div className="d-flex justify-content-center">{data?.data?.follower_count}</div>
                                     </div>
                                 </div>
                                 <div className="col d-flex justify-content-center">
                                     <div className="d-flex flex-column">
-                                        <div className="d-flex justify-content-center">
-                                            Like
-                                        </div>
-                                        <div className="d-flex justify-content-center">
-                                            {data?.data?.like_count}
-                                        </div>
+                                        <div className="d-flex justify-content-center">Like</div>
+                                        <div className="d-flex justify-content-center">{data?.data?.like_count}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="border rounded-3 p-2 mt-4 d-none d-sm-block col-5">
-                            <div className="title border rounded-3 box-title px-1 ms-3">
-                                Thread
-                            </div>
+                            <div className="title border rounded-3 box-title px-1 ms-3">Thread</div>
                             <div className="row mt-2">
                                 <div className="col d-flex justify-content-center">
                                     <div className="d-flex flex-column">
-                                        <div className="d-flex justify-content-center">
-                                            Follower
-                                        </div>
-                                        <div className="d-flex justify-content-center">
-                                            {data?.data?.thread_follower_count}
-                                        </div>
+                                        <div className="d-flex justify-content-center">Follower</div>
+                                        <div className="d-flex justify-content-center">{data?.data?.thread_follower_count}</div>
                                     </div>
                                 </div>
                                 <div className="col d-flex justify-content-center">
                                     <div className="d-flex flex-column">
-                                        <div className="d-flex justify-content-center">
-                                            Following
-                                        </div>
-                                        <div className="d-flex justify-content-center">
-                                            {data?.data?.thread_following_count}
-                                        </div>
+                                        <div className="d-flex justify-content-center">Following</div>
+                                        <div className="d-flex justify-content-center">{data?.data?.thread_following_count}</div>
                                     </div>
                                 </div>
                             </div>
@@ -115,57 +93,37 @@ const DetailPage = () => {
                     </div>
                     <div className="row d-flex justify-content-evenly">
                         <div className="border rounded-3 p-2 mt-4 d-none d-sm-block col-5">
-                            <div className="title border rounded-3 box-title px-1 ms-3">
-                                Thread
-                            </div>
+                            <div className="title border rounded-3 box-title px-1 ms-3">Thread</div>
                             <div className="row mt-2">
                                 <div className="col d-flex justify-content-center">
                                     <div className="d-flex flex-column">
-                                        <div className="d-flex justify-content-center">
-                                            Your Thread
-                                        </div>
-                                        <div className="d-flex justify-content-center">
-                                            {data?.data?.thread_count}
-                                        </div>
+                                        <div className="d-flex justify-content-center">Your Thread</div>
+                                        <div className="d-flex justify-content-center">{data?.data?.thread_count}</div>
                                     </div>
                                 </div>
                             </div>
                             <div className="row mt-2">
                                 <div className="col d-flex justify-content-center">
                                     <div className="d-flex flex-column">
-                                        <div className="d-flex justify-content-center">
-                                            Like
-                                        </div>
-                                        <div className="d-flex justify-content-center">
-                                            {data?.data?.thread_like_count}
-                                        </div>
+                                        <div className="d-flex justify-content-center">Like</div>
+                                        <div className="d-flex justify-content-center">{data?.data?.thread_like_count}</div>
                                     </div>
                                 </div>
                                 <div className="col d-flex justify-content-center">
                                     <div className="d-flex flex-column">
-                                        <div className="d-flex justify-content-center">
-                                            Comment
-                                        </div>
-                                        <div className="d-flex justify-content-center">
-                                            {data?.data?.thread_comment_count}
-                                        </div>
+                                        <div className="d-flex justify-content-center">Comment</div>
+                                        <div className="d-flex justify-content-center">{data?.data?.thread_comment_count}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="border rounded-3 p-2 mt-4 d-none d-sm-block col-5">
-                            <div className="title border rounded-3 box-title px-1 ms-3">
-                                Rank
-                            </div>
+                            <div className="title border rounded-3 box-title px-1 ms-3">Rank</div>
                             <div className="row mt-2">
                                 <div className="col d-flex justify-content-center">
                                     <div className="d-flex flex-column">
-                                        <div className="d-flex justify-content-center">
-                                            Your Rank
-                                        </div>
-                                        <div className="d-flex justify-content-center">
-                                            {data?.data?.rank}
-                                        </div>
+                                        <div className="d-flex justify-content-center">Your Rank</div>
+                                        <div className="d-flex justify-content-center">{data?.data?.rank}</div>
                                     </div>
                                 </div>
                             </div>
