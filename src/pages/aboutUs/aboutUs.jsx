@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./aboutUs.module.css";
 
 //import components
-import {Header, HeaderLogged} from "../../components/header/header";
+import { Header, HeaderLogged } from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 
 //import svg
@@ -22,12 +22,9 @@ function AboutUs() {
                     About <span className={styles.yellow}>Infion</span>
                 </h1>
                 <p className={styles.desc}>
-                    INFION is stands for Infinity Discussion. This website was
-                    built to complete one of the task in alterra academy. The
-                    purpose of INFINION is to connect people around the world in
-                    many forum group discussion. So they can join on our forum
-                    and make some comments. But they can also create discussion
-                    in this website.
+                    INFION is stands for Infinity Discussion. This website was built to complete one of the task in alterra
+                    academy. The purpose of INFINION is to connect people around the world in many forum group discussion. So they
+                    can join on our forum and make some comments. But they can also create discussion in this website.
                 </p>
             </div>
             <div>
