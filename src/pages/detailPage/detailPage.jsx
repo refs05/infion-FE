@@ -68,9 +68,7 @@ const DetailPage = ()=> {
     }, [])
 
     const dataDetail = data?.data
-    const dataComments = dataComment?.data 
     console.log(data?.data)
-    console.log(dataComment?.data)
     return (
         <>
             <Header />

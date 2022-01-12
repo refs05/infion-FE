@@ -8,16 +8,13 @@ import './listThread.css'
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+
 //mockRank
 import { mockRank } from "../../mockData/mockRankUser"
 
 //dummyData
-import imgThread from '../../assets/img/imgThreadEg.svg'
 import { Link } from "react-router-dom";
-import { map } from "lodash";
 import Search from "../../components/search/search";
-
-
 
 const ListThread = (props)=> {
 
@@ -28,7 +25,7 @@ const ListThread = (props)=> {
         const fetchData = async () =>{
             setLoading(true);
             try {
-              const {data: response} = await axios.get(`http://localhost:8000/threads/list`);
+              const {data: response} = await axios.get(`http://localhost:8000/threads/list/`);
               setData(response);
             } catch (error) {
               console.error(error.message);
@@ -129,7 +126,7 @@ const ListThread = (props)=> {
                                     <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
                                     <img src={item.img} alt="..." className="card-img-top adjust mb-1"/>
                                     <div className="wrapText my-2 fs-6">
-                                        {item.title}
+                                        {item.title.length >= 68 ? item.title.slice(0, 68)+"...." : item.title}
                                     </div>
                                     
                                     </Link>
@@ -164,7 +161,7 @@ const ListThread = (props)=> {
                                     <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
                                     <img src={item.img} alt="..." className="card-img-top adjust mb-1"/>
                                     <div className="wrapText my-2 fs-6">
-                                        {item.title}
+                                         {item.title.length >= 68 ? item.title.slice(0, 68)+"...." : item.title}
                                     </div>
                                     
                                     </Link>
@@ -199,7 +196,7 @@ const ListThread = (props)=> {
                                     <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
                                     <img src={item.img} alt="..." className="card-img-top adjust mb-1"/>
                                     <div className="wrapText my-2 fs-6">
-                                        {item.title}
+                                        {item.title.length >= 68 ? item.title.slice(0, 68)+"...." : item.title}
                                     </div>
                                     
                                     </Link>

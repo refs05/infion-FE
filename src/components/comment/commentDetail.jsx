@@ -9,7 +9,7 @@ import { useState } from "react";
 import './commentDetail.css'
 
 const Comments = ({ data }) => {
-  console.log(data);
+
   const [subComment, setSubComment] = useState(false);
   const [editComment, setEditComment] = useState(false);
   return (
@@ -125,7 +125,7 @@ const Comments = ({ data }) => {
                 className="ms-auto me-3 bd-highlight d-flex align-items-center"
                 onClick={() => setSubComment(!subComment)}
               >
-                Reply
+                <a className="clearLink" href="#reply">Reply</a>
               </div>
             </div>
           </>

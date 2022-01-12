@@ -9,3 +9,12 @@
 .likeCom {
     width: 26px;
 }
+
+.clearLink {
+    text-decoration: none;
+    color: #fff;
+}
+
+.clearLink:hover {
+    color: #fff;
+}
