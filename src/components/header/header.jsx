@@ -18,7 +18,9 @@ const Header = (props)=> {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav m-auto">
                             <li className="nav-item mx-sm-5">
+                                <Link to={`/`} className={styles.link}>
                                 <a className="nav-link active text-reset" aria-current="page" href="#">Home</a>
+                                </Link>
                             </li>
                             <li className="nav-item  mx-sm-5">
                                 <Link to={`/threads`} className={`${styles.link}`}>

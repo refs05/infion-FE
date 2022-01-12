@@ -9,6 +9,7 @@ import Agreement from "./pages/agreement/agreement";
 import DetailPage from "./pages/detailPage/detailPage";
 import ListThread from "./pages/listThread/listThread";
 import UserPage from "./pages/userPage/userPage";
+import HomeVisitor from "./components/home/homeVisitor";
 
 function App() {
     const [data, setData] = useState({ data: "" });
@@ -29,6 +30,7 @@ function App() {
                     <ListThread data={changeRoute} />
                 </Route>
                 <Route path="/admin" exact component={Admin} />
+                <Route path="/" exact component={HomeVisitor}/>
             </Switch>
         </Router>
     );
