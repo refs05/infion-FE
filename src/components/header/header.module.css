@@ -27,3 +27,32 @@
   text-decoration: none;
   color: #fff;
 }
+.black{
+  color : #0000!important;
+}
+.btn{
+  background-color: #6D05CD!important;
+  width: 30%;
+}
+.radius{
+  border-radius:50px!important;
+  width: 75%!important;
+}
+.radius2{
+  border-radius:50px!important;
+}
+.blue{
+  color:#3F6FE3;
+  text-decoration: none;
+}
+.grey{
+  color: #736E6E;
+ 
+}
+.size{
+  width: 30%;
+}
+.size2{
+  width: 15%;
+}
+
