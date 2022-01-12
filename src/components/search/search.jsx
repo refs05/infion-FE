@@ -34,10 +34,10 @@ const Search = (props)=> {
         <div class="container mb-4">
                 <div class="row height d-flex justify-content-center align-items-center">
                     <div class="col-md-7">
-                        <div class="search">
+                        <div class="search position-relative">
                             <div className="d-flex position-relative">
                                 <input type="text" class="form-control" placeholder="Search something here..." onChange={searchChange} value={searchTerm}/> 
-                                <div type="button" className={searchStatus ? "position-absolute top-50 end-0 translate-middle-y me-2" : "resultHidden"}style={{color: "red"}} onClick={searchStatusChange}>Close</div>
+                                <div type="button" className={searchStatus ? "position-absolute top-50 end-0 translate-middle-y me-2" : "resultHidden"}style={{color: "red"}} onClick={searchStatusChange}>Clear</div>
                             </div>
                             <div className={searchStatus ? "resultDisplay" : "resultHidden"}>
                                 {searchResult?.map((item, index) => (

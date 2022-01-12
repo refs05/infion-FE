@@ -7,7 +7,7 @@ import './subComment.css'
 
 const SubComments = ({ data }) => {
   const [editComment, setEditComment] = useState(false);
-  console.log(data)
+
   return (
 
     <div className="col-11">
