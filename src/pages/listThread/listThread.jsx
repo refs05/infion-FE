@@ -45,70 +45,106 @@ const ListThread = (props) => {
                     <div className="filter border rounded-3 p-3 mb-4">
                         <div className="title d-flex justify-content-center mb-1">Filter</div>
                         <div className="content">
-                            <div className="isi d-flex align-items-center mb-1 bullet">
-                                <img src={orderBullet} alt="" className="me-2" />
-                                None
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked/>
+                                <label className="form-check-label" for="flexRadioDefault1">
+                                    None
+                                </label>
                             </div>
-                            <div className="isi d-flex align-items-center mb-1 bullet">
-                                <img src={orderBullet} alt="" className="me-2" />
-                                Oldest
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
+                                <label className="form-check-label" for="flexRadioDefault2">
+                                    Oldest
+                                </label>
                             </div>
-                            <div className="isi d-flex align-items-center mb-1 bullet">
-                                <img src={orderBullet} alt="" className="me-2" />
-                                Newest
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault3" />
+                                <label className="form-check-label" for="flexRadioDefault3">
+                                    Newest
+                                </label>
                             </div>
-                            <div className="isi d-flex align-items-center mb-1 bullet">
-                                <img src={orderBullet} alt="" className="me-2" />
-                                Top Threads
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault4" />
+                                <label className="form-check-label" for="flexRadioDefault4">
+                                    Top Threads
+                                </label>
                             </div>
-                            <div className="isi d-flex align-items-center mb-1 bullet">
-                                <img src={orderBullet} alt="" className="me-2" />
-                                By Like
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault5" />
+                                <label className="form-check-label" for="flexRadioDefault5">
+                                    By Like
+                                </label>
                             </div>
-                            <div className="isi d-flex align-items-center mb-1 bullet">
-                                <img src={orderBullet} alt="" className="me-2" />
-                                By Comment
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault6" />
+                                <label className="form-check-label" for="flexRadioDefault6">
+                                    By Comment
+                                </label>
                             </div>
-                            <div className="isi d-flex align-items-center mb-1 bullet">
-                                <img src={orderBullet} alt="" className="me-2" />
-                                By Follower
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault7" />
+                                <label className="form-check-label" for="flexRadioDefault7">
+                                    By Follower
+                                </label>
                             </div>
                         </div>
                     </div>
                     <div className="category border rounded-3 p-3">
                         <div className="title d-flex justify-content-center mb-1">Category</div>
                         <div className="content">
-                            <div className="isi d-flex align-items-center mb-1 bullet active">
-                                <img src={orderBullet} alt="" className="me-2" />
-                                Health
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefaults" id="flexRadioDefault17" checked/>
+                                <label className="form-check-label" for="flexRadioDefault17" >
+                                    None
+                                </label>
                             </div>
-                            <div className="isi d-flex align-items-center mb-1 bullet">
-                                <img src={orderBullet} alt="" className="me-2" />
-                                Science
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefaults" id="flexRadioDefault9" />
+                                <label className="form-check-label" for="flexRadioDefault9">
+                                    Health
+                                </label>
                             </div>
-                            <div className="isi d-flex align-items-center mb-1 bullet">
-                                <img src={orderBullet} alt="" className="me-2" />
-                                Technology
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefaults" id="flexRadioDefault10" />
+                                <label className="form-check-label" for="flexRadioDefault10">
+                                    Science
+                                </label>
                             </div>
-                            <div className="isi d-flex align-items-center mb-1 bullet">
-                                <img src={orderBullet} alt="" className="me-2" />
-                                Lifestyle
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefaults" id="flexRadioDefault11" />
+                                <label className="form-check-label" for="flexRadioDefault11">
+                                    Technology
+                                </label>
                             </div>
-                            <div className="isi d-flex align-items-center mb-1 bullet">
-                                <img src={orderBullet} alt="" className="me-2" />
-                                Game
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefaults" id="flexRadioDefault12" />
+                                <label className="form-check-label" for="flexRadioDefault12">
+                                    Lifestyle
+                                </label>
                             </div>
-                            <div className="isi d-flex align-items-center mb-1 bullet">
-                                <img src={orderBullet} alt="" className="me-2" />
-                                Sport
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefaults" id="flexRadioDefault13" />
+                                <label className="form-check-label" for="flexRadioDefault13">
+                                    Game
+                                </label>
                             </div>
-                            <div className="isi d-flex align-items-center mb-1 bullet">
-                                <img src={orderBullet} alt="" className="me-2" />
-                                Food
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefaults" id="flexRadioDefault14" />
+                                <label className="form-check-label" for="flexRadioDefault14">
+                                    Sport
+                                </label>
                             </div>
-                            <div className="isi d-flex align-items-center mb-1 bullet">
-                                <img src={orderBullet} alt="" className="me-2" />
-                                Music
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefaults" id="flexRadioDefault15" />
+                                <label className="form-check-label" for="flexRadioDefault15">
+                                    Food
+                                </label>
+                            </div>
+                            <div className="mb-1 form-check">
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefaults" id="flexRadioDefault16" />
+                                <label className="form-check-label" for="flexRadioDefault16">
+                                    Music
+                                </label>
                             </div>
                         </div>
                     </div>
