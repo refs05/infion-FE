@@ -52,9 +52,9 @@ const ListThread = (props) => {
                                 </label>
                             </div>
                             <div className="mb-1 form-check">
-                                <input className="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
+                                <input className="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault2"/>
                                 <label className="form-check-label" for="flexRadioDefault2">
-                                    Oldest
+                                    Oldestt
                                 </label>
                             </div>
                             <div className="mb-1 form-check">
