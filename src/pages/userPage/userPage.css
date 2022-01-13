@@ -5,3 +5,42 @@
 .box-title {
     display: inline-block;
 }
+
+.sectionHeight {
+    height: 73vh;
+}
+
+.editInput {
+    background: transparent;
+    color: #fff;
+}
+
+.hideUpload {
+    opacity: 0;
+    z-index: -1;
+    color: #fff;
+}
+
+.upload {
+    color: #fff;
+}
+
+.photoProfile {
+    width: 150px;
+    height: 150px;
+}
+
+.nameProfile {
+    color: #3F6FE3;
+}
+
+.editButton {
+    background: #6D05CD;
+    color: #fff;
+}
+
+.previewProfile {
+    width: 150px;
+    height: 150px;
+}
+

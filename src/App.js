@@ -23,7 +23,6 @@ function App() {
             <Switch>
                 <Route path="/about" exact component={AboutUs} />
                 <Route path="/agreement" exact component={Agreement} />
-                {/* <Route path={`/forum/:id-${data}`} exact component={DetailPage} /> */}
                 <Route path={`/profile/:id`} exact component={UserPage} />
                 <Route path={`/forum/:id`} exact component={DetailPage} />
                 <Route path="/threads" exact>
