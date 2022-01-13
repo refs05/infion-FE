@@ -10,6 +10,7 @@ import DetailPage from "./pages/detailPage/detailPage";
 import ListThread from "./pages/listThread/listThread";
 import UserPage from "./pages/userPage/userPage";
 import HomeVisitor from "./components/home/homeVisitor";
+import createThread from "./components/thread/createThread";
 
 function App() {
     const [data, setData] = useState({ data: "" });
@@ -30,6 +31,7 @@ function App() {
                 </Route>
                 <Route path="/admin" exact component={Admin} />
                 <Route path="/" exact component={HomeVisitor}/>
+                <Route path="/createThread" exact component={createThread}/>
             </Switch>
         </Router>
     );
