@@ -123,7 +123,7 @@ const ListThread = (props) => {
                             </div>
                             <div className="mb-1 form-check">
                                 <input className="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault6" 
-                                value="like_count desc"
+                                value="comment_count desc"
                                 checked={filter === "comment_count desc"}
                                 onChange={onChangeFilter}
                                 />
@@ -133,7 +133,7 @@ const ListThread = (props) => {
                             </div>
                             <div className="mb-1 form-check">
                                 <input className="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault7" 
-                                value="like_count desc"
+                                value="follower_count desc"
                                 checked={filter === "follower_count desc"}
                                 onChange={onChangeFilter}
                                 />
