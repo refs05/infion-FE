@@ -1,0 +1,26 @@
+.page{
+ width: 55%;   
+}
+.yellow{
+    color: #FFCF00;
+}
+.form{
+    color : #FFFF!important;
+    border-radius: 12px;
+}
+.purple{
+ background-color: #6D05CD!important;
+ width: 15%;
+}
+.red{
+    background-color:#CD0511!important;
+    width: 15%;
+}
+.blue{
+    text-decoration: none;
+    color: #3F6FE3;
+}
+.preview{
+    min-height: 200px;
+    border-radius: 12px;
+}

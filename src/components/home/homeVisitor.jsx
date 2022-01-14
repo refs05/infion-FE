@@ -1,6 +1,7 @@
 import { Header } from "../header/header";
 import logo from "../../assets/img/illustration.svg";
 import style from "./home.module.css";
+import Footer from "../footer/footer";
 function HomeVisitor() {
   return (
     <>
@@ -48,6 +49,9 @@ function HomeVisitor() {
           </div>
         </div>
       </div>
+      <br/>
+      <br/>
+      <Footer></Footer>
     </>
   );
 }
