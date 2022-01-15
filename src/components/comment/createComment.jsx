@@ -7,7 +7,7 @@ const CreateComments = ()=> {
 
     const [values, setValues] = useState({
         user_id: 2,
-        comment_id: 2,
+        comment_id: 5,
         reply: 'main bola yuk',
         like_count: 0,
     });

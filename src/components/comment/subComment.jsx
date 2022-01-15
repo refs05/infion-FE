@@ -15,7 +15,7 @@ const SubComments = ({ data }) => {
         <div className="p-2 bd-highlight profile">
           <img src={userImg} className="rounded-circle" alt="profile" /> 
         </div>
-        <div className="p-2 bd-highlight">{data.username}ssss</div>
+        <div className="p-2 bd-highlight">{data.username}</div>
         <div className="ms-auto p-2 bd-highlight">
           <div className="p-2 d-flex justify-content-end">
             {data.updated_at == null ? (
@@ -61,7 +61,7 @@ const SubComments = ({ data }) => {
       ) : (
         <>
           <div className="ms-3 fs-7">
-            <p>{data.content}</p>
+            <p>{data.reply}</p>
           </div>
           <div className="d-flex bd-highlight mb-1">
             <div className="m-2 bd-highlight d-flex bd-highlight mb-1 align-items-center">
@@ -70,7 +70,7 @@ const SubComments = ({ data }) => {
               ) : (
                 <img src={like} alt="" className="me-2 likeCom" type="button"/>
               )}
-              {data.like}
+              {data.like_count}
             </div>
           </div>
         </>
