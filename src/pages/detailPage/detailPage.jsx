@@ -201,7 +201,7 @@ const DetailPage = () => {
                     <div className="border rounded-3 p-2 mt-4 d-none d-sm-block">
                         <div className="title d-flex justify-content-center fs-6 mb-1">Newest</div>
                         <div className="wrap">
-                            {dataNewest.data?.map((item, index) => (
+                            {dataNewest.data?.slice(0, 5).map((item, index) => (
                                 <React.Fragment key={index}>
                                     <div className="d-flex align-items-start side">
                                         <img className=" me-1" src={bullet} alt="" />
@@ -216,7 +216,7 @@ const DetailPage = () => {
                     <div className="border rounded-3 p-2 mt-4">
                         <div className="title d-flex justify-content-center fs-6 mb-1">See Also</div>
                         <div className="wrap">
-                            {dataAlso.data?.map((item, index) => (
+                            {dataAlso.data?.slice(0, 5).map((item, index) => (
                                 <React.Fragment key={index}>
                                     <div className="d-flex align-items-start side">
                                         <img className=" me-1" src={bullet} alt="" />
