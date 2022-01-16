@@ -17,7 +17,7 @@ import followThread from "../../assets/img/followThread.svg";
 //mockRank
 import { mockRank } from "../../mockData/mockRankUser";
 import Leaderboard from "../../components/leaderboard/leaderboard";
-import { mockThreadsSide } from "../../mockData/mockSideThread";
+// import { mockThreadsSide } from "../../mockData/mockSideThread"; //Udh g perlu kayaknya
 
 const DetailPage = () => {
     let { id } = useParams();
@@ -33,6 +33,12 @@ const DetailPage = () => {
 
     const [loadingComment, setLoadingComment] = useState(true);
     const [dataComment, setDataComment] = useState([]);
+
+    const [loadingNewest, setLoadingNewest] = useState(true);
+    const [dataNewest, setDataNewest] = useState([]);
+
+    const [loadingAlso, setLoadingAlso] = useState(true);
+    const [dataAlso, setDataAlso] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -59,6 +65,36 @@ const DetailPage = () => {
                 console.error(error.message);
             }
             setLoadingComment(false);
+        };
+
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const { data: response } = await axios.get(`http://localhost:8000/threads/list/?sortBy=created_at desc`);
+                setDataNewest(response);
+            } catch (error) {
+                console.error(error.message);
+            }
+            setLoading(false);
+        };
+
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const { data: response } = await axios.get(`http://localhost:8000/threads/list/?sortBy=like_count desc`);
+                setDataAlso(response);
+            } catch (error) {
+                console.error(error.message);
+            }
+            setLoading(false);
         };
 
         fetchData();
@@ -165,7 +201,7 @@ const DetailPage = () => {
                     <div className="border rounded-3 p-2 mt-4 d-none d-sm-block">
                         <div className="title d-flex justify-content-center fs-6 mb-1">Newest</div>
                         <div className="wrap">
-                            {mockThreadsSide.map((item, index) => (
+                            {dataNewest.data?.map((item, index) => (
                                 <React.Fragment key={index}>
                                     <div className="d-flex align-items-start side">
                                         <img className=" me-1" src={bullet} alt="" />
@@ -180,7 +216,7 @@ const DetailPage = () => {
                     <div className="border rounded-3 p-2 mt-4">
                         <div className="title d-flex justify-content-center fs-6 mb-1">See Also</div>
                         <div className="wrap">
-                            {mockThreadsSide.map((item, index) => (
+                            {dataAlso.data?.map((item, index) => (
                                 <React.Fragment key={index}>
                                     <div className="d-flex align-items-start side">
                                         <img className=" me-1" src={bullet} alt="" />
