@@ -8,6 +8,7 @@ import upArrow from "../../assets/img/upArrow.svg";
 import bullet from "../../assets/img/bullet.svg";
 import "./detailPage.css";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //temporary
 import likeThread from "../../assets/img/likeThread.svg";
@@ -205,9 +206,11 @@ const DetailPage = () => {
                                 <React.Fragment key={index}>
                                     <div className="d-flex align-items-start side">
                                         <img className=" me-1" src={bullet} alt="" />
-                                        <div className="fs-8" type="button">
-                                            {item.title}
-                                        </div>
+                                        <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
+                                            <div className="fs-8" type="button">
+                                                {item.title.length >= 68 ? item.title.slice(0, 68) + "...." : item.title}
+                                            </div>
+                                        </Link>
                                     </div>
                                 </React.Fragment>
                             ))}
@@ -220,9 +223,11 @@ const DetailPage = () => {
                                 <React.Fragment key={index}>
                                     <div className="d-flex align-items-start side">
                                         <img className=" me-1" src={bullet} alt="" />
-                                        <div className="fs-8" type="button">
-                                            {item.title}
-                                        </div>
+                                        <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
+                                            <div className="fs-8" type="button">
+                                                {item.title.length >= 68 ? item.title.slice(0, 68) + "...." : item.title}
+                                            </div>
+                                        </Link>
                                     </div>
                                 </React.Fragment>
                             ))}
