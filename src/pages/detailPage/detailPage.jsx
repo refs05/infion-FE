@@ -109,7 +109,7 @@ const DetailPage = ()=> {
                                 Report
                             </div>
                             <div class="modal fade textBlack " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog ">
+                                <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content borderReport">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Report Thread</h5>

@@ -4,8 +4,10 @@ import logo1 from "../../assets/img/logoWithText.svg";
 import styles from "./header.module.css";
 import userImg from "../../assets/img/userImg.svg";
 import notifIcon from "../../assets/img/notifIcon.svg";
+import alert from "../../assets/img/alert.svg"
 
 const Header = (props) => {
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark">
@@ -53,9 +55,28 @@ const Header = (props) => {
                 </Link>
               </li>
               <li className="nav-item  mx-sm-5">
-                <a className="nav-link text-reset" href="#">
+                  <a className="nav-link text-reset" href="#" data-bs-toggle="modal"
+                  data-bs-target="#ModalLogin">
                   Make Own Threads
-                </a>
+                  </a>
+                  <div
+                    className={`modal fade textBlack `}
+                    id="ModalLogin"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div className="modal-dialog modal-dialog-centered">
+                      <div className={`modal-content mx-auto ${styles.radius} bg-warning`}>
+                        <div className="modal-body mx-4">
+                          <div className={`p-5 d-flex flex-column align-items-center ${styles.alert}`}>
+                            <img src={alert} alt="alert"/>
+                            <h5 className="fw-bold my-2">Please Login First!</h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               </li>
             </ul>
             <ul className="navbar-nav">
@@ -110,12 +131,6 @@ const Header = (props) => {
               >
                 Login
               </h4>
-              {/* <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button> */}
             </div>
             <div className="modal-body mx-4">
               <div>
@@ -173,12 +188,6 @@ const Header = (props) => {
               >
                 Register
               </h4>
-              {/* <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button> */}
             </div>
 
             <div className="modal-body mx-4">
@@ -313,9 +322,11 @@ const HeaderLogged = (props) => {
                 </Link>
               </li>
               <li className="nav-item  mx-sm-5">
-                <a className="nav-link text-reset" href="#">
-                  Make Own Threads
-                </a>
+                <Link to={`/createThread`} className={`${styles.link}`}>
+                  <a className="nav-link text-reset" href="#">
+                    Make Own Threads
+                  </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -373,7 +384,7 @@ const HeaderLogged = (props) => {
               >
                 <li>
                   <h3 className="dropdown-header" href="#">
-                    Notification
+                    Notifications
                   </h3>
                 </li>
                 <li>
