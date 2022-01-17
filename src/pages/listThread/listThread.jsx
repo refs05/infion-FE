@@ -247,7 +247,7 @@ const ListThread = (props) => {
                             <div className="viewmore">View more...</div>
                         </div>
                         <div class="card-group">
-                            {data?.data?.map((item, index) => (
+                            {data?.data?.slice(0,3).map((item, index) => (
                                 <div class="card bg-transparent p-2 border-0" key={index}>
                                     <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
                                     <img src={item.img} alt="..." className="card-img-top adjust mb-1"/>
@@ -282,7 +282,7 @@ const ListThread = (props) => {
                             <div className="viewmore">View more...</div>
                         </div>
                         <div class="card-group">
-                            {data?.data?.map((item, index) => (
+                            {data?.data?.slice(0,3).map((item, index) => (
                                 <div class="card bg-transparent p-2 border-0" key={index}>
                                     <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
                                     <img src={item.img} alt="..." className="card-img-top adjust mb-1"/>
@@ -317,7 +317,7 @@ const ListThread = (props) => {
                             <div className="viewmore">View more...</div>
                         </div>
                         <div class="card-group">
-                            {data?.data?.map((item, index) => (
+                            {data?.data?.slice(0,3).map((item, index) => (
                                 <div class="card bg-transparent p-2 border-0" key={index}>
                                     <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
                                     <img src={item.img} alt="..." className="card-img-top adjust mb-1"/>
