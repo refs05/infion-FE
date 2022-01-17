@@ -7,7 +7,6 @@ import notifIcon from "../../assets/img/notifIcon.svg";
 import alert from "../../assets/img/alert.svg"
 
 const Header = (props) => {
-
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark">
@@ -150,22 +149,23 @@ const Header = (props) => {
                 />
               </div>
             </div>
+                        <button type="button" className={`btn btn-secondary btn-lg rounded-pill mx-auto ${styles.btn}`}>
+                            Login
+                        </button>
+                        <br />
 
-            <button
-              type="button"
-              className={`btn btn-secondary btn-lg rounded-pill mx-auto ${styles.btn}`}
-            >
-              Login
-            </button>
-            <br />
-
-            <div className="mx-auto">
-              <p className={`${styles.grey}`}>
-                Don't have an account ?{" "}
-                <a href="#" className={`${styles.blue}`}>
-                  Register
-                </a>
-              </p>
+                        <div className="mx-auto">
+                            <p className={`${styles.grey}`}>
+                                Don't have an account ?{" "}
+                                <a href="#" className={`${styles.blue}`}>
+                                    Register
+                                </a>
+                            </p>
+                        </div>
+                        <img className={`mx-auto ${styles.size}`} src={logo1} alt="" />
+                        <br />
+                    </div>
+                </div>
             </div>
             <img className={`mx-auto ${styles.size}`} src={logo1} alt="" />
             <br />
@@ -189,99 +189,83 @@ const Header = (props) => {
                 Register
               </h4>
             </div>
+                        <div className="modal-body mx-4">
+                            <div className="row">
+                                <div className="col">
+                                    <div>
+                                        <h6 className="fw-bold ms-1  my-2">Username</h6>
+                                        <input
+                                            className={`form-control rounded-pill my-4`}
+                                            type="text"
+                                            placeholder="example@example.com"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h6 className="fw-bold  ms-1  my-2">Email</h6>
+                                        <input
+                                            className={`form-control rounded-pill my-4`}
+                                            type="text"
+                                            placeholder="example@example.com"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div>
+                                        <h6 className="fw-bold  ms-1  my-2">Password</h6>
+                                        <input
+                                            className={`form-control rounded-pill my-4`}
+                                            type="password"
+                                            placeholder="example123"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h6 className="fw-bold  ms-1  my-2">Password Confirmation</h6>
+                                        <input
+                                            className={`form-control rounded-pill my-4`}
+                                            type="password"
+                                            placeholder="example123"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-            <div className="modal-body mx-4">
-              <div className="row">
-                <div className="col">
-                  <div>
-                    <h6 className="fw-bold ms-1  my-2">Username</h6>
-                    <input
-                      className={`form-control rounded-pill my-4`}
-                      type="text"
-                      placeholder="example@example.com"
-                    />
-                  </div>
-                  <div>
-                    <h6 className="fw-bold  ms-1  my-2">Email</h6>
-                    <input
-                      className={`form-control rounded-pill my-4`}
-                      type="text"
-                      placeholder="example@example.com"
-                    />
-                  </div>
+                        <div className="mx-auto">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+                                <label className={`${styles.grey}`} for="defaultCheck1">
+                                    I agree with{" "}
+                                    <a href="#" className={`${styles.blue}`}>
+                                        Terms
+                                    </a>{" "}
+                                    and{" "}
+                                    <a href="#" className={`${styles.blue}`}>
+                                        Privacy
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+                        <br />
+                        <button type="button" className={`btn btn-secondary btn-lg rounded-pill mx-auto ${styles.btn}`}>
+                            Register
+                        </button>
+                        <br />
+
+                        <div className="mx-auto">
+                            <p className={`${styles.grey}`}>
+                                Have an account ?{" "}
+                                <a data-bs-target="#ModalLogin" href="#" className={`${styles.blue}`}>
+                                    Login
+                                </a>
+                            </p>
+                        </div>
+                        <img className={`mx-auto ${styles.size2}`} src={logo1} alt="" />
+                        <br />
+                    </div>
                 </div>
-                <div className="col">
-                  <div>
-                    <h6 className="fw-bold  ms-1  my-2">Password</h6>
-                    <input
-                      className={`form-control rounded-pill my-4`}
-                      type="password"
-                      placeholder="example123"
-                    />
-                  </div>
-                  <div>
-                    <h6 className="fw-bold  ms-1  my-2">
-                      Password Confirmation
-                    </h6>
-                    <input
-                      className={`form-control rounded-pill my-4`}
-                      type="password"
-                      placeholder="example123"
-                    />
-                  </div>
-                </div>
-              </div>
             </div>
-
-            <div className="mx-auto">
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="defaultCheck1"
-                />
-                <label className={`${styles.grey}`} for="defaultCheck1">
-                I agree with{" "}
-                <a href="#" className={`${styles.blue}`}>
-                  Terms
-                </a>{" "}
-                and{" "}
-                <a href="#" className={`${styles.blue}`}>
-                  Privacy
-                </a>
-                </label>
-              </div>
-             
-            </div>
-            <br/>
-            <button
-              type="button"
-              className={`btn btn-secondary btn-lg rounded-pill mx-auto ${styles.btn}`}
-            >
-              Register
-            </button>
-            <br />
-
-            <div className="mx-auto">
-              <p className={`${styles.grey}`}>
-                Have an account ?{" "}
-                <a
-                  data-bs-target="#ModalLogin"
-                  href="#"
-                  className={`${styles.blue}`}
-                >
-                  Login
-                </a>
-              </p>
-            </div>
-            <img className={`mx-auto ${styles.size2}`} src={logo1} alt="" />
-            <br />
-          </div>
-        </div>
-      </div>
-    </>
-  );
+        </>
+    );
 };
 
 const HeaderLogged = (props) => {

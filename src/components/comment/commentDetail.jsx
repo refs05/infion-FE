@@ -12,6 +12,8 @@ const Comments = ({ data }) => {
 
   const [subComment, setSubComment] = useState(false);
   const [editComment, setEditComment] = useState(false);
+  console.log(data)
+  
   return (
     <>
       <div className="border rounded-3 mb-3 px-2">
