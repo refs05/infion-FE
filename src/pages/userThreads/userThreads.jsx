@@ -3,15 +3,15 @@ import Footer from "../../components/footer/footer";
 import './userThreads.css'
 import { useEffect, useState } from "react";
 import axios from 'axios'
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import like from "../../assets/img/love.svg";
 import comment from "../../assets/img/comment.svg";
 
 const UserThreads = ()=> {
+    let { id } = useParams();
+
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
-
-    const id = 2;
 
     useEffect(() => {
         const fetchData = async () => {

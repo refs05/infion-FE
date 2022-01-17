@@ -35,7 +35,7 @@ function App() {
                 <Route path="/" exact component={HomeVisitor} />
                 <Route path="/createThread" exact component={createThread} />
                 <Route path="/editThread/:id" exact component={editThread} />
-                <Route path="/yourThreads" exact component={UserThreads} />
+                <Route path="/yourThreads/:id" exact component={UserThreads} />
             </Switch>
         </Router>
     );
