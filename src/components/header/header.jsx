@@ -351,11 +351,57 @@ const HeaderLogged = (props) => {
                   <hr className="dropdown-divider" />
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Logout
-                  </a>
+                <a
+                  className="dropdown-item text-reset"
+                  data-bs-toggle="modal"
+                  data-bs-target="#ModalLogout"
+                  href="#"
+                >
+                  Logout
+                </a>
+                
                 </li>
               </ul>
+            </div>
+            <div
+              className={`modal fade textBlack `}
+              id="ModalLogout"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div className="modal-dialog modal-dialog-centered">
+                <div className={`modal-content mx-auto ${styles.radius}`}>
+                  <div className="modal-header">
+                    <h4
+                      className="modal-title mx-auto fw-bolder"
+                      id="exampleModalLabel"
+                    >
+                      Logout
+                    </h4>
+                  </div>
+                  <div className="modal-body mx-4 d-flex flex-column align-items-center">
+                    <div className="mb-3">
+                        Are you sure ?
+                    </div>
+                    <div>
+                      <button
+                      type="button"
+                      className={`btn btn-danger rounded-pill mx-auto me-2`}
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        className={`btn btn-primary rounded-pill mx-auto`}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                  <img className={`mx-auto ${styles.size} mb-3`} src={logo1} alt="" />
+                </div>
+              </div>
             </div>
             <div className="dropdown me-4">
               <div
