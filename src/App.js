@@ -12,6 +12,7 @@ import UserPage from "./pages/userPage/userPage";
 import HomeVisitor from "./components/home/homeVisitor";
 import createThread from "./components/thread/createThread";
 import editThread from "./components/thread/editThread";
+import UserThreads from "./pages/userThreads/userThreads";
 
 function App() {
     const [data, setData] = useState({ data: "" });
@@ -34,6 +35,7 @@ function App() {
                 <Route path="/" exact component={HomeVisitor} />
                 <Route path="/createThread" exact component={createThread} />
                 <Route path="/editThread/:id" exact component={editThread} />
+                <Route path="/yourThreads" exact component={UserThreads} />
             </Switch>
         </Router>
     );

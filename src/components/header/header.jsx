@@ -167,11 +167,6 @@ const Header = (props) => {
                     </div>
                 </div>
             </div>
-            <img className={`mx-auto ${styles.size}`} src={logo1} alt="" />
-            <br />
-          </div>
-        </div>
-      </div>
       <div
         className={`modal fade textBlack `}
         id="ModalRegister"

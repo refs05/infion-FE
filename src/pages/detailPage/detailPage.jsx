@@ -9,6 +9,7 @@ import bullet from "../../assets/img/bullet.svg";
 import "./detailPage.css";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Leaderboard from "../../components/leaderboard/leaderboard";
 
 //temporary
 import likeThread from "../../assets/img/likeThread.svg";
@@ -17,8 +18,6 @@ import followThread from "../../assets/img/followThread.svg";
 
 //mockRank
 import { mockRank } from "../../mockData/mockRankUser";
-import Leaderboard from "../../components/leaderboard/leaderboard";
-// import { mockThreadsSide } from "../../mockData/mockSideThread"; //Udh g perlu kayaknya
 
 const DetailPage = () => {
     let { id } = useParams();

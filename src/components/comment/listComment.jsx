@@ -1,5 +1,4 @@
 import Comments from "./commentDetail"
-import { mockComment } from "../../mockData/mockComment"
 import userImg from '../../assets/img/userImg.svg'
 import './listComment.css'
 import axios from 'axios';
