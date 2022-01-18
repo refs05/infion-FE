@@ -100,7 +100,7 @@ const DetailPage = () => {
 
     const [followThreads, setFollowThreads] = useState({
         user_id: 2,
-        thread_id: 2,
+        thread_id: parseInt(firstWord),
     });
 
     const handleFollowThreads = async (e) => {
@@ -118,7 +118,7 @@ const DetailPage = () => {
 
     const [likeThreads, setLikeThreads] = useState({
         user_id: 2,
-        thread_id: 2,
+        thread_id: parseInt(firstWord),
     });
 
     const handleLikeThreads = async (e) => {
