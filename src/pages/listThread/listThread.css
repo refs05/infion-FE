@@ -2,7 +2,8 @@
     font-size: 13px;
 }
 
-.like img, .comment img {
+.like img,
+.comment img {
     width: 25px;
 }
 
@@ -15,14 +16,17 @@
     overflow: hidden;
     font-size: 14px;
     color: white;
+    max-width: 223px;
 }
 
 .adjust {
-    width: 224px!important;
-    height: 125px!important;
+    max-width: 223px !important;
+    height: 125px !important;
 }
 
-.follow, .like, .comment {
+.follow,
+.like,
+.comment {
     font-size: 15px;
 }
 
