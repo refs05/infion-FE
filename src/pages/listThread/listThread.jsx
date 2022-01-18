@@ -440,7 +440,7 @@ const ListThread = (props) => {
                             <div className="head d-flex justify-content-between align-items-end mb-1 px-2">
                                 <div className="title fs-5">Result </div>
                             </div>
-                            <div class="card-group">
+                            <div class="d-flex flex-wrap">
                                 {filteredThread?.data?.map((item, index) => (
                                     <div class="card bg-transparent p-2 border-0" key={index}>
                                         <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
