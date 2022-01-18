@@ -7,7 +7,7 @@
 }
 
 .sectionHeight {
-    height: 73vh;
+    height: 100vh;
 }
 
 .editInput {
@@ -31,11 +31,11 @@
 }
 
 .nameProfile {
-    color: #3F6FE3;
+    color: #3f6fe3;
 }
 
 .editButton {
-    background: #6D05CD;
+    background: #6d05cd;
     color: #fff;
 }
 
@@ -43,4 +43,3 @@
     width: 150px;
     height: 150px;
 }
-
