@@ -23,9 +23,7 @@ const DetailPage = () => {
     let { id } = useParams();
 
     let firstWord = id.split("-")[0];
-    console.log(firstWord);
 
-    console.log(mockRank);
     let role = "moderator";
 
     const [loading, setLoading] = useState(true);
@@ -137,7 +135,6 @@ const DetailPage = () => {
     };
 
     const dataDetail = data?.data;
-    console.log(data?.data);
 
     return (
         <>
@@ -152,7 +149,7 @@ const DetailPage = () => {
                     <div className="headThread d-flex justify-content-between mb-3">
                         <div className="first">
                             <div className="date fs-8">{new Date(dataDetail?.created_at).toDateString()}</div>
-                            <div className="follower fs-8">199 Followers</div>
+                            <div className="follower fs-8">{dataDetail?.follower_count} Followers</div>
                         </div>
                         <div className="second d-flex flex-column align-items-end">
                             <div className="creator fs-8">Oleh : {dataDetail?.username}</div>
@@ -231,7 +228,7 @@ const DetailPage = () => {
                     </div>
                     <div className="mb-3">{dataDetail?.content}</div>
                     <div className="titleComment fs-4">Comment</div>
-                    <ListComment data={dataComment} />
+                    <ListComment data={dataComment} thread_id={firstWord} />
                 </div>
                 <div className="sideContent col-sm-3 mt-5">
                     <Leaderboard data={mockRank} />

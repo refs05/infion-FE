@@ -392,7 +392,7 @@ const ListThread = (props) => {
                                             <div className="follow d-flex align-items-center">Follow</div>
                                         </div>
                                         <p class="card-text text-end">
-                                            <small class="text-muted">date.todatestring(new Date(item.created_at).toDateString());</small>
+                                            <small class="text-muted">{new Date(item.created_at).toDateString()}</small>
                                         </p>
                                     </div>
                                 ))}
