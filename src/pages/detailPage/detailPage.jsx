@@ -100,8 +100,43 @@ const DetailPage = () => {
         fetchData();
     }, []);
 
+    const [followThreads, setFollowThreads] = useState({
+        user_id: 2,
+        thread_id: 2
+    });
+
+    const handleFollowThreads = async (e) => {
+        e.preventDefault();
+
+        axios.post(`http://localhost:8000/followThreads/create`, followThreads)
+        .then(function (response) {
+            console.log(response)
+        })
+        .catch(function (error) {
+            console.log(error)
+        }) 
+    };
+
+    const [likeThreads, setLikeThreads] = useState({
+        user_id: 2,
+        thread_id: 2
+    });
+
+    const handleLikeThreads = async (e) => {
+        e.preventDefault();
+
+        axios.post(`http://localhost:8000/likeThreads/create`, likeThreads)
+        .then(function (response) {
+            console.log(response)
+        })
+        .catch(function (error) {
+            console.log(error)
+        }) 
+    };
+
     const dataDetail = data?.data;
     console.log(data?.data);
+
     return (
         <>
             <Header />
@@ -129,13 +164,13 @@ const DetailPage = () => {
                     </div>
                     <div className="d-flex justify-content-between mb-3">
                         <div className="action d-flex">
-                            <div className="ms-2 me-2 info">
+                            <div className="ms-2 me-2 info" onClick={handleLikeThreads}>
                                 <img src={likeThread} alt="" className="img-fluid" type="button" />
                             </div>
                             <div className="ms-2 me-2 info">
                                 <img src={commentThread} alt="" className="img-fluid" type="button" />
                             </div>
-                            <div className="ms-2 me-2 info">
+                            <div className="ms-2 me-2 info" onClick={handleFollowThreads}>
                                 <img src={followThread} alt="" className="img-fluid" type="button" />
                             </div>
                         </div>
