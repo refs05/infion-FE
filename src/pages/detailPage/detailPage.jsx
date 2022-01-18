@@ -102,36 +102,38 @@ const DetailPage = () => {
 
     const [followThreads, setFollowThreads] = useState({
         user_id: 2,
-        thread_id: 2
+        thread_id: 2,
     });
 
     const handleFollowThreads = async (e) => {
         e.preventDefault();
 
-        axios.post(`http://localhost:8000/followThreads/create`, followThreads)
-        .then(function (response) {
-            console.log(response)
-        })
-        .catch(function (error) {
-            console.log(error)
-        }) 
+        axios
+            .post(`http://localhost:8000/followThreads/create`, followThreads)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     };
 
     const [likeThreads, setLikeThreads] = useState({
         user_id: 2,
-        thread_id: 2
+        thread_id: 2,
     });
 
     const handleLikeThreads = async (e) => {
         e.preventDefault();
 
-        axios.post(`http://localhost:8000/likeThreads/create`, likeThreads)
-        .then(function (response) {
-            console.log(response)
-        })
-        .catch(function (error) {
-            console.log(error)
-        }) 
+        axios
+            .post(`http://localhost:8000/likeThreads/create`, likeThreads)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     };
 
     const dataDetail = data?.data;
@@ -149,7 +151,7 @@ const DetailPage = () => {
                     <div className="title fs-3 mb-3">{dataDetail?.title}</div>
                     <div className="headThread d-flex justify-content-between mb-3">
                         <div className="first">
-                            <div className="date fs-8">{dataDetail?.created_at}</div>
+                            <div className="date fs-8">{new Date(dataDetail?.created_at).toDateString()}</div>
                             <div className="follower fs-8">199 Followers</div>
                         </div>
                         <div className="second d-flex flex-column align-items-end">
