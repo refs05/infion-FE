@@ -4,14 +4,13 @@ import like from "../../assets/img/love.svg";
 import comment from "../../assets/img/comment.svg";
 import liked from "../../assets/img/liked.svg";
 import SubComments from "./subComment";
-import CreateComments from "./createComment";
+import CreateReply from "./createReply";
 import { useState } from "react";
 import "./commentDetail.css";
 
 const Comments = ({ data }) => {
     const [subComment, setSubComment] = useState(false);
     const [editComment, setEditComment] = useState(false);
-    console.log(data);
 
     return (
         <>
@@ -108,7 +107,7 @@ const Comments = ({ data }) => {
                 </div>
                 {subComment ? (
                     <div className="d-flex justify-content-end">
-                        <CreateComments />
+                        <CreateReply data={data?.id} />
                     </div>
                 ) : (
                     ""
