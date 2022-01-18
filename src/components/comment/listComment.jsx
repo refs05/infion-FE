@@ -9,7 +9,7 @@ const ListComment = (props)=> {
     const [values, setValues] = useState({
         user_id: 2,
         thread_id: 2,
-        comment: 'main bola yuksss',
+        comment: '',
         like_count: 0,
         reply_count: 0
     });
