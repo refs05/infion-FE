@@ -16,9 +16,6 @@ import likeThread from "../../assets/img/likeThread.svg";
 import commentThread from "../../assets/img/commentThread.svg";
 import followThread from "../../assets/img/followThread.svg";
 
-//mockRank
-import { mockRank } from "../../mockData/mockRankUser";
-
 const DetailPage = () => {
     let { id } = useParams();
 
@@ -231,7 +228,7 @@ const DetailPage = () => {
                     <ListComment data={dataComment} thread_id={firstWord} />
                 </div>
                 <div className="sideContent col-sm-3 mt-5">
-                    <Leaderboard data={mockRank} />
+                    <Leaderboard />
                     <div className="border rounded-3 p-2 mt-4 d-none d-sm-block">
                         <div className="title d-flex justify-content-center fs-6 mb-1">Newest</div>
                         <div className="wrap">
