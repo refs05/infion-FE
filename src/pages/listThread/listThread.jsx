@@ -38,19 +38,14 @@ const ListThread = (props) => {
         thread_id: 2,
     });
 
-    function getThreadId (id) {
-        return function () {
-            setFollowThreads({
-                user_id: 2,
-                thread_id: id
-            })
-        }
-    }
-
     const handleFollowThreads = (e) => {
 
         e.preventDefault();
-
+        setFollowThreads({
+            user_id: 2,
+            thread_id: parseInt(e.target.id),
+        })
+        
         axios
             .post(`http://localhost:8000/followThreads/create`, followThreads)
             .then(function (response) {
@@ -384,7 +379,7 @@ const ListThread = (props) => {
                                                     {item.comment_count}
                                                 </div>
                                             </div>
-                                            <div className="follow d-flex align-items-center" type="button" onMouseOver={getThreadId(item.id)} onClick={handleFollowThreads}>Follow</div>
+                                            <div className="follow d-flex align-items-center" type="button"  id={item?.id} onClick={handleFollowThreads}>Follow</div>
                                         </div>
                                         <p class="card-text text-end">
                                             <small class="text-muted">{new Date(item.created_at).toDateString()}</small>
@@ -420,7 +415,7 @@ const ListThread = (props) => {
                                                     {item.comment_count}
                                                 </div>
                                             </div>
-                                            <div className="follow d-flex align-items-center" type="button" onClick={handleFollowThreads}>Follow</div>
+                                            <div className="follow d-flex align-items-center" type="button" id={item?.id} onClick={handleFollowThreads}>Follow</div>
                                         </div>
                                         <p class="card-text text-end">
                                             <small class="text-muted">{new Date(item.created_at).toDateString()}</small>
@@ -456,7 +451,7 @@ const ListThread = (props) => {
                                                     {item.comment_count}
                                                 </div>
                                             </div>
-                                            <div className="follow d-flex align-items-center">Follow</div>
+                                            <div className="follow d-flex align-items-center" type="button" id={item?.id} onClick={handleFollowThreads}>Follow</div>
                                         </div>
                                         <p class="card-text text-end">
                                             <small class="text-muted">{new Date(item.created_at).toDateString()}</small>
@@ -493,7 +488,7 @@ const ListThread = (props) => {
                                                     {item.comment_count}
                                                 </div>
                                             </div>
-                                            <div className="follow d-flex align-items-center">Follow</div>
+                                            <div className="follow d-flex align-items-center" type="button"  id={item.id} onClick={handleFollowThreads}>Follow</div>
                                         </div>
                                         <p class="card-text text-end">
                                             <small class="text-muted">{new Date(item.created_at).toDateString()}</small>
