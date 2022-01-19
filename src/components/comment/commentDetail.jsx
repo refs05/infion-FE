@@ -37,9 +37,8 @@ const Comments = ({ data }) => {
                 user_id: 2,
                 comment_id: parseInt(e.target.id),
             })
-            e.preventDefault();
-           
-        }
+            e.preventDefault();       
+    }
 
     return (
         <>

@@ -35,8 +35,21 @@ const ListThread = (props) => {
 
     const [followThreads, setFollowThreads] = useState({
         user_id: 2,
-        thread_id: 2,
+        thread_id: 0,
     });
+
+    useEffect(() => {
+        if(followThreads.thread_id != 0) {
+            axios
+            .post(`http://localhost:8000/followThreads/create`, followThreads)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
+    }, [followThreads.thread_id]);
 
     const handleFollowThreads = (e) => {
 
@@ -45,15 +58,6 @@ const ListThread = (props) => {
             user_id: 2,
             thread_id: parseInt(e.target.id),
         })
-        
-        axios
-            .post(`http://localhost:8000/followThreads/create`, followThreads)
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
     };
 
     useEffect(() => {
