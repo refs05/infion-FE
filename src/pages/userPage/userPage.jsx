@@ -6,7 +6,7 @@ import "./userPage.css";
 import { useParams } from "react-router-dom";
 
 //dummy
-import userImg from '../../assets/img/userImg.svg'
+import userImg from "../../assets/img/userImg.svg";
 
 const DetailPage = () => {
     let { id } = useParams();
@@ -35,29 +35,29 @@ const DetailPage = () => {
     };
 
     //Preview Img
-    const [selectedFile, setSelectedFile] = useState()
-    const [preview, setPreview] = useState()
+    const [selectedFile, setSelectedFile] = useState();
+    const [preview, setPreview] = useState();
 
     useEffect(() => {
         if (!selectedFile) {
-            setPreview(undefined)
-            return
+            setPreview(undefined);
+            return;
         }
 
-        const objectUrl = URL.createObjectURL(selectedFile)
-        setPreview(objectUrl)
+        const objectUrl = URL.createObjectURL(selectedFile);
+        setPreview(objectUrl);
 
-        return () => URL.revokeObjectURL(objectUrl)
-    }, [selectedFile])
+        return () => URL.revokeObjectURL(objectUrl);
+    }, [selectedFile]);
 
-    const onSelectFile = e => {
+    const onSelectFile = (e) => {
         if (!e.target.files || e.target.files.length === 0) {
-            setSelectedFile(undefined)
-            return
+            setSelectedFile(undefined);
+            return;
         }
 
-        setSelectedFile(e.target.files[0])
-    }
+        setSelectedFile(e.target.files[0]);
+    };
 
     return (
         <div>
@@ -68,36 +68,39 @@ const DetailPage = () => {
             <div className="row container m-auto sectionHeight">
                 <div className="col-2 d-flex flex-column align-items-center">
                     <div className="mb-3">
-                        {/* {data?.data?.url_img}*/}        
-                        <img src={userImg} alt="photo-profile" className="photoProfile"/>
+                        {/* {data?.data?.url_img}*/}
+                        <img src={userImg} alt="photo-profile" className="photoProfile" />
                     </div>
-                    <div className="fs-5 nameProfile mb-4">
-                        {data?.data?.username}
-                    </div>
+                    <div className="fs-5 nameProfile mb-4">{data?.data?.username}</div>
                     {edit ? (
                         <div className="col">
                             <label>Email</label>
-                            <input type="text" className="editInput border rounded-3 mb-2 px-2 py-1"/>
+                            <input type="text" className="editInput border rounded-3 mb-2 px-2 py-1" />
                             <label>Password</label>
-                            <input type="text" className="editInput border rounded-3 mb-2 px-2 py-1"/>
+                            <input type="text" className="editInput border rounded-3 mb-2 px-2 py-1" />
                             <label>Password Confirmation</label>
-                            <input type="text" className="editInput border rounded-3 mb-2 px-2 py-1"/>
-                            <label>Edit Profile Picture</label> 
+                            <input type="text" className="editInput border rounded-3 mb-2 px-2 py-1" />
+                            <label>Edit Profile Picture</label>
                             <div className="position-relative upload border rounded-3 mb-3">
-                                <label htmlFor="uploadPhoto" className="px-3 py-1 border rounded-3">Select</label>
-                                <input type="file" name="photo" className="hideUpload position-absolute" id="uploadPhoto" onChange={onSelectFile}/>
-                                
+                                <label htmlFor="uploadPhoto" className="px-3 py-1 border rounded-3">
+                                    Select
+                                </label>
+                                <input type="file" name="photo" className="hideUpload position-absolute" id="uploadPhoto" onChange={onSelectFile} />
                             </div>
                             <div className="d-flex justify-content-center">
-                                {selectedFile &&  <img src={preview} className="previewProfile rounded-circle mb-2"/> }
+                                {selectedFile && <img src={preview} className="previewProfile rounded-circle mb-2" />}
                             </div>
                             <div className="row d-flex justify-content-between m-auto">
-                                <button onClick={changeEdit} className="cancel col-5 btn btn-danger">Cancel</button>
+                                <button onClick={changeEdit} className="cancel col-5 btn btn-danger">
+                                    Cancel
+                                </button>
                                 <button className="save col-5 btn btn-primary">Save</button>
                             </div>
                         </div>
                     ) : (
-                        <button onClick={changeEdit} className="editButton px-3 py-1 border rounded-3">Edit Profile</button>
+                        <button onClick={changeEdit} className="editButton px-3 py-1 border rounded-3">
+                            Edit Profile
+                        </button>
                     )}
                 </div>
                 <div className="col-10">
@@ -108,17 +111,13 @@ const DetailPage = () => {
                                 <div className="col d-flex justify-content-center">
                                     <div className="d-flex flex-column">
                                         <div className="d-flex justify-content-center fs-4">Follower</div>
-                                        <div className="d-flex justify-content-center fs-5">
-                                            {data?.data?.follower_count}
-                                        </div>
+                                        <div className="d-flex justify-content-center fs-5">{data?.data?.follower_count}</div>
                                     </div>
                                 </div>
                                 <div className="col d-flex justify-content-center">
                                     <div className="d-flex flex-column">
                                         <div className="d-flex justify-content-center fs-4">Like</div>
-                                        <div className="d-flex justify-content-center fs-5">
-                                            {data?.data?.like_count}
-                                        </div>
+                                        <div className="d-flex justify-content-center fs-5">{data?.data?.like_count}</div>
                                     </div>
                                 </div>
                             </div>
@@ -129,19 +128,13 @@ const DetailPage = () => {
                                 <div className="col d-flex justify-content-center">
                                     <div className="d-flex flex-column">
                                         <div className="d-flex justify-content-center fs-4">Follower</div>
-                                        <div className="d-flex justify-content-center fs-5">
-                                            {/* {data?.data?.thread_follower_count} */}
-                                            100
-                                        </div>
+                                        <div className="d-flex justify-content-center fs-5">{data?.data?.thread_follower_count}</div>
                                     </div>
                                 </div>
                                 <div className="col d-flex justify-content-center">
                                     <div className="d-flex flex-column">
                                         <div className="d-flex justify-content-center fs-4">Following</div>
-                                        <div className="d-flex justify-content-center fs-5">
-                                            {/* {data?.data?.thread_following_count} */}
-                                            100
-                                        </div>
+                                        <div className="d-flex justify-content-center fs-5">{data?.data?.thread_following_count}</div>
                                     </div>
                                 </div>
                             </div>
@@ -154,10 +147,7 @@ const DetailPage = () => {
                                 <div className="col d-flex justify-content-center">
                                     <div className="d-flex flex-column">
                                         <div className="d-flex justify-content-center fs-4">Your Thread</div>
-                                        <div className="d-flex justify-content-center fs-5">
-                                            {/* {data?.data?.thread_count} */}
-                                            100
-                                        </div>
+                                        <div className="d-flex justify-content-center fs-5">{data?.data?.thread_count}</div>
                                     </div>
                                 </div>
                             </div>
@@ -165,19 +155,13 @@ const DetailPage = () => {
                                 <div className="col d-flex justify-content-center">
                                     <div className="d-flex flex-column">
                                         <div className="d-flex justify-content-center fs-4">Like</div>
-                                        <div className="d-flex justify-content-center fs-5">
-                                            {/* {data?.data?.thread_like_count} */}
-                                            100
-                                        </div>
+                                        <div className="d-flex justify-content-center fs-5">{data?.data?.like_count}</div>
                                     </div>
                                 </div>
                                 <div className="col d-flex justify-content-center">
                                     <div className="d-flex flex-column">
-                                        <div className="d-flex justify-content-center fs-4">Comment</div>
-                                        <div className="d-flex justify-content-center fs-5">
-                                            {/* {data?.data?.thread_comment_count} */}
-                                            100
-                                        </div>
+                                        <div className="d-flex justify-content-center fs-4">Your Comment</div>
+                                        <div className="d-flex justify-content-center fs-5">{data?.data?.comment_count}</div>
                                     </div>
                                 </div>
                             </div>
@@ -188,10 +172,7 @@ const DetailPage = () => {
                                 <div className="d-flex justify-content-center">
                                     <div className="d-flex flex-column mt-3">
                                         <div className="d-flex justify-content-center fs-4">Your Rank</div>
-                                        <div className="d-flex justify-content-center fs-5">
-                                            {/* {data?.data?.rank} */}
-                                            100
-                                        </div>
+                                        <div className="d-flex justify-content-center fs-5">{data?.data?.rank}</div>
                                     </div>
                                 </div>
                             </div>
