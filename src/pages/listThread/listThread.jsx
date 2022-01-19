@@ -22,7 +22,7 @@ const ListThread = (props) => {
     const [filteredThread, setFilteredThread] = useState([]);
     const [filter, setFilter] = useState("");
     const [category, setCategory] = useState("");
-
+    console.log(filter)
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -55,6 +55,12 @@ const ListThread = (props) => {
 
     function onChangeFilter(event) {
         setFilter(event.target.value);
+    }
+
+    function viewMore(a) {
+        return function() {
+            setFilter(a)
+        }
     }
 
     function onChangeCategory(event) {
@@ -113,48 +119,6 @@ const ListThread = (props) => {
                                     className="form-check-input me-2"
                                     type="radio"
                                     name="flexRadioDefault"
-                                    id="flexRadioDefault2"
-                                    value="created_at asc"
-                                    checked={filter === "created_at asc"}
-                                    onChange={onChangeFilter}
-                                />
-                                <label className="form-check-label" for="flexRadioDefault2">
-                                    Oldest
-                                </label>
-                            </div>
-                            <div className="mb-1 form-check">
-                                <input
-                                    className="form-check-input me-2"
-                                    type="radio"
-                                    name="flexRadioDefault"
-                                    id="flexRadioDefault3"
-                                    value="created_at desc"
-                                    checked={filter === "created_at desc"}
-                                    onChange={onChangeFilter}
-                                />
-                                <label className="form-check-label" for="flexRadioDefault3">
-                                    Newest
-                                </label>
-                            </div>
-                            <div className="mb-1 form-check">
-                                <input
-                                    className="form-check-input me-2"
-                                    type="radio"
-                                    name="flexRadioDefault"
-                                    id="flexRadioDefault4"
-                                    value="like_count desc"
-                                    checked={filter === "like_count desc"}
-                                    onChange={onChangeFilter}
-                                />
-                                <label className="form-check-label" for="flexRadioDefault4">
-                                    Top Threads
-                                </label>
-                            </div>
-                            <div className="mb-1 form-check">
-                                <input
-                                    className="form-check-input me-2"
-                                    type="radio"
-                                    name="flexRadioDefault"
                                     id="flexRadioDefault5"
                                     value="like_count desc"
                                     checked={filter === "like_count desc"}
@@ -190,6 +154,48 @@ const ListThread = (props) => {
                                 />
                                 <label className="form-check-label" for="flexRadioDefault7">
                                     By Follower
+                                </label>
+                            </div>
+                            <div className="mb-1 form-check">
+                                <input
+                                    className="form-check-input me-2"
+                                    type="radio"
+                                    name="flexRadioDefault"
+                                    id="flexRadioDefault2"
+                                    value="created_at asc"
+                                    checked={filter === "created_at asc"}
+                                    onChange={onChangeFilter}
+                                />
+                                <label className="form-check-label" for="flexRadioDefault2">
+                                    Oldest
+                                </label>
+                            </div>
+                            <div className="mb-1 form-check">
+                                <input
+                                    className="form-check-input me-2"
+                                    type="radio"
+                                    name="flexRadioDefault"
+                                    id="flexRadioDefault3"
+                                    value="created_at desc"
+                                    checked={filter === "created_at desc"}
+                                    onChange={onChangeFilter}
+                                />
+                                <label className="form-check-label" for="flexRadioDefault3">
+                                    Newest
+                                </label>
+                            </div>
+                            <div className="mb-1 form-check">
+                                <input
+                                    className="form-check-input me-2"
+                                    type="radio"
+                                    name="flexRadioDefault"
+                                    id="flexRadioDefault4"
+                                    value="like_count desc"
+                                    checked={filter === "like_count desc"}
+                                    onChange={onChangeFilter}
+                                />
+                                <label className="form-check-label" for="flexRadioDefault4">
+                                    Top Threads
                                 </label>
                             </div>
                         </div>
@@ -331,7 +337,8 @@ const ListThread = (props) => {
                         <div className="bag mb-4">
                             <div className="head d-flex justify-content-between align-items-end mb-1 px-2">
                                 <div className="title fs-5">Top Threads</div>
-                                <div className="viewmore">View more...</div>
+                                <div className="viewmore" type="button" value="like_count desc"
+                                    onClick={viewMore("like_count desc")}>View more...</div>
                             </div>
                             <div class="card-group">
                                 {data?.data?.slice(0, 3).map((item, index) => (
@@ -366,7 +373,8 @@ const ListThread = (props) => {
                         <div className="bag mb-4">
                             <div className="head d-flex justify-content-between align-items-end mb-1 px-2">
                                 <div className="title fs-5">Newest Threads</div>
-                                <div className="viewmore">View more...</div>
+                                <div className="viewmore" type="button" value="created_at desc"
+                                    onClick={viewMore("created_at desc")}>View more...</div>
                             </div>
                             <div class="card-group">
                                 {data?.data?.slice(0, 3).map((item, index) => (
@@ -401,7 +409,8 @@ const ListThread = (props) => {
                         <div className="bag mb-4">
                             <div className="head d-flex justify-content-between align-items-end mb-1 px-2">
                                 <div className="title fs-5">Recommendation Threads</div>
-                                <div className="viewmore">View more...</div>
+                                <div className="viewmore" type="button" value="follower_count desc"
+                                    onClick={viewMore("follower_count desc")}>View more...</div>
                             </div>
                             <div class="card-group">
                                 {data?.data?.slice(0, 3).map((item, index) => (
