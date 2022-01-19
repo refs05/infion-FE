@@ -4,9 +4,139 @@ import logo1 from "../../assets/img/logoWithText.svg";
 import styles from "./header.module.css";
 import userImg from "../../assets/img/userImg.svg";
 import notifIcon from "../../assets/img/notifIcon.svg";
-import alert from "../../assets/img/alert.svg"
-
+import alert from "../../assets/img/alert.svg";
+import React, { useState } from "react";
+import axios from "axios";
+// import logo2 from "../../assets/img/logo.svg";
+// import Loading from "../loading/loading"
 const Header = (props) => {
+  const [emailusr, setEmail] = useState("");
+  const [emailusrRgs, setEmailRgs] = useState("");
+  const [pass, setPass] = useState("");
+  const [passRgs, setPassRgs] = useState("");
+  const [username, setUsername] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [passConf, setPassConf] = useState("");
+  const [btnStat, setBtnStat] = useState("true");
+  const emailRegex = /^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/;
+  const usernameRegex = /^[a-z0-9_-]{5,16}$/;
+  const passRegex =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+  const validate = (e) => {
+    if (e.target.name === "email") {
+      setEmail(e.target.value);
+      if (e.target.value === "") {
+        setErrMsg({
+          ...errMsg,
+          email: "",
+        });
+      } else if (!emailRegex.test(e.target.value)) {
+        setErrMsg({
+          ...errMsg,
+          email: "Wrong Email Format",
+        });
+      } else {
+        setErrMsg({
+          ...errMsg,
+          email: "",
+        });
+      }
+    } else if (e.target.name === "password") {
+      setPass(e.target.value);
+    } else if (e.target.name === "emailrgs") {
+      setEmailRgs(e.target.value);
+      if (e.target.value === "") {
+        setErrMsg({
+          ...errMsg,
+          emailrgs: "",
+        });
+      } else if (!emailRegex.test(e.target.value)) {
+        setErrMsg({
+          ...errMsg,
+          emailrgs: "Wrong Email Format",
+        });
+      } else {
+        setErrMsg({
+          ...errMsg,
+          emailrgs: "",
+        });
+      }
+    } else if (e.target.name === "username") {
+      setUsername(e.target.value);
+      if (e.target.value === "") {
+        setErrMsg({
+          ...errMsg,
+          username: "",
+        });
+      } else if (!usernameRegex.test(e.target.value)) {
+        setErrMsg({
+          ...errMsg,
+          username: "Wrong Username Format",
+        });
+      } else {
+        setErrMsg({
+          ...errMsg,
+          username: "",
+        });
+      }
+    } else if (e.target.name === "passwordRgs") {
+      setPassRgs(e.target.value);
+      if (e.target.value === "") {
+        setErrMsg({
+          ...errMsg,
+          passRgs: "",
+        });
+      } else if (!passRegex.test(e.target.value)) {
+        setErrMsg({
+          ...errMsg,
+          passRgs: "Wrong Password Format",
+        });
+      } else {
+        setErrMsg({
+          ...errMsg,
+          passRgs: "",
+        });
+      }
+    } else if (e.target.name === "passConf") {
+      console.log(passConf);
+      console.log(passRgs);
+      setPassConf(e.target.value);
+      if (e.target.value === "") {
+        setErrMsg({
+          ...errMsg,
+          passConf: "",
+        });
+      } else if (e.target.value == passRgs) {
+        setErrMsg({
+          ...errMsg,
+          passConf: "",
+        });
+      } else {
+        setErrMsg({
+          ...errMsg,
+          passConf: "Password not Match",
+        });
+      }
+    } else if (errMsg === "") {
+      setBtnStat("");
+    }
+  };
+
+  const handleLogin = (e) => {
+    axios
+      .post("http://localhost:8000/user/login", {
+        email: emailusr,
+        password: pass,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        setErrMsg({ ...errMsg, errLogin: "Email or Password Wrong !" });
+      });
+  };
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark">
@@ -54,28 +184,36 @@ const Header = (props) => {
                 </Link>
               </li>
               <li className="nav-item  mx-sm-5">
-                  <a className="nav-link text-reset" href="#" data-bs-toggle="modal"
-                  data-bs-target="#ModalLogin">
+                <a
+                  className="nav-link text-reset"
+                  href="#"
+                  data-bs-toggle="modal"
+                  data-bs-target="#ModalAlertLogin"
+                >
                   Make Own Threads
-                  </a>
-                  <div
-                    className={`modal fade textBlack `}
-                    id="ModalLogin"
-                    tabindex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <div className="modal-dialog modal-dialog-centered">
-                      <div className={`modal-content mx-auto ${styles.radius} bg-warning`}>
-                        <div className="modal-body mx-4">
-                          <div className={`p-5 d-flex flex-column align-items-center ${styles.alert}`}>
-                            <img src={alert} alt="alert"/>
-                            <h5 className="fw-bold my-2">Please Login First!</h5>
-                          </div>
+                </a>
+                <div
+                  className={`modal fade textBlack `}
+                  id="ModalAlertLogin"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div className="modal-dialog modal-dialog-centered">
+                    <div
+                      className={`modal-content mx-auto ${styles.radius} bg-warning`}
+                    >
+                      <div className="modal-body mx-4">
+                        <div
+                          className={`p-5 d-flex flex-column align-items-center ${styles.alert}`}
+                        >
+                          <img src={alert} alt="alert" />
+                          <h5 className="fw-bold my-2">Please Login First!</h5>
                         </div>
                       </div>
                     </div>
                   </div>
+                </div>
               </li>
             </ul>
             <ul className="navbar-nav">
@@ -93,10 +231,8 @@ const Header = (props) => {
               <li className="nav-item me-sm-5">
                 <a
                   className="nav-link text-reset"
-                  className="nav-link text-reset"
                   data-bs-toggle="modal"
                   data-bs-target="#ModalRegister"
-                  href="#"
                   href="#"
                 >
                   Register
@@ -114,6 +250,7 @@ const Header = (props) => {
           </div>
         </div>
       </nav>
+
       <div
         className={`modal fade textBlack `}
         id="ModalLogin"
@@ -136,37 +273,56 @@ const Header = (props) => {
                 <h6 className="fw-bold ms-1  my-2">Email</h6>
                 <input
                   className={`form-control rounded-pill my-4`}
+                  name="email"
+                  onChange={validate}
+                  value={emailusr}
                   type="text"
                   placeholder="example@example.com"
+                  required
                 />
+                <p className={styles.red}>{errMsg.email}</p>
               </div>
               <div>
                 <h6 className="fw-bold  ms-1  my-2">Password</h6>
                 <input
                   className={`form-control rounded-pill my-4`}
                   type="password"
+                  name="password"
                   placeholder="example123"
+                  onChange={validate}
+                  value={pass}
+                  required
                 />
               </div>
             </div>
-                        <button type="button" className={`btn btn-secondary btn-lg rounded-pill mx-auto ${styles.btn}`}>
-                            Login
-                        </button>
-                        <br />
+            <button
+              type="button"
+              className={`btn btn-secondary btn-lg rounded-pill mx-auto ${styles.btn}`}
+              onClick={handleLogin}
+            >
+              Login
+            </button>
+            <p className={styles.red}>{errMsg.errLogin}</p>
+            <br />
 
-                        <div className="mx-auto">
-                            <p className={`${styles.grey}`}>
-                                Don't have an account ?{" "}
-                                <a href="#" className={`${styles.blue}`}>
-                                    Register
-                                </a>
-                            </p>
-                        </div>
-                        <img className={`mx-auto ${styles.size}`} src={logo1} alt="" />
-                        <br />
-                    </div>
-                </div>
+            <div className="mx-auto">
+              <p className={`${styles.grey}`}>
+                Don't have an account ?{" "}
+                <a
+                  href="#"
+                  className={`${styles.blue}`}
+                  data-bs-toggle="modal"
+                  data-bs-target="#ModalRegister"
+                >
+                  Register
+                </a>
+              </p>
             </div>
+            <img className={`mx-auto ${styles.size}`} src={logo1} alt="" />
+            <br />
+          </div>
+        </div>
+      </div>
       <div
         className={`modal fade textBlack `}
         id="ModalRegister"
@@ -184,83 +340,120 @@ const Header = (props) => {
                 Register
               </h4>
             </div>
-                        <div className="modal-body mx-4">
-                            <div className="row">
-                                <div className="col">
-                                    <div>
-                                        <h6 className="fw-bold ms-1  my-2">Username</h6>
-                                        <input
-                                            className={`form-control rounded-pill my-4`}
-                                            type="text"
-                                            placeholder="example@example.com"
-                                        />
-                                    </div>
-                                    <div>
-                                        <h6 className="fw-bold  ms-1  my-2">Email</h6>
-                                        <input
-                                            className={`form-control rounded-pill my-4`}
-                                            type="text"
-                                            placeholder="example@example.com"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="col">
-                                    <div>
-                                        <h6 className="fw-bold  ms-1  my-2">Password</h6>
-                                        <input
-                                            className={`form-control rounded-pill my-4`}
-                                            type="password"
-                                            placeholder="example123"
-                                        />
-                                    </div>
-                                    <div>
-                                        <h6 className="fw-bold  ms-1  my-2">Password Confirmation</h6>
-                                        <input
-                                            className={`form-control rounded-pill my-4`}
-                                            type="password"
-                                            placeholder="example123"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="mx-auto">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-                                <label className={`${styles.grey}`} for="defaultCheck1">
-                                    I agree with{" "}
-                                    <a href="#" className={`${styles.blue}`}>
-                                        Terms
-                                    </a>{" "}
-                                    and{" "}
-                                    <a href="#" className={`${styles.blue}`}>
-                                        Privacy
-                                    </a>
-                                </label>
-                            </div>
-                        </div>
-                        <br />
-                        <button type="button" className={`btn btn-secondary btn-lg rounded-pill mx-auto ${styles.btn}`}>
-                            Register
-                        </button>
-                        <br />
-
-                        <div className="mx-auto">
-                            <p className={`${styles.grey}`}>
-                                Have an account ?{" "}
-                                <a data-bs-target="#ModalLogin" href="#" className={`${styles.blue}`}>
-                                    Login
-                                </a>
-                            </p>
-                        </div>
-                        <img className={`mx-auto ${styles.size2}`} src={logo1} alt="" />
-                        <br />
-                    </div>
+            <div className="modal-body mx-4">
+              <div className="row">
+                <div className="col">
+                  <div>
+                    <h6 className="fw-bold ms-1  my-2">Username</h6>
+                    <input
+                      className={`form-control rounded-pill my-4`}
+                      type="text"
+                      placeholder="example@example.com"
+                      name="username"
+                      value={username}
+                      onChange={validate}
+                      required
+                    />
+                    <p className={styles.red}>{errMsg.username}</p>
+                  </div>
+                  <div>
+                    <h6 className="fw-bold  ms-1  my-2">Email</h6>
+                    <input
+                      className={`form-control rounded-pill my-4`}
+                      type="text"
+                      name="emailrgs"
+                      value={emailusrRgs}
+                      placeholder="example@example.com"
+                      onChange={validate}
+                      required
+                    />
+                    <p className={styles.red}>{errMsg.emailrgs}</p>
+                  </div>
                 </div>
+                <div className="col">
+                  <div>
+                    <h6 className="fw-bold  ms-1  my-2">Password</h6>
+                    <input
+                      className={`form-control rounded-pill my-4`}
+                      type="password"
+                      name="passwordRgs"
+                      value={passRgs}
+                      onChange={validate}
+                      placeholder="example123"
+                      required
+                    />
+                  </div>
+                  <p className={styles.red}>{errMsg.passRgs}</p>
+                  <div>
+                    <h6 className="fw-bold  ms-1  my-2">
+                      Password Confirmation
+                    </h6>
+                    <input
+                      className={`form-control rounded-pill my-4`}
+                      type="password"
+                      placeholder="example123"
+                      name="passConf"
+                      onChange={validate}
+                      value={passConf}
+                      required
+                    />
+                    <p className={styles.red}>{errMsg.passConf}</p>
+                  </div>
+                </div>
+              </div>
             </div>
-        </>
-    );
+
+            <div className="mx-auto">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="defaultCheck1"
+                />
+                <label className={`${styles.grey}`} for="defaultCheck1">
+                  I agree with{" "}
+                  <a href="#" className={`${styles.blue}`}>
+                    Terms
+                  </a>{" "}
+                  and{" "}
+                  <a href="#" className={`${styles.blue}`}>
+                    Privacy
+                  </a>
+                </label>
+              </div>
+            </div>
+            <br />
+            <button
+              type="button"
+              className={`btn btn-secondary btn-lg rounded-pill mx-auto ${styles.btn}`}
+              disabled={btnStat}
+            >
+              Register
+            </button>
+            <br />
+
+            <div className="mx-auto">
+              <p className={`${styles.grey}`}>
+                Have an account ?{" "}
+                <a
+                  data-bs-target="#ModalLogin"
+                  href="#"
+                  className={`${styles.blue}`}
+                  data-bs-toggle="modal"
+                  data-bs-target="#ModalLogin"
+                >
+                  Login
+                </a>
+              </p>
+            </div>
+            <img className={`mx-auto ${styles.size2}`} src={logo1} alt="" />
+            <br />
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 const HeaderLogged = (props) => {
@@ -341,15 +534,14 @@ const HeaderLogged = (props) => {
                   <hr className="dropdown-divider" />
                 </li>
                 <li>
-                <a
-                  className="dropdown-item text-reset"
-                  data-bs-toggle="modal"
-                  data-bs-target="#ModalLogout"
-                  href="#"
-                >
-                  Logout
-                </a>
-                
+                  <a
+                    className="dropdown-item text-reset"
+                    data-bs-toggle="modal"
+                    data-bs-target="#ModalLogout"
+                    href="#"
+                  >
+                    Logout
+                  </a>
                 </li>
               </ul>
             </div>
@@ -371,13 +563,11 @@ const HeaderLogged = (props) => {
                     </h4>
                   </div>
                   <div className="modal-body mx-4 d-flex flex-column align-items-center">
-                    <div className="mb-3">
-                        Are you sure ?
-                    </div>
+                    <div className="mb-3">Are you sure ?</div>
                     <div>
                       <button
-                      type="button"
-                      className={`btn btn-danger rounded-pill mx-auto me-2`}
+                        type="button"
+                        className={`btn btn-danger rounded-pill mx-auto me-2`}
                       >
                         Yes
                       </button>
@@ -389,7 +579,11 @@ const HeaderLogged = (props) => {
                       </button>
                     </div>
                   </div>
-                  <img className={`mx-auto ${styles.size} mb-3`} src={logo1} alt="" />
+                  <img
+                    className={`mx-auto ${styles.size} mb-3`}
+                    src={logo1}
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
