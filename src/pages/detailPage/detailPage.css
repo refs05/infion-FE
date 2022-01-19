@@ -63,3 +63,11 @@
     background: #6D05CD!important;
     border-color: #6D05CD!important;
 }
+
+.link {
+    color: white;
+}
+
+.link:hover {
+    color: yellow;
+}
