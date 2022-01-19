@@ -33,3 +33,9 @@
 .card-text {
     font-size: 14px;
 }
+
+.follow:hover, .viewmore:hover {
+    color: yellow;
+}
+
+

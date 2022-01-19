@@ -8,11 +8,6 @@ import "./listThread.css";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-
-//mockRank
-import { mockRank } from "../../mockData/mockRankUser";
-
-//dummyData
 import { Link } from "react-router-dom";
 import Search from "../../components/search/search";
 
@@ -37,6 +32,34 @@ const ListThread = (props) => {
 
         fetchData();
     }, []);
+
+    const [followThreads, setFollowThreads] = useState({
+        user_id: 2,
+        thread_id: 2,
+    });
+
+    function getThreadId (id) {
+        return function () {
+            setFollowThreads({
+                user_id: 2,
+                thread_id: id
+            })
+        }
+    }
+
+    const handleFollowThreads = (e) => {
+
+        e.preventDefault();
+
+        axios
+            .post(`http://localhost:8000/followThreads/create`, followThreads)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -354,7 +377,7 @@ const ListThread = (props) => {
                                                     {item.comment_count}
                                                 </div>
                                             </div>
-                                            <div className="follow d-flex align-items-center">Follow</div>
+                                            <div className="follow d-flex align-items-center" type="button" onMouseOver={getThreadId(item.id)} onClick={handleFollowThreads}>Follow</div>
                                         </div>
                                         <p class="card-text text-end">
                                             <small class="text-muted">{new Date(item.created_at).toDateString()}</small>
@@ -389,7 +412,7 @@ const ListThread = (props) => {
                                                     {item.comment_count}
                                                 </div>
                                             </div>
-                                            <div className="follow d-flex align-items-center">Follow</div>
+                                            <div className="follow d-flex align-items-center" type="button" onClick={handleFollowThreads}>Follow</div>
                                         </div>
                                         <p class="card-text text-end">
                                             <small class="text-muted">{new Date(item.created_at).toDateString()}</small>
@@ -473,7 +496,7 @@ const ListThread = (props) => {
                     </div>
                 )}
                 <div className="rightContent col-sm-3">
-                    <Leaderboard data={mockRank} />
+                    <Leaderboard/>
                 </div>
             </div>
             <Footer />

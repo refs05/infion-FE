@@ -28,8 +28,6 @@ const Search = (props)=> {
         setSearchResult(results)
     }, [searchTerm])
 
-    console.log(searchResult)
-
     return (
         <div class="container mb-4">
                 <div class="row height d-flex justify-content-center align-items-center">
