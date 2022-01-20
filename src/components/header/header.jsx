@@ -8,7 +8,8 @@ import alert from "../../assets/img/alert.svg"
 
 const Header = (props) => {
   return (
-    <>
+
+      <div className="bg-hitam">
       <nav className="navbar navbar-expand-lg navbar-dark">
         <div className="container-fluid">
           <a className={`navbar-brand ${styles.title}`} href="#">
@@ -259,13 +260,14 @@ const Header = (props) => {
                     </div>
                 </div>
             </div>
-        </>
+            </div>
+      
     );
 };
 
 const HeaderLogged = (props) => {
   return (
-    <>
+      <div className="bg-hitam">
       <nav className="navbar navbar-expand-lg navbar-dark">
         <div className="container-fluid">
           <a className={`navbar-brand ${styles.title}`} href="#">
@@ -449,7 +451,7 @@ const HeaderLogged = (props) => {
           </div>
         </div>
       </nav>
-    </>
+      </div>
   );
 };
 

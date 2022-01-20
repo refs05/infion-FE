@@ -15,7 +15,7 @@ import react from "../../assets/img/react.svg";
 
 function AboutUs() {
     return (
-        <div>
+        <div className="bg-hitam">
             <Header />
             <div>
                 <h1>

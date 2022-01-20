@@ -3,6 +3,11 @@
     margin: 0 auto;
 }
 
+.bg-hitam {
+    background: #151515 !important;
+    color: #fff !important;
+}
+
 .back img {
     width: 30px;
 }

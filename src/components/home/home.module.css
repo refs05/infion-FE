@@ -22,7 +22,8 @@
 }
 
 .content{
-    margin-top: 5%;
+  padding-top: 5%;
+  height: 50vw;
 }
 .btn{
     background-color: #6D05CD!important;
