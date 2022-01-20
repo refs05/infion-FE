@@ -130,6 +130,29 @@ const DetailPage = () => {
             });
     };
 
+    const [reports, setReports] = useState({
+        user_id: 2,
+        thread_id: parseInt(firstWord),
+        report_message: ""
+    });
+
+    const handleChange = (e) => {
+        setReports({ ...reports, [e.target.name]: e.target.value });
+    };
+
+    const handleReports = async (e) => {
+        e.preventDefault();
+
+        axios
+            .post(`http://localhost:8000/reports/create`, reports)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+
     const dataDetail = data?.data;
     
     return (
@@ -194,11 +217,11 @@ const DetailPage = () => {
                                         <div className="modal-body">
                                             <div className="d-flex align-items-center mb-2">
                                                 <div className="me-4 reportContent">ID Thread</div>
-                                                <input type="text" className="bg-input rounded-3 px-1" value="2" readOnly />
+                                                <input type="text" className="bg-input rounded-3 px-1" value={reports.thread_id} readOnly />
                                             </div>
                                             <div className="d-flex align-items-center mb-2">
                                                 <div className="me-4 reportContent">ID Reporter</div>
-                                                <input type="text" className="bg-input rounded-3 px-1" value="20" readOnly />
+                                                <input type="text" className="bg-input rounded-3 px-1" value={reports.user_id} readOnly />
                                             </div>
                                             <div className="d-flex align-items-center mb-2">
                                                 <div className="me-4 reportContent">Reporter</div>
@@ -206,14 +229,14 @@ const DetailPage = () => {
                                             </div>
                                             <div className="">
                                                 <div className="me-4">Reason for report this thread</div>
-                                                <textarea name="" id="" cols="55" rows="4" className="rounded-3 px-1"></textarea>
+                                                <textarea name="report_message" onChange={handleChange} id="" cols="55" rows="4" className="rounded-3 px-1"></textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                                 Close
                                             </button>
-                                            <button type="button" class="btn btn-primary bg-send">
+                                            <button type="button" class="btn btn-primary bg-send" onClick={handleReports}>
                                                 Send
                                             </button>
                                         </div>
