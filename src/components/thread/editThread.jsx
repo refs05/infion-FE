@@ -35,8 +35,9 @@ function EditThread() {
     return (
         <>
             <Header></Header>
+            <div className="bg-hitam">
             <div className={`mx-auto ${style.page}`}>
-                <h3 className="text-center my-5 fw-bold">
+                <h3 className="text-center py-5 fw-bold">
                     Edit Your <span className={style.yellow}>Thread</span>
                 </h3>
                 <div className="ms-4">
@@ -105,6 +106,7 @@ function EditThread() {
             </div>
             <br />
             <br />
+            </div>
             <Footer></Footer>
         </>
     );

@@ -4,8 +4,31 @@ import logout from '../../assets/img/logout.svg'
 import person from '../../assets/img/person.svg'
 import left from '../../assets/img/left.svg'
 import right from '../../assets/img/right.svg'
+import { useEffect } from "react";
+import axios from "axios";
+import { useState } from "react";
 
 const Admin = ()=> {
+    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const { data: response } = await axios.get(`http://localhost:8000/reports/list`);
+                setData(response);
+            } catch (error) {
+                console.error(error.message);
+            }
+            setLoading(false);
+        };
+
+        fetchData();
+    }, []);
+
+    console.log(data)
+
     return (
         <>
             <div className="d-flex">

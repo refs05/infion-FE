@@ -17,7 +17,7 @@ const ListThread = (props) => {
     const [filteredThread, setFilteredThread] = useState([]);
     const [filter, setFilter] = useState("");
     const [category, setCategory] = useState("");
-    console.log(filter)
+
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -116,6 +116,7 @@ const ListThread = (props) => {
     return (
         <>
             <Header />
+            <div className="bg-hitam">
             <Search data={data} />
             <div className="container m-auto row">
                 <div className="leftContent col-sm-2">
@@ -506,6 +507,7 @@ const ListThread = (props) => {
                 <div className="rightContent col-sm-3">
                     <Leaderboard/>
                 </div>
+            </div>
             </div>
             <Footer />
         </>

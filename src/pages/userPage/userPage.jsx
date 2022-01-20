@@ -62,6 +62,7 @@ const DetailPage = () => {
     return (
         <div>
             <Header />
+            <div className="bg-hitam">
             <div className="d-flex justify-content-center fs-4">
                 Your <span className="yellow ms-2">Profile</span>
             </div>
@@ -179,6 +180,7 @@ const DetailPage = () => {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
             <Footer />
         </div>

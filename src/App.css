@@ -11,7 +11,6 @@ body,
 #root,
 .App {
   height: 100%;
-  background: #151515 !important;
   font-family: "Roboto", sans-serif;
-  color: #fff;
+  
 }

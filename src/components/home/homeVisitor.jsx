@@ -6,7 +6,7 @@ function HomeVisitor() {
   return (
     <>
       <Header></Header>
-
+      <div className="bg-hitam">
       <div class={`container-fluid  ${style.content}`}>
         <div class="row">
           <div class="col ms-5 ps-5">
@@ -51,6 +51,7 @@ function HomeVisitor() {
       </div>
       <br/>
       <br/>
+      </div>
       <Footer></Footer>
     </>
   );

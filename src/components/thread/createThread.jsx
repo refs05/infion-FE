@@ -13,8 +13,9 @@ function createThread() {
   return (
     <>
       <Header></Header>
+      <div className="bg-hitam">
       <div className={`mx-auto ${style.page}`}>
-        <h3 className="text-center my-5 fw-bold">
+        <h3 className="text-center py-5 fw-bold">
           Make Your <span className={style.yellow}>Thread</span>
         </h3>
         <div className="ms-4">
@@ -117,6 +118,7 @@ function createThread() {
       </div>
       <br/>
       <br/>
+      </div>
       <Footer></Footer>
     </>
   );

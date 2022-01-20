@@ -31,6 +31,7 @@ const UserThreads = () => {
     return (
         <>
             <HeaderLogged />
+            <div className="bg-hitam">
             <div className="container sectionHeight1">
                 <div className="bag mb-4">
                     <div className="head d-flex justify-content-center align-items-end mb-1 px-2">
@@ -66,6 +67,7 @@ const UserThreads = () => {
                         ))}
                     </div>
                 </div>
+            </div>
             </div>
             <Footer />
         </>

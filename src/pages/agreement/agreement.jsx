@@ -7,7 +7,7 @@ import Footer from "../../components/footer/footer";
 
 function Agreement() {
     return (
-        <div>
+        <div className="bg-hitam">
             <Header />
             <div>
                 <h1>Terms and Agreements</h1>

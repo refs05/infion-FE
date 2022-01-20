@@ -9,7 +9,8 @@ import fb from '../../assets/img/facebook.svg'
 const Footer = ()=> {
     return (
         <>
-        <hr />
+        <div className="bg-hitam pb-2">
+        <div className="border-top py-2"></div>
         <div className={`row m-auto ${styles.wrap}`}>
             <div className="col">
                 <a className={`navbar-brand ${styles.title}`} href="#">
@@ -61,6 +62,7 @@ const Footer = ()=> {
                     <img src={infion} alt="Infion" className={styles.infion}/>
                 </div>
             </div>
+        </div>
         </div>
         </>
     )

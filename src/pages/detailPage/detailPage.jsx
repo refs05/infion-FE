@@ -158,6 +158,7 @@ const DetailPage = () => {
     return (
         <>
             <Header />
+            <div className="bg-hitam">
             <div className="d-flex align-items-center back">
                 <img src={back} alt="" className="me-1" />
                 <div type="button">Back</div>
@@ -289,6 +290,7 @@ const DetailPage = () => {
                         <img src={upArrow} alt=""/>
                     </div> */}
                 </div>
+            </div>
             </div>
             <Footer />
         </>
