@@ -4,10 +4,38 @@ import like from "../../assets/img/love.svg";
 import liked from "../../assets/img/liked.svg";
 import { useState } from "react";
 import "./subComment.css";
+import { useEffect } from "react";
+import axios from "axios";
 
 const SubComments = ({ data }) => {
     const [editComment, setEditComment] = useState(false);
 
+    const [likeReplies, setLikeReplies] = useState({
+        user_id: 2,
+        reply_id: 0,
+    });
+
+    useEffect(() => {
+        if(likeReplies.reply_id != 0) {
+            axios
+                .post(`http://localhost:8000/likeReplies/create`, likeReplies)
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    }, [likeReplies.reply_id]);
+
+    const handleLikeReplies = async (e) => {
+        
+            setLikeReplies({
+                user_id: 2,
+                reply_id: parseInt(e.target.id),
+            })
+            e.preventDefault();       
+    }
     return (
         <div className="col-11">
             <div className="d-flex bd-highlight mb-1 align-items-center">
@@ -65,9 +93,9 @@ const SubComments = ({ data }) => {
                     <div className="d-flex bd-highlight mb-1">
                         <div className="m-2 bd-highlight d-flex bd-highlight mb-1 align-items-center">
                             {data.likeStatus ? (
-                                <img src={liked} alt="" className="me-2 likeCom" type="button" />
+                                <img src={liked} alt="" className="me-2 likeCom" type="button" id={data.id} onClick={handleLikeReplies}/>
                             ) : (
-                                <img src={like} alt="" className="me-2 likeCom" type="button" />
+                                <img src={like} alt="" className="me-2 likeCom" type="button" id={data.id} onClick={handleLikeReplies}/>
                             )}
                             {data.like_count}
                         </div>

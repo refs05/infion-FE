@@ -5,12 +5,40 @@ import comment from "../../assets/img/comment.svg";
 import liked from "../../assets/img/liked.svg";
 import SubComments from "./subComment";
 import CreateReply from "./createReply";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./commentDetail.css";
+import axios from "axios";
 
 const Comments = ({ data }) => {
     const [subComment, setSubComment] = useState(false);
     const [editComment, setEditComment] = useState(false);
+
+    const [likeComments, setLikeComments] = useState({
+        user_id: 2,
+        comment_id: 0,
+    });
+
+    useEffect(() => {
+        if(likeComments.comment_id != 0) {
+            axios
+                .post(`http://localhost:8000/likeComments/create`, likeComments)
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    }, [likeComments.comment_id]);
+
+    const handleLikeComments = async (e) => {
+        
+            setLikeComments({
+                user_id: 2,
+                comment_id: parseInt(e.target.id),
+            })
+            e.preventDefault();       
+    }
 
     return (
         <>
@@ -77,15 +105,15 @@ const Comments = ({ data }) => {
                         <div className="d-flex bd-highlight mb-1">
                             <div className="m-2 bd-highlight d-flex bd-highlight mb-1 align-items-center">
                                 {data.likeStatus ? (
-                                    <img src={liked} alt="" className="me-2 likeCom" type="button" />
+                                    <img src={liked} alt="" className="me-2 likeCom" type="button" id={data.id} onClick={handleLikeComments}/>
                                 ) : (
-                                    <img src={like} alt="" className="me-2 likeCom" type="button" />
+                                    <img src={like} alt="" className="me-2 likeCom" type="button" id={data.id} onClick={handleLikeComments}/>
                                 )}
                                 {data.like_count}
                             </div>
                             <div className="m-2 bd-highlight d-flex bd-highlight mb-1 align-items-center">
                                 <img src={comment} alt="" className="me-2 likeCom" />
-                                {data?.replies?.length}
+                                {data?.reply_count}
                             </div>
                             <div
                                 type="button"

@@ -20,7 +20,6 @@ const DetailPage = () => {
     let { id } = useParams();
 
     let firstWord = id.split("-")[0];
-
     let role = "moderator";
 
     const [loading, setLoading] = useState(true);
@@ -132,7 +131,7 @@ const DetailPage = () => {
     };
 
     const dataDetail = data?.data;
-
+    
     return (
         <>
             <Header />
