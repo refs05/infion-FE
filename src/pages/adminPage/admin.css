@@ -7,11 +7,20 @@
   margin-top: 100px;
 }
 
+.linkThread {
+  color: white;
+  text-decoration: none;
+}
+
+.linkThread:hover {
+  color: white;
+}
+
 .gambar img {
   width: 80px;
 }
 
-.profile img {
+.admin img {
   width: 80px;
   height: 80px;
 }
@@ -30,6 +39,41 @@
   background: #EBE7E7;
 }
 
+.reported:hover {
+  background: #d6d6d6;
+}
+
 .arrow img {
   width: 30px;
+}
+
+.paginationBttns {
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationBttns a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid #2b2eff;
+  color: #2b2eff;
+  cursor: pointer;
+}
+
+.paginationBttns a:hover {
+  color: white!important;
+  background-color: #2b2eff;
+}
+
+.paginationActive a {
+  color: white!important;
+  background-color: #2b2eff;
+}
+
+.paginationDisabled {
+  visibility: hidden;
 }
