@@ -27,7 +27,13 @@
 
 .nav {
   height: 50px;
-  background-color: #3F6FE3;
+  background-color: #3f6fe3;
+}
+
+.navActive {
+  height: 50px;
+  background-color: yellow;
+  color: #151515;
 }
 
 .logout {
@@ -35,8 +41,12 @@
   left: 40px;
 }
 
+.logout img {
+  width: 50px;
+}
+
 .reported {
-  background: #EBE7E7;
+  background: #ebe7e7;
 }
 
 .reported:hover {
@@ -65,15 +75,24 @@
 }
 
 .paginationBttns a:hover {
-  color: white!important;
+  color: white !important;
   background-color: #2b2eff;
 }
 
 .paginationActive a {
-  color: white!important;
+  color: white !important;
   background-color: #2b2eff;
 }
 
 .paginationDisabled {
   visibility: hidden;
+}
+
+.radius {
+  border-radius: 50px !important;
+  width: 75% !important;
+}
+
+.size {
+  width: 30%;
 }
