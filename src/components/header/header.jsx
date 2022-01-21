@@ -7,17 +7,35 @@ import notifIcon from "../../assets/img/notifIcon.svg";
 import alert from "../../assets/img/alert.svg";
 import React, { useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { useCookies } from "react-cookie";
 // import logo2 from "../../assets/img/logo.svg";
 // import Loading from "../loading/loading"
+
+// const HeaderLogic =() =>{
+//   if 
+// };
+
 const Header = (props) => {
+  const [cookies, setCookie] = useCookies(["username","id","token"]);
   const [emailusr, setEmail] = useState("");
   const [emailusrRgs, setEmailRgs] = useState("");
   const [pass, setPass] = useState("");
   const [passRgs, setPassRgs] = useState("");
   const [username, setUsername] = useState("");
-  const [errMsg, setErrMsg] = useState("");
+  const [response, setResponse] = useState("");
+  const def = {
+    username: "",
+    emailrgs: "",
+    passRgs: "",
+    passConf: "",
+    email: "",
+  };
+
+  const [errMsg, setErrMsg] = useState(def);
   const [passConf, setPassConf] = useState("");
-  const [btnStat, setBtnStat] = useState("true");
+  const [rgsBtnStat, setRgsBtnStat] = useState("true");
+  const [loginBtnStat, setLoginBtnStat] = useState("true");
   const emailRegex = /^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/;
   const usernameRegex = /^[a-z0-9_-]{5,16}$/;
   const passRegex =
@@ -25,37 +43,61 @@ const Header = (props) => {
 
   const validate = (e) => {
     if (e.target.name === "email") {
+    
       setEmail(e.target.value);
       if (e.target.value === "") {
-        setErrMsg({
-          ...errMsg,
-          email: "",
-        });
-      } else if (!emailRegex.test(e.target.value)) {
-        setErrMsg({
-          ...errMsg,
-          email: "Wrong Email Format",
-        });
-      } else {
-        setErrMsg({
-          ...errMsg,
-          email: "",
-        });
+        // setErrMsg({
+        //   ...errMsg,
+        //   email: "",
+        // });
+        setLoginBtnStat("true");
+      }
+      //  else if (!emailRegex.test(e.target.value)) {
+      //   setErrMsg({
+      //     ...errMsg,
+      //     email: "Wrong Email Format",
+      //   });
+      //   setLoginBtnStat("true")
+      // } else {
+      //   setErrMsg({
+      //     ...errMsg,
+      //     email: "",
+      //   });
+
+      // }
+      else if (pass != "" && e.target.value != "") {
+        setLoginBtnStat("");
       }
     } else if (e.target.name === "password") {
+    
       setPass(e.target.value);
-    } else if (e.target.name === "emailrgs") {
+      if (e.target.value === "") {
+        setLoginBtnStat("true");
+      } else if (emailusr != "" && e.target.value != "") {
+        setLoginBtnStat("");
+      }
+    }
+
+    // if( errMsg.email ==="" && pass != ""){
+    //   setLoginBtnStat("")
+    // }else{
+    //   setLoginBtnStat("true")
+    // }
+
+    if (e.target.name === "emailrgs") {
       setEmailRgs(e.target.value);
       if (e.target.value === "") {
         setErrMsg({
           ...errMsg,
           emailrgs: "",
         });
+        setRgsBtnStat("true");
       } else if (!emailRegex.test(e.target.value)) {
         setErrMsg({
           ...errMsg,
           emailrgs: "Wrong Email Format",
         });
+        setRgsBtnStat("true");
       } else {
         setErrMsg({
           ...errMsg,
@@ -69,11 +111,13 @@ const Header = (props) => {
           ...errMsg,
           username: "",
         });
+        setRgsBtnStat("true");
       } else if (!usernameRegex.test(e.target.value)) {
         setErrMsg({
           ...errMsg,
           username: "Wrong Username Format",
         });
+        setRgsBtnStat("true");
       } else {
         setErrMsg({
           ...errMsg,
@@ -87,11 +131,13 @@ const Header = (props) => {
           ...errMsg,
           passRgs: "",
         });
+        setRgsBtnStat("true");
       } else if (!passRegex.test(e.target.value)) {
         setErrMsg({
           ...errMsg,
           passRgs: "Wrong Password Format",
         });
+        setRgsBtnStat("true");
       } else {
         setErrMsg({
           ...errMsg,
@@ -99,14 +145,15 @@ const Header = (props) => {
         });
       }
     } else if (e.target.name === "passConf") {
-      console.log(passConf);
-      console.log(passRgs);
+      // console.log(passConf);
+      // console.log(passRgs);
       setPassConf(e.target.value);
       if (e.target.value === "") {
         setErrMsg({
           ...errMsg,
           passConf: "",
         });
+        setRgsBtnStat("true");
       } else if (e.target.value == passRgs) {
         setErrMsg({
           ...errMsg,
@@ -117,24 +164,95 @@ const Header = (props) => {
           ...errMsg,
           passConf: "Password not Match",
         });
+        setRgsBtnStat("true");
       }
-    } else if (errMsg === "") {
-      setBtnStat("");
     }
+    if (
+      errMsg == def &&
+      emailusrRgs != "" &&
+      username != "" &&
+      passRgs != "" &&
+      passConf != ""
+    ) {
+      setRgsBtnStat("");
+    }
+    // console.log(rgsBtnStat);
+    // console.log(errMsg);
   };
 
+  const respon = function () {
+    alert(response);
+  };
   const handleLogin = (e) => {
-    axios
-      .post("http://localhost:8000/user/login", {
-        email: emailusr,
-        password: pass,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        setErrMsg({ ...errMsg, errLogin: "Email or Password Wrong !" });
-      });
+    if (e.target.name === "btnLogin") {
+      axios
+        .post("http://localhost:8000/user/login", {
+          email: emailusr,
+          password: pass,
+        })
+        .then(function (response) {
+          // console.log(response.data.data)
+          // console.log(response.data.data.id)
+          if (response.data.data.id == 0) {
+            Swal.fire({
+              title: "Error!",
+              text: "User Not Found",
+              icon: "error",
+              confirmButtonText: "Close",
+            });
+          } else {
+            Swal.fire(
+              "Success!",
+              "Hello" + " " + response.data.data.username,
+              "success"
+            );
+
+            setCookie("username", response.data.data.username, { path: "/" });
+            setCookie("id", response.data.data.id, { path: "/" });
+            setCookie("token", response.data.data.token, { path: "/" });
+            console.log(cookies);
+          }
+        })
+        .catch(function (error) {
+          Swal.fire({
+            title: "Error!",
+            text: "Error Login",
+            icon: "error",
+            confirmButtonText: "Close",
+          });
+        });
+    } else if (e.target.name === "btnRegister") {
+      axios
+        .post("http://localhost:8000/user/create", {
+          username: username,
+          email: emailusrRgs,
+          password: passRgs,
+        })
+        .then(function (response) {
+          if (response.data.data.id == 0) {
+            Swal.fire({
+              title: "Error!",
+              text: "User Not Found",
+              icon: "error",
+              confirmButtonText: "Close",
+            });
+          } else {
+            Swal.fire(
+              "Success Create New User!",
+              "Hello" + " " + response.data.data.username,
+              "Please Login With Your New Account"
+            );
+          }
+        })
+        .catch(function (error) {
+          Swal.fire({
+            title: "Error!",
+            text: "Error Login",
+            icon: "error",
+            confirmButtonText: "Close",
+          });
+        });
+    }
   };
 
   return (
@@ -299,10 +417,17 @@ const Header = (props) => {
               type="button"
               className={`btn btn-secondary btn-lg rounded-pill mx-auto ${styles.btn}`}
               onClick={handleLogin}
+              name="btnLogin"
+              disabled={loginBtnStat}
             >
               Login
             </button>
-            <p className={styles.red}>{errMsg.errLogin}</p>
+            <input
+              type="hidden"
+              id="custId"
+              onChange={() => respon}
+              value={response}
+            />
             <br />
 
             <div className="mx-auto">
@@ -427,7 +552,8 @@ const Header = (props) => {
             <button
               type="button"
               className={`btn btn-secondary btn-lg rounded-pill mx-auto ${styles.btn}`}
-              disabled={btnStat}
+              onClick={handleLogin}
+              name="btnRegister"
             >
               Register
             </button>
