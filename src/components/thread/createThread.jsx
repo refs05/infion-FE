@@ -3,12 +3,38 @@ import style from "./createThread.module.css";
 import Editor from "../quillEditor/editor";
 import Footer from "../../../src/components/footer/footer";
 import React, { useState } from "react";
+import axios from "axios";
 
-function createThread() {
+function CreateThread() {
     // const [image,setImage] = useState()
     // function preview(e){
 
     // }
+    const [form, setForm] = useState({
+        user_id: 2,
+        title: "",
+        category: "",
+        img: "",
+        content: "",
+    });
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        axios
+            .post(`http://localhost:8000/threads/create`, form)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+
+    const handleChange = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    };
+
     return (
         <>
             <Header></Header>
@@ -26,7 +52,14 @@ function createThread() {
 
                         <div>
                             <h5 className="fw-normal  ms-1  my-2">Title</h5>
-                            <input className={`form-control my-4 bg-dark ${style.form}`} type="text" placeholder="Example Title" />
+                            <input
+                                className={`form-control my-4 bg-dark ${style.form}`}
+                                type="text"
+                                placeholder="Example Title"
+                                name="title"
+                                value={form?.title}
+                                onChange={handleChange}
+                            />
                         </div>
                         <div className="row">
                             <div className="col-lg-8">
@@ -40,7 +73,13 @@ function createThread() {
                             </div>
                             <div className="col-lg-3 ms-5 ps-3">
                                 <h5 className="fw-normal  ms-1  my-2">Category</h5>
-                                <select className={`form-select primary bg-dark my-4 ${style.form}`} id="inputGroupSelect01">
+                                <select
+                                    className={`form-select primary bg-dark my-4 ${style.form}`}
+                                    id="inputGroupSelect01"
+                                    name="category"
+                                    value={form?.category}
+                                    onChange={handleChange}
+                                >
                                     <option selected>Choose...</option>
                                     <option value="Health">Health</option>
                                     <option value="Science">Science</option>
@@ -79,7 +118,11 @@ function createThread() {
                     <div className="row">
                         <div className="col">
                             {" "}
-                            <button type="button" className={`btn btn-secondary float-end  rounded-pill mx-auto ${style.purple}`}>
+                            <button
+                                type="button"
+                                className={`btn btn-secondary float-end  rounded-pill mx-auto ${style.purple}`}
+                                onClick={handleSubmit}
+                            >
                                 Post
                             </button>
                             <button type="button" className={`btn btn-secondary float-end rounded-pill mx-auto me-4 ${style.red}`}>
@@ -97,4 +140,4 @@ function createThread() {
         </>
     );
 }
-export default createThread;
+export default CreateThread;
