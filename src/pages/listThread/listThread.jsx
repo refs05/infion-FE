@@ -16,6 +16,7 @@ const ListThread = (props) => {
     const [data, setData] = useState([]);
     const [dataTop, setDataTop] = useState([]);
     const [dataNew, setDataNew] = useState([]);
+    const [dataRec, setDataRec] = useState([]);
     const [filteredThread, setFilteredThread] = useState([]);
     const [filter, setFilter] = useState("");
     const [category, setCategory] = useState("");
@@ -41,6 +42,21 @@ const ListThread = (props) => {
             try {
                 const { data: response } = await axios.get(`http://localhost:8000/threads/list/?sortBy=like_count desc`);
                 setDataTop(response);
+            } catch (error) {
+                console.error(error.message);
+            }
+            setLoading(false);
+        };
+
+        fetchData();
+    }, [filter, category]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const { data: response } = await axios.get(`http://localhost:8000/threads/list/?sortBy=comment_count desc`);
+                setDataRec(response);
             } catch (error) {
                 console.error(error.message);
             }
@@ -479,12 +495,12 @@ const ListThread = (props) => {
                             <div className="bag mb-4">
                                 <div className="head d-flex justify-content-between align-items-end mb-1 px-2">
                                     <div className="title fs-5">Recommendation Threads</div>
-                                    <div className="viewmore" type="button" value="follower_count desc" onClick={viewMore("follower_count desc")}>
+                                    <div className="viewmore" type="button" value="comment_count desc" onClick={viewMore("comment_count desc")}>
                                         View more...
                                     </div>
                                 </div>
                                 <div class="card-group">
-                                    {dataTop?.data?.slice(0, 3).map((item, index) => (
+                                    {dataRec?.data?.slice(0, 3).map((item, index) => (
                                         <div class="card bg-transparent p-2 border-0" key={index}>
                                             <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
                                                 <img src={item.img} alt="..." className="card-img-top adjust mb-1" />
