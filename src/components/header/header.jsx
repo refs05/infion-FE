@@ -60,13 +60,13 @@ const Header = (props) => {
                   className="nav-link text-reset"
                   href="#"
                   data-bs-toggle="modal"
-                  data-bs-target="#ModalLogin"
+                  data-bs-target="#ModalUnlogged"
                 >
                   Make Own Threads
                 </a>
                 <div
                   className={`modal fade textBlack `}
-                  id="ModalLogin"
+                  id="ModalUnlogged"
                   tabindex="-1"
                   aria-labelledby="exampleModalLabel"
                   aria-hidden="true"
