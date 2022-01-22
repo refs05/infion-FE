@@ -14,6 +14,8 @@ import Search from "../../components/search/search";
 const ListThread = (props) => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+    const [dataTop, setDataTop] = useState([]);
+    const [dataNew, setDataNew] = useState([]);
     const [filteredThread, setFilteredThread] = useState([]);
     const [filter, setFilter] = useState("");
     const [category, setCategory] = useState("");
@@ -32,6 +34,36 @@ const ListThread = (props) => {
 
         fetchData();
     }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const { data: response } = await axios.get(`http://localhost:8000/threads/list/?sortBy=like_count desc`);
+                setDataTop(response);
+            } catch (error) {
+                console.error(error.message);
+            }
+            setLoading(false);
+        };
+
+        fetchData();
+    }, [filter, category]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const { data: response } = await axios.get(`http://localhost:8000/threads/list/?sortBy=created_at desc`);
+                setDataNew(response);
+            } catch (error) {
+                console.error(error.message);
+            }
+            setLoading(false);
+        };
+
+        fetchData();
+    }, [filter, category]);
 
     const [followThreads, setFollowThreads] = useState({
         user_id: 2,
@@ -364,7 +396,7 @@ const ListThread = (props) => {
                                     </div>
                                 </div>
                                 <div class="card-group">
-                                    {data?.data?.slice(0, 3).map((item, index) => (
+                                    {dataTop?.data?.slice(0, 3).map((item, index) => (
                                         <div class="card bg-transparent p-2 border-0" key={index}>
                                             <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
                                                 <img src={item.img} alt="..." className="card-img-top adjust mb-1" />
@@ -408,7 +440,7 @@ const ListThread = (props) => {
                                     </div>
                                 </div>
                                 <div class="card-group">
-                                    {data?.data?.slice(0, 3).map((item, index) => (
+                                    {dataNew?.data?.slice(0, 3).map((item, index) => (
                                         <div class="card bg-transparent p-2 border-0" key={index}>
                                             <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
                                                 <img src={item.img} alt="..." className="card-img-top adjust mb-1" />
@@ -452,7 +484,7 @@ const ListThread = (props) => {
                                     </div>
                                 </div>
                                 <div class="card-group">
-                                    {data?.data?.slice(0, 3).map((item, index) => (
+                                    {dataTop?.data?.slice(0, 3).map((item, index) => (
                                         <div class="card bg-transparent p-2 border-0" key={index}>
                                             <Link to={`/forum/${item.id}-${item.title.toLowerCase().replace(/\s/g, "-")}`} className="link">
                                                 <img src={item.img} alt="..." className="card-img-top adjust mb-1" />
