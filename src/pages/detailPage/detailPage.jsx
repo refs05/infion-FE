@@ -35,6 +35,11 @@ const DetailPage = () => {
   const [loadingAlso, setLoadingAlso] = useState(true);
   const [dataAlso, setDataAlso] = useState([]);
 
+  const [followUser, setFollowUser] = useState({
+    followed_id: 0,
+    follower_id: 0, //dummy
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -43,6 +48,7 @@ const DetailPage = () => {
           `http://localhost:8000/threads/${firstWord}`
         );
         setData(response);
+        setFollowUser({ followed_id: response.data.user_id, follower_id: 2 });
       } catch (error) {
         console.error(error.message);
       }
@@ -112,7 +118,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:8000/likeThreads/create`, likeThreads)
+      .post(`http://localhost:8000/likeThreads/${firstWord}`)
       .then(function (response) {
         console.log(response);
       })
@@ -126,7 +132,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:8000/followThreads/create`, followThreads)
+      .post(`http://localhost:8000/followThreads/${firstWord}`)
       .then(function (response) {
         console.log(response);
       })
@@ -137,9 +143,6 @@ const DetailPage = () => {
   }, []);
 
   const handleFollowThreads = async (e) => {
-    // if(statusFollow) {
-
-    // }
     e.preventDefault();
 
     axios
@@ -170,7 +173,18 @@ const DetailPage = () => {
       });
   };
 
-  //   const handleFollowUser =
+  const handleFollowUser = async (e) => {
+    e.preventDefault();
+
+    axios
+      .post(`http://localhost:8000/followUsers/create`, followUser)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   const [reports, setReports] = useState({
     user_id: 2,
@@ -221,7 +235,11 @@ const DetailPage = () => {
                 <div className="creator fs-8">
                   Oleh : {dataDetail?.username}
                 </div>
-                <div className="follower fs-8" type="button">
+                <div
+                  className="follower fs-8"
+                  type="button"
+                  onClick={handleFollowUser}
+                >
                   Follow
                 </div>
               </div>
