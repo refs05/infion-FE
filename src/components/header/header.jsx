@@ -11,10 +11,12 @@ const Header = (props) => {
     <div className="bg-hitam">
       <nav className="navbar navbar-expand-lg navbar-dark">
         <div className="container-fluid">
-          <a className={`navbar-brand ${styles.title}`} href="#">
-            <img src={logo} alt="logo" className={styles.logo} />
-            INFION
-          </a>
+          <Link to={`/`} className={styles.link}>
+            <a className={`navbar-brand ${styles.title}`} href="#">
+              <img src={logo} alt="logo" className={styles.logo} />
+              INFION
+            </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
