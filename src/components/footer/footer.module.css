@@ -22,6 +22,10 @@
   color: #fff;
 }
 
+.title:hover {
+  color: #fff;
+}
+
 .wrap {
   width: 95%;
 }
