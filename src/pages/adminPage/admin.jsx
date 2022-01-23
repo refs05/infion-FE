@@ -9,6 +9,7 @@ import ReportedList from "../../components/admin/reportedList";
 import Announcement from "../../components/admin/announcement";
 import YourReport from "../../components/admin/yourReport";
 import logo1 from "../../assets/img/logoWithText.svg";
+import { Link } from "react-router-dom";
 
 const Admin = () => {
   const [nav, setNav] = useState("reported");
@@ -26,10 +27,12 @@ const Admin = () => {
     <>
       <div className="d-flex">
         <div className="col-sm-2 sidebar vh-100">
-          <div className="gambar d-flex justify-content-center align-items-center">
-            <img src={logo} alt="logo" />
-            INFION
-          </div>
+          <Link to={`/`} className="link">
+            <div className="gambar d-flex justify-content-center align-items-center">
+              <img src={logo} alt="logo" />
+              INFION
+            </div>
+          </Link>
           <hr />
           <div className="admin d-flex flex-column align-items-center mt-5">
             <img src={person} alt="admin" className="border rounded-circle" />

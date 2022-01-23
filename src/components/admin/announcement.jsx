@@ -3,9 +3,9 @@ import "./announcement.css";
 import axios from "axios";
 
 const Announcement = () => {
+  const user_id = 2;
   const [announcement, SetAnnouncement] = useState({
-    moderatorId: 0,
-    moderatorName: "",
+    announcer_id: user_id,
     message: "",
   });
 
@@ -17,7 +17,7 @@ const Announcement = () => {
     e.preventDefault();
 
     axios
-      .post(`http://localhost:8000/announcement/create`, announcement)
+      .post(`http://localhost:8000/announcements/create`, announcement)
       .then(function (response) {
         console.log(response);
       })
@@ -38,7 +38,7 @@ const Announcement = () => {
           <input
             type="text"
             className="bg-input rounded-3 px-1 fs-7"
-            value="andi_23"
+            value={user_id}
             readOnly
           />
         </div>
