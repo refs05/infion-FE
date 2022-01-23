@@ -62,3 +62,19 @@
 .clearDecoration {
   text-decoration: none;
 }
+
+.girlLookAtThatBody {
+  overflow-y: inherit !important;
+}
+
+.announce {
+  border: 4px solid #ffcf00 !important;
+}
+
+.headerAnnounce {
+  background: #ffcf00;
+}
+
+.bodyAnnounce {
+  height: 150px;
+}

@@ -14,13 +14,17 @@ const Header = (props) => {
   const [userId, setUserId] = useState(2);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [dataAnnounce, setDataAnnounce] = useState({
+    userId: 0,
+    message: "",
+  });
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/reports/list`
+          `http://localhost:8000/announcements/list`
         );
         setData(response.data);
       } catch (error) {
@@ -31,6 +35,17 @@ const Header = (props) => {
 
     fetchData();
   }, []);
+
+  const getAnnounce = (announcer, message) => {
+    return function () {
+      setDataAnnounce({
+        user: announcer,
+        message: message,
+      });
+    };
+  };
+
+  console.log(data);
   return (
     <div className="bg-hitam">
       <nav className="navbar navbar-expand-lg navbar-dark">
@@ -145,7 +160,7 @@ const Header = (props) => {
                         />
                       </div>
                       <ul
-                        className="dropdown-menu"
+                        className="dropdown-menu dropdown-menu-end mt-1"
                         aria-labelledby="dropdownMenuButton1"
                       >
                         <li>
@@ -245,28 +260,68 @@ const Header = (props) => {
                         />
                       </div>
                       <ul
-                        className="dropdown-menu m-auto"
+                        className="dropdown-menu dropdown-menu-end mt-2"
                         aria-labelledby="dropdownMenuButton1"
                       >
                         <li>
-                          <h3 className="dropdown-header" href="#">
+                          <h3 className="fs-5 ms-3 py-1" href="#">
                             Notifications
                           </h3>
                         </li>
                         <li>
                           <hr className="dropdown-divider" />
                         </li>
-                        <li>
-                          <a className="dropdown-item" href="#">
-                            Another action
-                          </a>
-                        </li>
-                        <li>
-                          <a className="dropdown-item" href="#">
-                            Something else here
-                          </a>
-                        </li>
+                        {data?.map((item, index) => (
+                          <>
+                            <li
+                              key={index}
+                              onClick={getAnnounce(
+                                item.announcer,
+                                item.message
+                              )}
+                            >
+                              <a
+                                href="#"
+                                className="dropdown-item text-reset"
+                                data-bs-toggle="modal"
+                                data-bs-target="#ModalAnnouncement"
+                                href="#"
+                              >
+                                {item.message}
+                              </a>
+                            </li>
+                            <li key={index}>
+                              <hr className="dropdown-divider" />
+                            </li>
+                          </>
+                        ))}
                       </ul>
+                    </div>
+                    <div
+                      className={`modal fade textBlack `}
+                      id="ModalAnnouncement"
+                      tabindex="-1"
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
+                      <div className="modal-dialog modal-dialog-centered">
+                        <div
+                          className={`modal-content mx-auto ${styles.announce}`}
+                        >
+                          <div
+                            className={`modal-header ${styles.headerAnnounce}`}
+                          >
+                            <h5 className="modal-title" id="exampleModalLabel">
+                              From : {dataAnnounce.user}
+                            </h5>
+                          </div>
+                          <div
+                            className={`modal-body d-flex flex-column ${styles.bodyAnnounce}`}
+                          >
+                            {dataAnnounce.message}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     {/* <div class="form-check form-switch">
                     <input
