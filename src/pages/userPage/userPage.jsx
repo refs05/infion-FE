@@ -15,12 +15,19 @@ const DetailPage = () => {
   const [data, setData] = useState([]);
   const [edit, setEdit] = useState(false);
 
+  // const config = {
+  //   headers: { Authorization: `Bearer ${token}` },
+  // };
+
+  console.log(cookies);
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
           `http://localhost:8000/user/${id}`
+          // config
         );
         setData(response);
       } catch (error) {

@@ -1,25 +1,24 @@
 import React from "react";
-import ReactQuill from "react-quill";
-import EditorToolbar, { modules, formats } from "./editorToolbar";
-import "react-quill/dist/quill.snow.css";
-import "./styles.css";
+
+import { useQuill } from "react-quilljs";
+import "quill/dist/quill.snow.css";
+import style from "./styles.module.css";
 
 export const Editor = () => {
-  const [state, setState] = React.useState({ value: null });
-  const handleChange = (value) => {
-    setState({ value });
-  };
+  const { quill, quillRef } = useQuill();
+  
+  //
+  const blba = "<h5> testing testing </h5>"
+
+  React.useEffect(() => {
+    if (quill) {
+      quill.clipboard.dangerouslyPasteHTML(blba);
+    }
+  }, [quill]);
+
   return (
-    <div className="text-editor">
-      <EditorToolbar />
-      <ReactQuill
-        theme="snow"
-        value={state.value}
-        onChange={handleChange}
-        placeholder={"Write something awesome..."}
-        modules={modules}
-        formats={formats}
-      />
+    <div className={`${style.text_editor}`}>
+      <div className={`${style.isian}`} ref={quillRef} />
     </div>
   );
 };
