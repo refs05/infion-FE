@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useCookies } from "react-cookie";
+import { useEffect } from "react";
 // import logo2 from "../../assets/img/logo.svg";
 // import Loading from "../loading/loading"
 
@@ -17,7 +18,7 @@ import { useCookies } from "react-cookie";
 // };
 
 const Header = (props) => {
-  const [cookies, setCookie] = useCookies(["username", "id", "token"]);
+  const [cookies, setCookies] = useCookies(["username", "id", "token"]);
   const [emailusr, setEmail] = useState("");
   const [emailusrRgs, setEmailRgs] = useState("");
   const [pass, setPass] = useState("");
@@ -31,6 +32,7 @@ const Header = (props) => {
     passConf: "",
     email: "",
   };
+  console.log(cookies.username);
 
   const [errMsg, setErrMsg] = useState(def);
   const [passConf, setPassConf] = useState("");
@@ -205,9 +207,10 @@ const Header = (props) => {
               "success"
             );
 
-            setCookie("username", response.data.data.username, { path: "/" });
-            setCookie("id", response.data.data.id, { path: "/" });
-            setCookie("token", response.data.data.token, { path: "/" });
+            setCookies("username", response.data.data.username, { path: "/" });
+            setCookies("id", response.data.data.id, { path: "/" });
+            setCookies("token", response.data.data.token, { path: "/" });
+            setCookies("role_id", response.data.data.role_id, { path: "/" });
             console.log(cookies);
           }
         })
@@ -253,7 +256,13 @@ const Header = (props) => {
     }
   };
 
-  const [username, setUsername] = useState(true);
+  useEffect(() => {
+    if (cookies.username != undefined) {
+      setUsernameStatus(true);
+    }
+  }, [cookies]);
+
+  const [usernameStatus, setUsernameStatus] = useState(false);
   const [userId, setUserId] = useState(2);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -338,7 +347,7 @@ const Header = (props) => {
                   </a>
                 </Link>
               </li>
-              {username ? (
+              {usernameStatus ? (
                 <li className="nav-item  mx-sm-5">
                   <Link to={`/createThread`} className={`${styles.link}`}>
                     <a className="nav-link text-reset" href="#">
@@ -383,7 +392,7 @@ const Header = (props) => {
                 </li>
               )}
             </ul>
-            {username ? (
+            {usernameStatus ? (
               <>
                 <ul className="navbar-nav">
                   <div
