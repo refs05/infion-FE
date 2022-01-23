@@ -27,35 +27,38 @@
   text-decoration: none;
   color: #fff;
 }
-.black{
-  color : #0000!important;
+.black {
+  color: #0000 !important;
 }
-.btn{
-  background-color: #6D05CD!important;
+.btn {
+  background-color: #6d05cd !important;
   width: 30%;
 }
-.radius{
-  border-radius:50px!important;
-  width: 75%!important;
+.radius {
+  border-radius: 50px !important;
+  width: 75% !important;
 }
-.radius2{
-  border-radius:50px!important;
+.radius2 {
+  border-radius: 50px !important;
 }
-.blue{
-  color:#3F6FE3;
+.blue {
+  color: #3f6fe3;
   text-decoration: none;
 }
-.grey{
-  color: #736E6E;
- 
+.grey {
+  color: #736e6e;
 }
-.size{
+.size {
   width: 30%;
 }
-.size2{
+.size2 {
   width: 15%;
 }
 
-.alert img{
+.alert img {
   width: 70px;
+}
+
+.clearDecoration {
+  text-decoration: none;
 }

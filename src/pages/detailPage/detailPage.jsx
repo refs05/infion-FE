@@ -1,6 +1,6 @@
 import ListComment from "../../components/comment/listComment";
 import Footer from "../../components/footer/footer";
-import { Header, HeaderLogged } from "../../components/header/header";
+import Header from "../../components/header/header";
 import back from "../../assets/img/back.svg";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
