@@ -59,6 +59,11 @@
   width: 70px;
 }
 
+.red {
+  color: #cd0511;
+  font-size: small;
+}
+
 .clearDecoration {
   text-decoration: none;
 }

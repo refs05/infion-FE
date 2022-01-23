@@ -5,11 +5,254 @@ import styles from "./header.module.css";
 import userImg from "../../assets/img/userImg.svg";
 import notifIcon from "../../assets/img/notifIcon.svg";
 import alert from "../../assets/img/alert.svg";
-import { useState } from "react/cjs/react.development";
+import React, { useState } from "react";
 import axios from "axios";
-import { useEffect } from "react";
+import Swal from "sweetalert2";
+import { useCookies } from "react-cookie";
+// import logo2 from "../../assets/img/logo.svg";
+// import Loading from "../loading/loading"
+
+// const HeaderLogic =() =>{
+//   if
+// };
 
 const Header = (props) => {
+  const [cookies, setCookie] = useCookies(["username", "id", "token"]);
+  const [emailusr, setEmail] = useState("");
+  const [emailusrRgs, setEmailRgs] = useState("");
+  const [pass, setPass] = useState("");
+  const [passRgs, setPassRgs] = useState("");
+  const [username, setUsername] = useState("");
+  const [response, setResponse] = useState("");
+  const def = {
+    username: "",
+    emailrgs: "",
+    passRgs: "",
+    passConf: "",
+    email: "",
+  };
+
+  const [errMsg, setErrMsg] = useState(def);
+  const [passConf, setPassConf] = useState("");
+  const [rgsBtnStat, setRgsBtnStat] = useState("true");
+  const [loginBtnStat, setLoginBtnStat] = useState("true");
+  const emailRegex = /^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/;
+  const usernameRegex = /^[a-z0-9_-]{5,16}$/;
+  const passRegex =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+  const validate = (e) => {
+    if (e.target.name === "email") {
+      setEmail(e.target.value);
+      if (e.target.value === "") {
+        // setErrMsg({
+        //   ...errMsg,
+        //   email: "",
+        // });
+        setLoginBtnStat("true");
+      }
+      //  else if (!emailRegex.test(e.target.value)) {
+      //   setErrMsg({
+      //     ...errMsg,
+      //     email: "Wrong Email Format",
+      //   });
+      //   setLoginBtnStat("true")
+      // } else {
+      //   setErrMsg({
+      //     ...errMsg,
+      //     email: "",
+      //   });
+
+      // }
+      else if (pass != "" && e.target.value != "") {
+        setLoginBtnStat("");
+      }
+    } else if (e.target.name === "password") {
+      setPass(e.target.value);
+      if (e.target.value === "") {
+        setLoginBtnStat("true");
+      } else if (emailusr != "" && e.target.value != "") {
+        setLoginBtnStat("");
+      }
+    }
+
+    // if( errMsg.email ==="" && pass != ""){
+    //   setLoginBtnStat("")
+    // }else{
+    //   setLoginBtnStat("true")
+    // }
+
+    if (e.target.name === "emailrgs") {
+      setEmailRgs(e.target.value);
+      if (e.target.value === "") {
+        setErrMsg({
+          ...errMsg,
+          emailrgs: "",
+        });
+        setRgsBtnStat("true");
+      } else if (!emailRegex.test(e.target.value)) {
+        setErrMsg({
+          ...errMsg,
+          emailrgs: "Wrong Email Format",
+        });
+        setRgsBtnStat("true");
+      } else {
+        setErrMsg({
+          ...errMsg,
+          emailrgs: "",
+        });
+      }
+    } else if (e.target.name === "username") {
+      setUsername(e.target.value);
+      if (e.target.value === "") {
+        setErrMsg({
+          ...errMsg,
+          username: "",
+        });
+        setRgsBtnStat("true");
+      } else if (!usernameRegex.test(e.target.value)) {
+        setErrMsg({
+          ...errMsg,
+          username: "Wrong Username Format",
+        });
+        setRgsBtnStat("true");
+      } else {
+        setErrMsg({
+          ...errMsg,
+          username: "",
+        });
+      }
+    } else if (e.target.name === "passwordRgs") {
+      setPassRgs(e.target.value);
+      if (e.target.value === "") {
+        setErrMsg({
+          ...errMsg,
+          passRgs: "",
+        });
+        setRgsBtnStat("true");
+      } else if (!passRegex.test(e.target.value)) {
+        setErrMsg({
+          ...errMsg,
+          passRgs: "Wrong Password Format",
+        });
+        setRgsBtnStat("true");
+      } else {
+        setErrMsg({
+          ...errMsg,
+          passRgs: "",
+        });
+      }
+    } else if (e.target.name === "passConf") {
+      // console.log(passConf);
+      // console.log(passRgs);
+      setPassConf(e.target.value);
+      if (e.target.value === "") {
+        setErrMsg({
+          ...errMsg,
+          passConf: "",
+        });
+        setRgsBtnStat("true");
+      } else if (e.target.value == passRgs) {
+        setErrMsg({
+          ...errMsg,
+          passConf: "",
+        });
+      } else {
+        setErrMsg({
+          ...errMsg,
+          passConf: "Password not Match",
+        });
+        setRgsBtnStat("true");
+      }
+    }
+    if (
+      errMsg == def &&
+      emailusrRgs != "" &&
+      username != "" &&
+      passRgs != "" &&
+      passConf != ""
+    ) {
+      setRgsBtnStat("");
+    }
+    // console.log(rgsBtnStat);
+    // console.log(errMsg);
+  };
+
+  const respon = function () {
+    alert(response);
+  };
+  const handleLogin = (e) => {
+    if (e.target.name === "btnLogin") {
+      axios
+        .post("http://localhost:8000/user/login", {
+          email: emailusr,
+          password: pass,
+        })
+        .then(function (response) {
+          // console.log(response.data.data)
+          // console.log(response.data.data.id)
+          if (response.data.data.id == 0) {
+            Swal.fire({
+              title: "Error!",
+              text: "User Not Found",
+              icon: "error",
+              confirmButtonText: "Close",
+            });
+          } else {
+            Swal.fire(
+              "Success!",
+              "Hello" + " " + response.data.data.username,
+              "success"
+            );
+
+            setCookie("username", response.data.data.username, { path: "/" });
+            setCookie("id", response.data.data.id, { path: "/" });
+            setCookie("token", response.data.data.token, { path: "/" });
+            console.log(cookies);
+          }
+        })
+        .catch(function (error) {
+          Swal.fire({
+            title: "Error!",
+            text: "Error Login",
+            icon: "error",
+            confirmButtonText: "Close",
+          });
+        });
+    } else if (e.target.name === "btnRegister") {
+      axios
+        .post("http://localhost:8000/user/create", {
+          username: username,
+          email: emailusrRgs,
+          password: passRgs,
+        })
+        .then(function (response) {
+          if (response.data.data.id == 0) {
+            Swal.fire({
+              title: "Error!",
+              text: "User Not Found",
+              icon: "error",
+              confirmButtonText: "Close",
+            });
+          } else {
+            Swal.fire(
+              "Success Create New User!",
+              "Hello" + " " + response.data.data.username,
+              "Please Login With Your New Account"
+            );
+          }
+        })
+        .catch(function (error) {
+          Swal.fire({
+            title: "Error!",
+            text: "Error Login",
+            icon: "error",
+            confirmButtonText: "Close",
+          });
+        });
+    }
+  };
+
   const [username, setUsername] = useState(true);
   const [userId, setUserId] = useState(2);
   const [loading, setLoading] = useState(true);
@@ -46,6 +289,7 @@ const Header = (props) => {
   };
 
   console.log(data);
+
   return (
     <div className="bg-hitam">
       <nav className="navbar navbar-expand-lg navbar-dark">
@@ -346,10 +590,8 @@ const Header = (props) => {
                     Login
                   </a>
                 </li>
-
                 <li className="nav-item me-sm-5">
                   <a
-                    className="nav-link text-reset"
                     className="nav-link text-reset"
                     data-bs-toggle="modal"
                     data-bs-target="#ModalRegister"
@@ -372,6 +614,7 @@ const Header = (props) => {
           </div>
         </div>
       </nav>
+
       <div
         className={`modal fade textBlack `}
         id="ModalLogin"
@@ -394,31 +637,53 @@ const Header = (props) => {
                 <h6 className="fw-bold ms-1  my-2">Email</h6>
                 <input
                   className={`form-control rounded-pill my-4`}
+                  name="email"
+                  onChange={validate}
+                  value={emailusr}
                   type="text"
                   placeholder="example@example.com"
+                  required
                 />
+                <p className={styles.red}>{errMsg.email}</p>
               </div>
               <div>
                 <h6 className="fw-bold  ms-1  my-2">Password</h6>
                 <input
                   className={`form-control rounded-pill my-4`}
                   type="password"
+                  name="password"
                   placeholder="example123"
+                  onChange={validate}
+                  value={pass}
+                  required
                 />
               </div>
             </div>
             <button
               type="button"
               className={`btn btn-secondary btn-lg rounded-pill mx-auto ${styles.btn}`}
+              onClick={handleLogin}
+              name="btnLogin"
+              disabled={loginBtnStat}
             >
               Login
             </button>
+            <input
+              type="hidden"
+              id="custId"
+              onChange={() => respon}
+              value={response}
+            />
             <br />
-
             <div className="mx-auto">
               <p className={`${styles.grey}`}>
                 Don't have an account ?{" "}
-                <a href="#" className={`${styles.blue}`}>
+                <a
+                  href="#"
+                  className={`${styles.blue}`}
+                  data-bs-toggle="modal"
+                  data-bs-target="#ModalRegister"
+                >
                   Register
                 </a>
               </p>
@@ -454,15 +719,25 @@ const Header = (props) => {
                       className={`form-control rounded-pill my-4`}
                       type="text"
                       placeholder="example@example.com"
+                      name="username"
+                      value={username}
+                      onChange={validate}
+                      required
                     />
+                    <p className={styles.red}>{errMsg.username}</p>
                   </div>
                   <div>
                     <h6 className="fw-bold  ms-1  my-2">Email</h6>
                     <input
                       className={`form-control rounded-pill my-4`}
                       type="text"
+                      name="emailrgs"
+                      value={emailusrRgs}
                       placeholder="example@example.com"
+                      onChange={validate}
+                      required
                     />
+                    <p className={styles.red}>{errMsg.emailrgs}</p>
                   </div>
                 </div>
                 <div className="col">
@@ -471,9 +746,14 @@ const Header = (props) => {
                     <input
                       className={`form-control rounded-pill my-4`}
                       type="password"
+                      name="passwordRgs"
+                      value={passRgs}
+                      onChange={validate}
                       placeholder="example123"
+                      required
                     />
                   </div>
+                  <p className={styles.red}>{errMsg.passRgs}</p>
                   <div>
                     <h6 className="fw-bold  ms-1  my-2">
                       Password Confirmation
@@ -482,7 +762,12 @@ const Header = (props) => {
                       className={`form-control rounded-pill my-4`}
                       type="password"
                       placeholder="example123"
+                      name="passConf"
+                      onChange={validate}
+                      value={passConf}
+                      required
                     />
+                    <p className={styles.red}>{errMsg.passConf}</p>
                   </div>
                 </div>
               </div>
@@ -512,6 +797,8 @@ const Header = (props) => {
             <button
               type="button"
               className={`btn btn-secondary btn-lg rounded-pill mx-auto ${styles.btn}`}
+              onClick={handleLogin}
+              name="btnRegister"
             >
               Register
             </button>
@@ -524,6 +811,8 @@ const Header = (props) => {
                   data-bs-target="#ModalLogin"
                   href="#"
                   className={`${styles.blue}`}
+                  data-bs-toggle="modal"
+                  data-bs-target="#ModalLogin"
                 >
                   Login
                 </a>
