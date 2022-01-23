@@ -36,7 +36,7 @@ const ListComment = (props) => {
                 <Comments data={item} key={index} />
             ))}
             <form>
-                <div className="container-sm border rounded-3">
+                <div className="container-sm border rounded-3 mb-3">
                     <div className="d-flex bd-highlight mb-1 align-items-center mt-2">
                         <div className="p-2 bd-highlight profile">
                             <img src={userImg} className="rounded-circle" alt="profile" />

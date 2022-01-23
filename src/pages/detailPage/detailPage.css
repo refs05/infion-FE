@@ -1,73 +1,85 @@
 .back {
-    width: 93%;
-    margin: 0 auto;
+  width: 93%;
+  margin: 0 auto;
+}
+
+.bg-hitam {
+  background: #151515 !important;
+  color: #fff !important;
 }
 
 .back img {
-    width: 30px;
+  width: 30px;
 }
 
 .fs-7 {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .fs-8 {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .follower {
-    color: #3f6fe3;
+  color: #3f6fe3;
 }
 
 .info img {
-    width: 45px;
+  width: 45px;
 }
 
 .side img {
-    width: 8px;
-    margin-top: 6px;
+  width: 8px;
+  margin-top: 6px;
 }
 
 .reportHide {
-    width: 45px;
-    height: 45px;
-    background-color: red;
-    font-size: 12px;
-    visibility: hidden;
+  width: 45px;
+  height: 45px;
+  background-color: red;
+  font-size: 12px;
+  visibility: hidden;
 }
 
 .report {
-    width: 45px;
-    height: 45px;
-    background-color: red;
-    font-size: 12px;
+  width: 45px;
+  height: 45px;
+  background-color: red;
+  font-size: 12px;
 }
 
 .textBlack {
-    color: black!important;
+  color: black !important;
 }
 
 .reportContent {
-    width: 100px;
+  width: 100px;
 }
 
 .borderReport {
-    border-radius: 20px!important;
+  border-radius: 20px !important;
 }
 
 .bg-input {
-    background: #c4c4c4;
+  background: #c4c4c4;
 }
 
 .bg-send {
-    background: #6D05CD!important;
-    border-color: #6D05CD!important;
+  background: #6d05cd !important;
+  border-color: #6d05cd !important;
 }
 
 .link {
-    color: white;
+  color: white;
 }
 
 .link:hover {
-    color: yellow;
+  color: yellow;
+}
+
+.infoFollow {
+  width: 80px;
+  height: 45px;
+  background: #736e6e;
+  border-radius: 50px;
 }

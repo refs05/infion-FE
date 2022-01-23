@@ -27,40 +27,59 @@
   text-decoration: none;
   color: #fff;
 }
-.black{
-  color : #0000!important;
+.black {
+  color: #0000 !important;
 }
-.btn{
-  background-color: #6D05CD!important;
+.btn {
+  background-color: #6d05cd !important;
   width: 30%;
 }
-.radius{
-  border-radius:50px!important;
-  width: 75%!important;
+.radius {
+  border-radius: 50px !important;
+  width: 75% !important;
 }
-.radius2{
-  border-radius:50px!important;
+.radius2 {
+  border-radius: 50px !important;
 }
-.blue{
-  color:#3F6FE3;
+.blue {
+  color: #3f6fe3;
   text-decoration: none;
 }
-.grey{
-  color: #736E6E;
- 
+.grey {
+  color: #736e6e;
 }
-.size{
+.size {
   width: 30%;
 }
-.size2{
+.size2 {
   width: 15%;
 }
 
-.alert img{
+.alert img {
   width: 70px;
 }
 
-.red{
-  color:#CD0511;
+.red {
+  color: #cd0511;
   font-size: small;
+}
+
+.clearDecoration {
+  text-decoration: none;
+}
+
+.girlLookAtThatBody {
+  overflow-y: inherit !important;
+}
+
+.announce {
+  border: 4px solid #ffcf00 !important;
+}
+
+.headerAnnounce {
+  background: #ffcf00;
+}
+
+.bodyAnnounce {
+  height: 150px;
 }

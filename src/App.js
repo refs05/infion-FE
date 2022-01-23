@@ -10,7 +10,7 @@ import DetailPage from "./pages/detailPage/detailPage";
 import ListThread from "./pages/listThread/listThread";
 import UserPage from "./pages/userPage/userPage";
 import HomeVisitor from "./components/home/homeVisitor";
-import createThread from "./components/thread/createThread";
+import CreateThread from "./components/thread/createThread";
 import editThread from "./components/thread/editThread";
 import UserThreads from "./pages/userThreads/userThreads";
 
@@ -33,7 +33,7 @@ function App() {
                 </Route>
                 <Route path="/admin" exact component={Admin} />
                 <Route path="/" exact component={HomeVisitor} />
-                <Route path="/createThread" exact component={createThread} />
+                <Route path="/createThread" exact component={CreateThread} />
                 <Route path="/editThread/:id" exact component={editThread} />
                 <Route path="/yourThreads/:id" exact component={UserThreads} />
             </Switch>
