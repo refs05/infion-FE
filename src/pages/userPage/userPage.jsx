@@ -26,8 +26,8 @@ const DetailPage = () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/user/${id}`,
-          config
+          `http://localhost:8000/user/${id}`
+          // config
         );
         setData(response);
       } catch (error) {
