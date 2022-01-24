@@ -19,7 +19,7 @@ const DetailPage = () => {
   //   headers: { Authorization: `Bearer ${token}` },
   // };
 
-  console.log(cookies);
+  // console.log(cookies);
 
   useEffect(() => {
     const fetchData = async () => {
