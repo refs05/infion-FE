@@ -591,6 +591,8 @@ const Header = (props) => {
                               <button
                                 type="button"
                                 className={`btn btn-primary rounded-pill mx-auto`}
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
                               >
                                 Cancel
                               </button>
@@ -630,7 +632,7 @@ const Header = (props) => {
                         <li>
                           <hr className="dropdown-divider" />
                         </li>
-                        {data?.map((item, index) => (
+                        {data?.slice(0, 8).map((item, index) => (
                           <>
                             <li
                               key={index}

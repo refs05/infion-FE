@@ -120,6 +120,8 @@ const UserThreads = () => {
                             <button
                               type="button"
                               className={`btn btn-primary rounded-pill mx-auto`}
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
                             >
                               Cancel
                             </button>

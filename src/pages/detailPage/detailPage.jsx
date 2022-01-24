@@ -192,7 +192,7 @@ const DetailPage = () => {
   };
 
   const [reports, setReports] = useState({
-    user_id: cookies.id,
+    user_id: parseInt(cookies.id),
     thread_id: parseInt(firstWord),
     report_message: "",
   });
