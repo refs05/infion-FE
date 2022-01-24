@@ -3,13 +3,14 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
+import { useCookies } from "react-cookie";
 
 const YourReport = () => {
-  //dummy user
-  const id = 2;
+  const [cookies, setCookies] = useCookies(["id"]);
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [statusView, setStatusView] = useState(false);
   const [detail, setDetail] = useState([
     {
       id: 0,
@@ -37,7 +38,7 @@ const YourReport = () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/reports/listbyuser/${id}`
+          `http://localhost:8000/reports/listbyuser/${cookies.id}`
         );
         setData(response.data);
       } catch (error) {
@@ -58,6 +59,7 @@ const YourReport = () => {
         threadTitle: detail.title,
         message: detail.report_message,
       });
+      setStatusView(true);
     };
   };
 
@@ -163,7 +165,13 @@ const YourReport = () => {
       </div>
       <div className="tombol d-flex justify-content-end mx-5 mb-1">
         <div className="px-2 d-flex justify-content-end">
-          <div className="view btn btn-primary me-2">
+          <div
+            className={
+              statusView
+                ? "view btn btn-primary me-2"
+                : "view btn btn-primary me-2 disabled"
+            }
+          >
             <Link
               to={`/forum/${detail.threadId}-${detail.threadTitle
                 ?.toLowerCase()

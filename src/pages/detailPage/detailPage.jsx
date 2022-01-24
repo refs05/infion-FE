@@ -10,6 +10,7 @@ import "./detailPage.css";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Leaderboard from "../../components/leaderboard/leaderboard";
+import { useCookies } from "react-cookie";
 
 //temporary
 import likeThread from "../../assets/img/likeThread.svg";
@@ -34,10 +35,11 @@ const DetailPage = () => {
 
   const [loadingAlso, setLoadingAlso] = useState(true);
   const [dataAlso, setDataAlso] = useState([]);
+  const [cookies, setCookies] = useCookies(["id", "username"]);
 
   const [followUser, setFollowUser] = useState({
     followed_id: 0,
-    follower_id: 0, //dummy
+    follower_id: 0,
   });
 
   useEffect(() => {
@@ -48,7 +50,10 @@ const DetailPage = () => {
           `http://localhost:8000/threads/${firstWord}`
         );
         setData(response);
-        setFollowUser({ followed_id: response.data.user_id, follower_id: 2 });
+        setFollowUser({
+          followed_id: response.data.user_id,
+          follower_id: parseInt(cookies.id),
+        });
       } catch (error) {
         console.error(error.message);
       }
@@ -110,7 +115,7 @@ const DetailPage = () => {
   }, []);
 
   const [followThreads, setFollowThreads] = useState({
-    user_id: 2,
+    user_id: parseInt(cookies.id),
     thread_id: parseInt(firstWord),
   });
 
@@ -118,7 +123,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:8000/likeThreads/${firstWord}`)
+      .get(`http://localhost:8000/likeThreads/${firstWord}`)
       .then(function (response) {
         console.log(response);
       })
@@ -132,7 +137,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:8000/followThreads/${firstWord}`)
+      .get(`http://localhost:8000/followThreads/${firstWord}`)
       .then(function (response) {
         console.log(response);
       })
@@ -144,7 +149,7 @@ const DetailPage = () => {
 
   const handleFollowThreads = async (e) => {
     e.preventDefault();
-
+    console.log(followThreads);
     axios
       .post(`http://localhost:8000/followThreads/create`, followThreads)
       .then(function (response) {
@@ -156,7 +161,7 @@ const DetailPage = () => {
   };
 
   const [likeThreads, setLikeThreads] = useState({
-    user_id: 2,
+    user_id: parseInt(cookies.id),
     thread_id: parseInt(firstWord),
   });
 
@@ -187,7 +192,7 @@ const DetailPage = () => {
   };
 
   const [reports, setReports] = useState({
-    user_id: 2,
+    user_id: parseInt(cookies.id),
     thread_id: parseInt(firstWord),
     report_message: "",
   });
@@ -332,7 +337,7 @@ const DetailPage = () => {
                           <input
                             type="text"
                             className="bg-input rounded-3 px-1"
-                            value="andi_23"
+                            value={cookies.username}
                             readOnly
                           />
                         </div>

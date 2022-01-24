@@ -10,6 +10,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Search from "../../components/search/search";
+import { useCookies } from "react-cookie";
 
 const ListThread = (props) => {
   const [loading, setLoading] = useState(true);
@@ -20,6 +21,7 @@ const ListThread = (props) => {
   const [filteredThread, setFilteredThread] = useState([]);
   const [filter, setFilter] = useState("");
   const [category, setCategory] = useState("");
+  const [cookies, setCookies] = useCookies(["id"]);
 
   useEffect(() => {
     const fetchData = async () => {

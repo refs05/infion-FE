@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 
 //dummy
 import userImg from "../../assets/img/userImg.svg";
+import { useCookies } from "react-cookie";
 
 const DetailPage = () => {
   let { id } = useParams();
@@ -14,20 +15,19 @@ const DetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [edit, setEdit] = useState(false);
+  const [cookies, setCookies] = useCookies(["token"]);
 
-  // const config = {
-  //   headers: { Authorization: `Bearer ${token}` },
-  // };
-
-  // console.log(cookies);
+  const config = {
+    headers: { Authorization: `Bearer ${cookies.token}` },
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/user/${id}`
-          // config
+          `http://localhost:8000/user/${id}`,
+          config
         );
         setData(response);
       } catch (error) {

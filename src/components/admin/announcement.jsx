@@ -1,11 +1,13 @@
 import { useState } from "react";
 import "./announcement.css";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 const Announcement = () => {
-  const user_id = 2;
+  const [cookies, setCookies] = useCookies(["id", "username"]);
+
   const [announcement, SetAnnouncement] = useState({
-    announcer_id: user_id,
+    announcer_id: parseInt(cookies.id),
     message: "",
   });
 
@@ -38,7 +40,7 @@ const Announcement = () => {
           <input
             type="text"
             className="bg-input rounded-3 px-1 fs-7"
-            value={user_id}
+            value={cookies.id}
             readOnly
           />
         </div>
@@ -47,7 +49,7 @@ const Announcement = () => {
           <input
             type="text"
             className="bg-input rounded-3 px-1 fs-7"
-            value="andi_23"
+            value={cookies.username}
             readOnly
           />
         </div>

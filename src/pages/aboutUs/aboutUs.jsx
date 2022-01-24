@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./aboutUs.module.css";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 //import components
 import Header from "../../components/header/header";
