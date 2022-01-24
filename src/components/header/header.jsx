@@ -10,6 +10,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "../../actions/LoginAction";
 // import logo2 from "../../assets/img/logo.svg";
 // import Loading from "../loading/loading"
 
@@ -32,7 +34,6 @@ const Header = (props) => {
     passConf: "",
     email: "",
   };
-  console.log(cookies.username);
 
   const [errMsg, setErrMsg] = useState(def);
   const [passConf, setPassConf] = useState("");
@@ -183,45 +184,18 @@ const Header = (props) => {
   const respon = function () {
     alert(response);
   };
+
+  //try redux
+
+  const dispatch = useDispatch();
+  const { userLoginResult } = useSelector((state) => state.UserLogin);
+  const { userLoginError } = useSelector((state) => state.UserLogin);
+
   const handleLogin = (e) => {
     if (e.target.name === "btnLogin") {
-      axios
-        .post("http://localhost:8000/user/login", {
-          email: emailusr,
-          password: pass,
-        })
-        .then(function (response) {
-          // console.log(response.data.data)
-          // console.log(response.data.data.id)
-          if (response.data.data.id == 0) {
-            Swal.fire({
-              title: "Error!",
-              text: "User Not Found",
-              icon: "error",
-              confirmButtonText: "Close",
-            });
-          } else {
-            Swal.fire(
-              "Success!",
-              "Hello" + " " + response.data.data.username,
-              "success"
-            );
-
-            setCookies("username", response.data.data.username, { path: "/" });
-            setCookies("id", response.data.data.id, { path: "/" });
-            setCookies("token", response.data.data.token, { path: "/" });
-            setCookies("role_id", response.data.data.role_id, { path: "/" });
-            console.log(cookies);
-          }
-        })
-        .catch(function (error) {
-          Swal.fire({
-            title: "Error!",
-            text: "Error Login",
-            icon: "error",
-            confirmButtonText: "Close",
-          });
-        });
+      e.preventDefault();
+      console.log("Masuk handle submit");
+      dispatch(userLogin({ email: emailusr, password: pass }));
     } else if (e.target.name === "btnRegister") {
       axios
         .post("http://localhost:8000/user/create", {
@@ -255,6 +229,32 @@ const Header = (props) => {
         });
     }
   };
+
+  useEffect(() => {
+    if (userLoginResult) {
+      console.log(userLoginResult);
+      setEmail("");
+      setPass("");
+
+      Swal.fire(
+        "Success!",
+        "Hello" + " " + userLoginResult.username,
+        "success"
+      );
+
+      setCookies("username", userLoginResult.username, { path: "/" });
+      setCookies("id", userLoginResult.id, { path: "/" });
+      setCookies("token", userLoginResult.token, { path: "/" });
+      setCookies("role_id", userLoginResult.role_id, { path: "/" });
+    } else if (userLoginError) {
+      Swal.fire({
+        title: "Error!",
+        text: "User Not Found",
+        icon: "error",
+        confirmButtonText: "Close",
+      });
+    }
+  }, [userLoginResult, userLoginError]);
 
   useEffect(() => {
     if (cookies.username != undefined) {
@@ -296,8 +296,6 @@ const Header = (props) => {
       });
     };
   };
-
-  console.log(data);
 
   return (
     <div className="bg-hitam">
@@ -673,6 +671,8 @@ const Header = (props) => {
               className={`btn btn-secondary btn-lg rounded-pill mx-auto ${styles.btn}`}
               onClick={handleLogin}
               name="btnLogin"
+              data-bs-dismiss="modal"
+              aria-label="Close"
               disabled={loginBtnStat}
             >
               Login

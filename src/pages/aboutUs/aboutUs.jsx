@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./aboutUs.module.css";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 //import components
 import Header from "../../components/header/header";
@@ -14,6 +16,14 @@ import css from "../../assets/img/css.svg";
 import react from "../../assets/img/react.svg";
 
 function AboutUs() {
+  const { userLoginResult } = useSelector((state) => state.UserLogin);
+
+  useEffect(() => {
+    if (userLoginResult) {
+      console.log(userLoginResult.id);
+    }
+  }, [userLoginResult]);
+
   return (
     <div className="bg-hitam">
       <Header />
