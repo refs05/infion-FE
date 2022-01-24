@@ -16,8 +16,6 @@ import css from "../../assets/img/css.svg";
 import react from "../../assets/img/react.svg";
 
 function AboutUs() {
-  const { userLoginResult } = useSelector((state) => state.UserLogin);
-  console.log(userLoginResult);
   return (
     <div className="bg-hitam">
       <Header />

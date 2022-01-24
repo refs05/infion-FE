@@ -10,7 +10,6 @@ function EditThread() {
   let { id } = useParams();
 
   let firstWord = id.split("-")[0];
-  console.log(firstWord);
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);

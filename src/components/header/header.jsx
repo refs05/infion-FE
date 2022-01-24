@@ -263,7 +263,6 @@ const Header = (props) => {
   }, [cookies]);
 
   const [usernameStatus, setUsernameStatus] = useState(false);
-  const [userId, setUserId] = useState(2);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [dataAnnounce, setDataAnnounce] = useState({
@@ -414,42 +413,151 @@ const Header = (props) => {
                         className="dropdown-menu dropdown-menu-end mt-1"
                         aria-labelledby="dropdownMenuButton1"
                       >
-                        <li>
-                          <Link
-                            to={`/profile/${userId}`}
-                            className={`${styles.clearDecoration}`}
-                          >
-                            <a className="dropdown-item" href="#">
-                              Your Profile
-                            </a>
-                          </Link>
-                        </li>
-                        <li>
-                          <hr className="dropdown-divider" />
-                        </li>
-                        <li>
-                          <Link
-                            to={`/yourThreads/${userId}`}
-                            className={`${styles.clearDecoration}`}
-                          >
-                            <a className="dropdown-item" href="#">
-                              Your Thread
-                            </a>
-                          </Link>
-                        </li>
-                        <li>
-                          <hr className="dropdown-divider" />
-                        </li>
-                        <li>
-                          <a
-                            className="dropdown-item text-reset"
-                            data-bs-toggle="modal"
-                            data-bs-target="#ModalLogout"
-                            href="#"
-                          >
-                            Logout
-                          </a>
-                        </li>
+                        {cookies.role_id == 1 ? (
+                          <>
+                            {" "}
+                            <li>
+                              <Link
+                                to={`/profile/${cookies.id}`}
+                                className={`${styles.clearDecoration}`}
+                              >
+                                <a className="dropdown-item" href="#">
+                                  Your Profile
+                                </a>
+                              </Link>
+                            </li>
+                            <li>
+                              <hr className="dropdown-divider" />
+                            </li>
+                            <li>
+                              <Link
+                                to={`/yourThreads/${cookies.id}`}
+                                className={`${styles.clearDecoration}`}
+                              >
+                                <a className="dropdown-item" href="#">
+                                  Your Thread
+                                </a>
+                              </Link>
+                            </li>
+                            <li>
+                              <hr className="dropdown-divider" />
+                            </li>
+                            <li>
+                              <a
+                                className="dropdown-item text-reset"
+                                data-bs-toggle="modal"
+                                data-bs-target="#ModalLogout"
+                                href="#"
+                              >
+                                Logout
+                              </a>
+                            </li>{" "}
+                          </>
+                        ) : cookies.role_id == 2 ? (
+                          <>
+                            <li>
+                              <Link
+                                to={`/profile/${cookies.id}`}
+                                className={`${styles.clearDecoration}`}
+                              >
+                                <a className="dropdown-item" href="#">
+                                  Your Profile
+                                </a>
+                              </Link>
+                            </li>
+                            <li>
+                              <hr className="dropdown-divider" />
+                            </li>
+                            <li>
+                              <Link
+                                to={`/yourThreads/${cookies.id}`}
+                                className={`${styles.clearDecoration}`}
+                              >
+                                <a className="dropdown-item" href="#">
+                                  Your Thread
+                                </a>
+                              </Link>
+                            </li>
+                            <li>
+                              <hr className="dropdown-divider" />
+                            </li>
+                            <li>
+                              <Link
+                                to={`/admin`}
+                                className={`${styles.clearDecoration}`}
+                              >
+                                <a className="dropdown-item" href="#">
+                                  Management
+                                </a>
+                              </Link>
+                            </li>
+                            <li>
+                              <hr className="dropdown-divider" />
+                            </li>
+                            <li>
+                              <a
+                                className="dropdown-item text-reset"
+                                data-bs-toggle="modal"
+                                data-bs-target="#ModalLogout"
+                                href="#"
+                              >
+                                Logout
+                              </a>
+                            </li>{" "}
+                          </>
+                        ) : (
+                          <>
+                            <li>
+                              <Link
+                                to={`/profile/${cookies.id}`}
+                                className={`${styles.clearDecoration}`}
+                              >
+                                <a className="dropdown-item" href="#">
+                                  Your Profile
+                                </a>
+                              </Link>
+                            </li>
+                            <li>
+                              <hr className="dropdown-divider" />
+                            </li>
+                            <li>
+                              <Link
+                                to={`/yourThreads/${cookies.id}`}
+                                className={`${styles.clearDecoration}`}
+                              >
+                                <a className="dropdown-item" href="#">
+                                  Your Thread
+                                </a>
+                              </Link>
+                            </li>
+                            <li>
+                              <hr className="dropdown-divider" />
+                            </li>
+                            <li>
+                              <Link
+                                to={`/admin`}
+                                className={`${styles.clearDecoration}`}
+                              >
+                                <a className="dropdown-item" href="#">
+                                  Management Admin
+                                </a>
+                              </Link>
+                            </li>
+                            <li>
+                              <hr className="dropdown-divider" />
+                            </li>
+                            <li>
+                              <a
+                                className="dropdown-item text-reset"
+                                data-bs-toggle="modal"
+                                data-bs-target="#ModalLogout"
+                                href="#"
+                              >
+                                Logout
+                              </a>
+                            </li>{" "}
+                          </>
+                        )}
                       </ul>
                     </div>
                     <div
