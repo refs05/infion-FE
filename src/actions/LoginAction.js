@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export const USER_LOGIN = "USER_LOGIN";
 
@@ -22,6 +23,11 @@ export const userLogin = (data) => {
     })
       .then((response) => {
         console.log("berhasil dapet data" + JSON.stringify(response.data.data));
+        Swal.fire(
+          "Success!",
+          "Hello" + " " + response.data.data.username,
+          "success"
+        );
         dispatch({
           type: USER_LOGIN,
           payload: {

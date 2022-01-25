@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import logo from "../../assets/img/logo.svg";
 import logo1 from "../../assets/img/logoWithText.svg";
 import styles from "./header.module.css";
@@ -19,8 +19,13 @@ import { userLogin } from "../../actions/LoginAction";
 //   if
 // };
 
-const Header = (props) => {
-  const [cookies, setCookies] = useCookies(["username", "id", "token"]);
+const Header = () => {
+  const [cookies, setCookies, removeCookies] = useCookies([
+    "username",
+    "id",
+    "role_id",
+    "token",
+  ]);
   const [emailusr, setEmail] = useState("");
   const [emailusrRgs, setEmailRgs] = useState("");
   const [pass, setPass] = useState("");
@@ -177,15 +182,11 @@ const Header = (props) => {
     ) {
       setRgsBtnStat("");
     }
-    // console.log(rgsBtnStat);
-    // console.log(errMsg);
   };
 
   const respon = function () {
     alert(response);
   };
-
-  //try redux
 
   const dispatch = useDispatch();
   const { userLoginResult } = useSelector((state) => state.UserLogin);
@@ -229,24 +230,29 @@ const Header = (props) => {
         });
     }
   };
+  const history = useHistory();
+
+  const handleLogout = () => {
+    removeCookies("username", { path: "/" });
+    removeCookies("id", { path: "/" });
+    removeCookies("role_id", { path: "/" });
+    removeCookies("token", { path: "/" });
+    history.push("/");
+    window.location.reload();
+  };
 
   useEffect(() => {
     if (userLoginResult) {
-      console.log(userLoginResult);
       setEmail("");
       setPass("");
-
-      Swal.fire(
-        "Success!",
-        "Hello" + " " + userLoginResult.username,
-        "success"
-      );
 
       setCookies("username", userLoginResult.username, { path: "/" });
       setCookies("id", userLoginResult.id, { path: "/" });
       setCookies("token", userLoginResult.token, { path: "/" });
       setCookies("role_id", userLoginResult.role_id, { path: "/" });
     } else if (userLoginError) {
+      setEmail("");
+      setPass("");
       Swal.fire({
         title: "Error!",
         text: "User Not Found",
@@ -585,6 +591,8 @@ const Header = (props) => {
                               <button
                                 type="button"
                                 className={`btn btn-danger rounded-pill mx-auto me-2`}
+                                onClick={handleLogout}
+                                name="btnLogout"
                               >
                                 Yes
                               </button>
