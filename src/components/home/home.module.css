@@ -21,15 +21,10 @@
   color: #ffcf00;
 }
 
-.content{
+.content {
   padding-top: 5%;
   height: 50vw;
 }
-.btn{
-    background-color: #6D05CD!important;
-    
-    
-}
-.search{
-    width: 50%!important; 
+.btn {
+  background-color: #6d05cd !important;
 }

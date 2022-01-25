@@ -2,11 +2,31 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./search.css";
+import axios from "axios";
 
-const Search = (props) => {
+const Search = ({ home }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [searchStatus, setSearchStatus] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const { data: response } = await axios.get(
+          `http://localhost:8000/threads/list/`
+        );
+        setData(response);
+      } catch (error) {
+        console.error(error.message);
+      }
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
 
   const searchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -19,7 +39,7 @@ const Search = (props) => {
   };
 
   useEffect(() => {
-    const titles = props?.data?.data?.map((item) => ({
+    const titles = data?.data?.map((item) => ({
       id: item.id,
       title: item.title,
     }));
@@ -30,14 +50,14 @@ const Search = (props) => {
   }, [searchTerm]);
 
   return (
-    <div class="container mb-4">
-      <div class="row height d-flex justify-content-center align-items-center">
-        <div class="col-md-7">
-          <div class="search position-relative">
+    <div className="mb-4">
+      <div className="height d-flex align-items-center">
+        <div className={home == "home" ? "col-md-5" : "col-md-7 mx-auto"}>
+          <div className="search position-relative">
             <div className="d-flex position-relative">
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="Search something here..."
                 onChange={searchChange}
                 value={searchTerm}
