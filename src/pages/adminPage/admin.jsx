@@ -21,8 +21,6 @@ const Admin = () => {
     "username",
   ]);
 
-  let history = useHistory();
-
   const changeReported = () => {
     setNavAdmin("reported");
   };
