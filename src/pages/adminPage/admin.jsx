@@ -9,13 +9,16 @@ import ReportedList from "../../components/admin/reportedList";
 import Announcement from "../../components/admin/announcement";
 import YourReport from "../../components/admin/yourReport";
 import logo1 from "../../assets/img/logoWithText.svg";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 const Admin = () => {
   const [navReport, setNavReport] = useState("yourReport");
   const [navAdmin, setNavAdmin] = useState("reported");
-  const [cookies, setCookies] = useCookies(["role_id", "username"]);
+  const [cookies, setCookies, removeCookies] = useCookies([
+    "role_id",
+    "username",
+  ]);
 
   const changeReported = () => {
     setNavAdmin("reported");
@@ -27,6 +30,17 @@ const Admin = () => {
   const changeAnnouncement = () => {
     setNavAdmin("announcement");
     setNavReport("announcement");
+  };
+
+  const history = useHistory();
+
+  const handleLogout = () => {
+    removeCookies("username", { path: "/" });
+    removeCookies("id", { path: "/" });
+    removeCookies("role_id", { path: "/" });
+    removeCookies("token", { path: "/" });
+    history.push("/");
+    window.location.reload();
   };
   return (
     <>
@@ -103,6 +117,7 @@ const Admin = () => {
                       <button
                         type="button"
                         className={`btn btn-danger rounded-pill mx-auto me-2`}
+                        onClick={handleLogout}
                       >
                         Yes
                       </button>
@@ -205,9 +220,11 @@ const Admin = () => {
                       <button
                         type="button"
                         className={`btn btn-danger rounded-pill mx-auto me-2`}
+                        onClick={handleLogout}
                       >
                         Yes
                       </button>
+
                       <button
                         type="button"
                         className={`btn btn-primary rounded-pill mx-auto`}
