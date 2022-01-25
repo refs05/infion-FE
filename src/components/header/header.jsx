@@ -900,15 +900,18 @@ const Header = (props) => {
                   value=""
                   id="defaultCheck1"
                 />
-                <label className={`${styles.grey}`} for="defaultCheck1">
+                <label
+                  className={`${styles.grey}`}
+                  for="defaultCheck1"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
                   I agree with{" "}
-                  <a href="#" className={`${styles.blue}`}>
-                    Terms
-                  </a>{" "}
-                  and{" "}
-                  <a href="#" className={`${styles.blue}`}>
-                    Privacy
-                  </a>
+                  <Link to="/agreement">
+                    <a href="#" className={`${styles.blue}`}>
+                      Terms and Privacy
+                    </a>
+                  </Link>
                 </label>
               </div>
             </div>
