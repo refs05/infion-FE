@@ -14,7 +14,6 @@ import { useCookies } from "react-cookie";
 
 const ListThread = (props) => {
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
   const [dataTop, setDataTop] = useState([]);
   const [dataNew, setDataNew] = useState([]);
   const [dataRec, setDataRec] = useState([]);
@@ -22,23 +21,6 @@ const ListThread = (props) => {
   const [filter, setFilter] = useState("");
   const [category, setCategory] = useState("");
   const [cookies, setCookies] = useCookies(["id"]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const { data: response } = await axios.get(
-          `http://localhost:8000/threads/list/`
-        );
-        setData(response);
-      } catch (error) {
-        console.error(error.message);
-      }
-      setLoading(false);
-    };
-
-    fetchData();
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -176,7 +158,14 @@ const ListThread = (props) => {
     <>
       <Header />
       <div className="bg-hitam">
-        <Search data={data} />
+        <div className="container mx-auto row pt-2">
+          <div className="col-sm-0"></div>
+          <div className="col-11 mx-auto">
+            <Search />
+          </div>
+          <div className="col-sm-1"></div>
+        </div>
+
         <div className="container m-auto row">
           <div className="leftContent col-sm-2">
             <div className="filter border rounded-3 p-3 mb-4">
@@ -665,7 +654,7 @@ const ListThread = (props) => {
               </div>
             </div>
           )}
-          <div className="rightContent col-sm-3">
+          <div className="rightContent col-sm-3 mb-4">
             <Leaderboard />
           </div>
         </div>

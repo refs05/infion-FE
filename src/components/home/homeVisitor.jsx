@@ -2,6 +2,9 @@ import Header from "../header/header";
 import logo from "../../assets/img/illustration.svg";
 import style from "./home.module.css";
 import Footer from "../footer/footer";
+import Search from "../search/search";
+import { Link } from "react-router-dom";
+
 function HomeVisitor() {
   return (
     <>
@@ -25,22 +28,16 @@ function HomeVisitor() {
                 </div>
                 <br />
                 <h5>What You Want to search Today ?</h5>
-                <div className={`${style.search}`}>
-                  <div class="input-group mb-3">
-                    <input
-                      className={`form-control rounded-pill ${style.input}`}
-                      type="search"
-                      placeholder="search something here"
-                      aria-label="Search"
-                    />
-                  </div>
-
-                  <button
-                    type="button"
-                    className={`btn btn-lg btn-secondary rounded-pill my-1 ${style.btn}`}
-                  >
-                    Check Now !
-                  </button>
+                <div className="">
+                  <Search home={"home"} />
+                  <Link to="/threads">
+                    <button
+                      type="button"
+                      className={`btn btn-lg btn-secondary rounded-pill my-1 ${style.btn}`}
+                    >
+                      Check Now !
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
