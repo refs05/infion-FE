@@ -9,13 +9,16 @@ import ReportedList from "../../components/admin/reportedList";
 import Announcement from "../../components/admin/announcement";
 import YourReport from "../../components/admin/yourReport";
 import logo1 from "../../assets/img/logoWithText.svg";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import back from "../../assets/img/back.svg";
 
 const Admin = () => {
   const [navReport, setNavReport] = useState("yourReport");
   const [navAdmin, setNavAdmin] = useState("reported");
   const [cookies, setCookies] = useCookies(["role_id", "username"]);
+
+  let history = useHistory();
 
   const changeReported = () => {
     setNavAdmin("reported");
@@ -33,6 +36,18 @@ const Admin = () => {
       {cookies.role_id == 2 ? (
         <div className="d-flex">
           <div className="col-sm-2 sidebar vh-100">
+            <div className="d-flex align-items-center back mt-3">
+              <img
+                src={back}
+                alt=""
+                className="me-1"
+                type="button"
+                onClick={() => history.goBack()}
+              />
+              <div type="button" onClick={() => history.goBack()}>
+                Back
+              </div>
+            </div>
             <Link to={`/`} className="link">
               <div className="gambar d-flex justify-content-center align-items-center">
                 <img src={logo} alt="logo" />
@@ -124,6 +139,18 @@ const Admin = () => {
       ) : (
         <div className="d-flex">
           <div className="col-sm-2 sidebar vh-100">
+            <div className="d-flex align-items-center back mt-3">
+              <img
+                src={back}
+                alt=""
+                className="me-1"
+                type="button"
+                onClick={() => history.goBack()}
+              />
+              <div type="button" onClick={() => history.goBack()}>
+                Back
+              </div>
+            </div>
             <Link to={`/`} className="link">
               <div className="gambar d-flex justify-content-center align-items-center">
                 <img src={logo} alt="logo" />

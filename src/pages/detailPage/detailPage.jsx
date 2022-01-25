@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import upArrow from "../../assets/img/upArrow.svg";
 import bullet from "../../assets/img/bullet.svg";
 import "./detailPage.css";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Leaderboard from "../../components/leaderboard/leaderboard";
 import { useCookies } from "react-cookie";
@@ -41,6 +41,8 @@ const DetailPage = () => {
     followed_id: 0,
     follower_id: 0,
   });
+
+  let history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -221,8 +223,16 @@ const DetailPage = () => {
       <Header />
       <div className="bg-hitam">
         <div className="d-flex align-items-center back">
-          <img src={back} alt="" className="me-1" />
-          <div type="button">Back</div>
+          <img
+            src={back}
+            alt=""
+            className="me-1"
+            type="button"
+            onClick={() => history.goBack()}
+          />
+          <div type="button" onClick={() => history.goBack()}>
+            Back
+          </div>
         </div>
         <div className="container row m-auto">
           <div className="detail col-sm-9">
