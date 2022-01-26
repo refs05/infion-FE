@@ -277,12 +277,17 @@ const Header = () => {
     message: "",
   });
 
+  const [cookies, setCookies] = useCookies(["id", "username", "token"]);
+  const config = {
+    headers: { Authorization: `Bearer ${cookies.token}` },
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/announcements/list`
+          `http://localhost:8000/announcements/list`, config
         );
         setData(response.data);
       } catch (error) {

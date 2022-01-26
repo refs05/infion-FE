@@ -3,8 +3,14 @@ import axios from "axios";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const ReportedList = () => {
+  const [cookies, setCookies] = useCookies(["id", "username", "token"]);
+  const config = {
+    headers: { Authorization: `Bearer ${cookies.token}` },
+  };
+
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [statusView, setStatusView] = useState(false);
@@ -35,7 +41,7 @@ const ReportedList = () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/reports/list`
+          `http://localhost:8000/reports/list`, config
         );
         setData(response.data);
       } catch (error) {
@@ -63,7 +69,7 @@ const ReportedList = () => {
   const deleteThread = () => {
     // DELETE request using axios with error handling
     axios
-      .delete(`http://localhost:8000/threads/${detail.threadId}`)
+      .delete(`http://localhost:8000/threads/${detail.threadId}`, config)
       .then((response) => setStatus("Delete successful"))
       .catch((error) => {
         setErrorMessage(error.message);
@@ -74,7 +80,7 @@ const ReportedList = () => {
   const deleteReport = () => {
     // DELETE request using axios with error handling
     axios
-      .delete(`http://localhost:8000/reports/${detail.id}`)
+      .delete(`http://localhost:8000/reports/${detail.id}`, config)
       .then((response) => setStatus("Delete successful"))
       .catch((error) => {
         setErrorMessage(error.message);
