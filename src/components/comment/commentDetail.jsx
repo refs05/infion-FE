@@ -13,7 +13,10 @@ import { useCookies } from "react-cookie";
 const Comments = ({ data }) => {
   const [subComment, setSubComment] = useState(false);
   const [editComment, setEditComment] = useState(false);
-  const [cookies, setCookies] = useCookies(["id"]);
+  const [cookies, setCookies] = useCookies(["id", "token"]);
+  const config = {
+    headers: { Authorization: `Bearer ${cookies.token}` },
+  };
 
   const [likeComments, setLikeComments] = useState({
     user_id: 0,
@@ -23,7 +26,7 @@ const Comments = ({ data }) => {
   useEffect(() => {
     if (likeComments.comment_id != 0) {
       axios
-        .post(`http://localhost:8000/likeComments/create`, likeComments)
+        .post(`http://localhost:8000/likeComments/create`, likeComments, config)
         .then(function (response) {
           console.log(response);
         })

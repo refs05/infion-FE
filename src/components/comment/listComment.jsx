@@ -6,7 +6,10 @@ import { useState } from "react";
 import { useCookies } from "react-cookie";
 
 const ListComment = (props) => {
-  const [cookies, setCookies] = useCookies(["id"]);
+  const [cookies, setCookies] = useCookies(["id", "token"]);
+  const config = {
+    headers: { Authorization: `Bearer ${cookies.token}` },
+  };
 
   const [values, setValues] = useState({
     user_id: parseInt(cookies.id),
@@ -20,7 +23,7 @@ const ListComment = (props) => {
     e.preventDefault();
 
     axios
-      .post(`http://localhost:8000/comments/create`, values)
+      .post(`http://localhost:8000/comments/create`, values, config)
       .then(function (response) {
         console.log(response);
       })

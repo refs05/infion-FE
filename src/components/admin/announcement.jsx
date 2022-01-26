@@ -4,7 +4,10 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 
 const Announcement = () => {
-  const [cookies, setCookies] = useCookies(["id", "username"]);
+  const [cookies, setCookies] = useCookies(["id", "username", "token"]);
+  const config = {
+    headers: { Authorization: `Bearer ${cookies.token}` },
+  };
 
   const [announcement, SetAnnouncement] = useState({
     announcer_id: parseInt(cookies.id),
@@ -19,7 +22,7 @@ const Announcement = () => {
     e.preventDefault();
 
     axios
-      .post(`http://localhost:8000/announcements/create`, announcement)
+      .post(`http://localhost:8000/announcements/create`, announcement, config)
       .then(function (response) {
         console.log(response);
       })

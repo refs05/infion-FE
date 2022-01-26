@@ -21,6 +21,9 @@ const ListThread = (props) => {
   const [filter, setFilter] = useState("");
   const [category, setCategory] = useState("");
   const [cookies, setCookies] = useCookies(["id"]);
+  const config = {
+    headers: { Authorization: `Bearer ${cookies.token}` },
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,7 +84,7 @@ const ListThread = (props) => {
   useEffect(() => {
     if (followThreads.thread_id != 0) {
       axios
-        .post(`http://localhost:8000/followThreads/create`, followThreads)
+        .post(`http://localhost:8000/followThreads/create`, followThreads, config)
         .then(function (response) {
           console.log(response);
         })
