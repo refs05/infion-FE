@@ -11,7 +11,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Leaderboard from "../../components/leaderboard/leaderboard";
 import { useCookies } from "react-cookie";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 //temporary
 import likeThread from "../../assets/img/likeThread.svg";
@@ -36,12 +36,19 @@ const DetailPage = () => {
 
   const [loadingAlso, setLoadingAlso] = useState(true);
   const [dataAlso, setDataAlso] = useState([]);
-  const [cookies, setCookies] = useCookies(["id", "username"]);
+  const [cookies, setCookies] = useCookies(["id", "username", "token"]);
 
   const [followUser, setFollowUser] = useState({
     followed_id: 0,
     follower_id: 0,
   });
+
+  const config = {
+    headers: { Authorization: `Bearer ${cookies.token}` },
+  };
+
+  const [statusFollowThreads, setStatusFollowThreads] = useState(false);
+  const [statusLike, setStatusLike] = useState(false);
 
   let history = useHistory();
 
@@ -117,62 +124,55 @@ const DetailPage = () => {
     fetchData();
   }, []);
 
-  const [followThreads, setFollowThreads] = useState({
-    user_id: parseInt(cookies.id),
-    thread_id: parseInt(firstWord),
-  });
-
-  const [statusLike, setStatusLike] = useState(false);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8000/likeThreads/${firstWord}`)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-        setStatusLike(true);
-      });
-  }, []);
-
-  const [statusFollow, setStatusFollow] = useState(false);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8000/followThreads/${firstWord}`)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-        setStatusFollow(true);
-      });
-  }, []);
-
-  const handleFollowThreads = async (e) => {
-    e.preventDefault();
-    console.log(followThreads);
-    axios
-      .post(`http://localhost:8000/followThreads/create`, followThreads)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
   const [likeThreads, setLikeThreads] = useState({
     user_id: parseInt(cookies.id),
     thread_id: parseInt(firstWord),
   });
 
-  const handleLikeThreads = async (e) => {
-    e.preventDefault();
-
+  useEffect(() => {
     axios
-      .post(`http://localhost:8000/likeThreads/create`, likeThreads)
+      .get(
+        `http://localhost:8000/likeThreads/status/?threadID=${parseInt(
+          firstWord
+        )}&userID=${parseInt(cookies.id)}`,
+        config
+      )
+      .then(function (response) {
+        console.log(response);
+        setStatusLike(response.data.data.status);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  const [followThreads, setFollowThreads] = useState({
+    user_id: parseInt(cookies.id),
+    thread_id: parseInt(firstWord),
+  });
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:8000/followThreads/status/?threadID=${parseInt(
+          firstWord
+        )}&userID=${parseInt(cookies.id)}`,
+        config
+      )
+      .then(function (response) {
+        console.log(response);
+        setStatusFollowThreads(response.data.data.status);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  const handleFollowThreads = async (e) => {
+    e.preventDefault();
+    setStatusFollowThreads(!statusFollowThreads);
+    axios
+      .post(`http://localhost:8000/followThreads/create`, followThreads, config)
       .then(function (response) {
         console.log(response);
       })
@@ -181,11 +181,38 @@ const DetailPage = () => {
       });
   };
 
+  const handleLikeThreads = async (e) => {
+    e.preventDefault();
+    setStatusLike(!statusLike);
+    axios
+      .post(`http://localhost:8000/likeThreads/create`, likeThreads, config)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const [statusFollowUsers, setStatusFollowUsers] = useState(false);
+
+  useEffect(() => {
+    axios
+      .post(`http://localhost:8000/followUsers/create`, followUser, config)
+      .then(function (response) {
+        console.log(response);
+        setStatusFollowUsers(response.data.data.status);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
   const handleFollowUser = async (e) => {
     e.preventDefault();
-
+    setStatusFollowUsers(!statusFollowUsers);
     axios
-      .post(`http://localhost:8000/followUsers/create`, followUser)
+      .post(`http://localhost:8000/followUsers/create`, followUser, config)
       .then(function (response) {
         console.log(response);
       })
@@ -256,7 +283,7 @@ const DetailPage = () => {
                   type="button"
                   onClick={handleFollowUser}
                 >
-                  Follow
+                  {statusFollowUsers ? "Followed" : "Follow"}
                 </div>
               </div>
             </div>
@@ -288,7 +315,7 @@ const DetailPage = () => {
                   onClick={handleFollowThreads}
                   type="button"
                 >
-                  {statusFollow ? "Followed" : "Follow"}
+                  {statusFollowThreads ? "Followed" : "Follow"}
                 </div>
               </div>
               <div className="moderator">

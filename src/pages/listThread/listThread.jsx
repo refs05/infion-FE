@@ -157,8 +157,8 @@ const ListThread = (props) => {
   return (
     <>
       <Header />
-      <div className="bg-hitam">
-        <div className="container mx-auto row pt-2">
+      <div className="bg-hitam sectionHeight1">
+        <div className="container mx-auto row pt-2 ">
           <div className="col-sm-0"></div>
           <div className="col-11 mx-auto">
             <Search />

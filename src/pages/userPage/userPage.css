@@ -1,50 +1,50 @@
 .yellow {
-    color: #ffcf00;
+  color: #ffcf00;
 }
 
 .box-title {
-    display: inline-block;
+  display: inline-block;
 }
 
 .sectionHeight {
-    height: 115vh;
+  min-height: 750px;
 }
 
 .editInput {
-    background: transparent;
-    color: #fff;
+  background: transparent;
+  color: #fff;
 }
 
 .hideUpload {
-    opacity: 0;
-    z-index: -1;
-    color: #fff;
+  opacity: 0;
+  z-index: -1;
+  color: #fff;
 }
 
 .upload {
-    color: #fff;
+  color: #fff;
 }
 
 .photoProfile {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
 }
 
 .nameProfile {
-    color: #3f6fe3;
+  color: #3f6fe3;
 }
 
 .editButton {
-    background: #6d05cd;
-    color: #fff;
+  background: #6d05cd;
+  color: #fff;
 }
 
 .hiddenButton {
-    display: none;
+  display: none;
 }
 
 .previewProfile {
-    width: 150px;
-    height: 150px;
+  width: 150px;
+  height: 150px;
 }
