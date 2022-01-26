@@ -79,6 +79,19 @@ const DetailPage = () => {
         setSelectedFile(e.target.files[0]);
     };
 
+    const handleEdit = async (e) => {
+        e.preventDefault();
+
+        axios
+            .put(`http://localhost:8000/user/${id}`, form, config)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+
     return (
         <div>
             <Header />
@@ -142,7 +155,9 @@ const DetailPage = () => {
                                     <button onClick={changeEdit} className="cancel col-5 btn btn-danger">
                                         Cancel
                                     </button>
-                                    <button className="save col-5 btn btn-primary">Save</button>
+                                    <button onClick={handleEdit} className="save col-5 btn btn-primary">
+                                        Save
+                                    </button>
                                 </div>
                             </div>
                         ) : (
