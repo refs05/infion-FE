@@ -1,15 +1,20 @@
 import Header from "../../../src/components/header/header";
 import style from "./createThread.module.css";
-import Editor from "../quillEditor/editor";
+// import Editor from "../quillEditor/editor";
 import Footer from "../../../src/components/footer/footer";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useQuill } from "react-quilljs";
+import fire from "../firebase/firebase";
+import ReactTimeout from "react-timeout";
 
 function CreateThread() {
   // const [image,setImage] = useState()
   // function preview(e){
 
   // }
+  const [hasTimeElapsed, setHasTimeElapsed] = useState(false);
+  const [image, setImage] = useState("");
   const [form, setForm] = useState({
     user_id: 2,
     title: "",
@@ -18,21 +23,70 @@ function CreateThread() {
     content: "",
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const { quill, quillRef } = useQuill();
+  let tesr;
 
+  useEffect(() => {
     axios
       .post(`http://localhost:8000/threads/create`, form)
       .then(function (response) {
-        console.log(response);
+        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
       });
+  }, [form.img]);
+
+  React.useEffect(() => {
+    if (quill) {
+      quill.on("text-change", (delta, oldDelta, source) => {
+        // setForm({...form,
+        //   content:quill.root.innerHTML
+        // })
+        tesr = quill.root.innerHTML; // Get innerHTML using quill
+        setForm((form) => {
+          return {
+            ...form,
+            content: tesr,
+          };
+        });
+      });
+    }
+  }, [quill]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const storageRef = fire.storage().ref();
+    const fileRef = storageRef.child(image.name);
+    const upload = fileRef.put(image).then((e) => {
+      e.ref.getDownloadURL()?.then(function (downloadURL) {
+        setForm({ ...form, img: downloadURL });
+        console.log(form);
+      });
+    });
+    //   upload.on(setImage, function progress(snapshot) {
+    //     console.log(snapshot.totalBytesTransferred); // progress of upload
+    //  });
   };
+  // useEffect(() => {
+  //   if (isStart) {
+  //     // const timer = setInterval(() => {
+  //     //   if (count > 0) {
+  //     //     setCount(count - 1);
+  //     //     console.log(count-1)
+  //     //   } else {
+  //     //     setCount("Times up");
+  //     //     clearInterval(timer);
+  //     //     console.log(count)
+  //     //   }
+  //     // }, 1000);
+  //   }
+  // }, [isStart]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+
+    // console.log(e.target.name);
   };
 
   return (
@@ -76,6 +130,9 @@ function CreateThread() {
                   type="file"
                   placeholder="No File Choosen"
                   // onChange={preview}
+                  onChange={(e) => {
+                    setImage(e.target.files[0]);
+                  }}
                 />
               </div>
               <div className="col-lg-3 ms-5 ps-3">
@@ -103,12 +160,14 @@ function CreateThread() {
                 <div
                   className={`mx-auto border bg-dark ${style.preview}`}
                 ></div>
+                <br />
+                {/* <button className={`btn  btn-secondary rounded-pill mx-auto ${style.bru}`} onClick={btnUpload}>Upload</button> */}
               </div>
               <div>
                 <h5 className="fw-normal  ms-1  my-5">Description</h5>
 
-                <div className="mx-auto textBlack">
-                  <Editor></Editor>
+                <div className={`mx-auto textBlack ${style.text_editor}`}>
+                  <div className={`${style.isian}`} ref={quillRef} />
                 </div>
                 <div className="my-4 form-check">
                   {" "}
