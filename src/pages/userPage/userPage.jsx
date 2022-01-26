@@ -80,27 +80,47 @@ const DetailPage = () => {
     };
 
     const handleEdit = async (e) => {
-        e.preventDefault();
-        const storageRef = fire.storage().ref();
-        const fileRef = storageRef.child(image.name);
-        const upload = fileRef.put(image).then((e) => {
-            e.ref.getDownloadURL()?.then(function (downloadURL) {
-                setForm({ ...form, url_img: downloadURL });
-                console.log(form);
+        if (image === "") {
+            setForm({ ...form, url_img: dataDetail?.image });
+            axios
+                .put(`http://localhost:8000/user/${id}`, form, config)
+                .then(function (response) {
+                    console.log(response);
+                    console.log("password:", form.password);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        } else {
+            e.preventDefault();
+            const storageRef = fire.storage().ref();
+            const fileRef = storageRef.child(image.name);
+            fileRef.put(image).then((e) => {
+                e.ref.getDownloadURL()?.then(function (downloadURL) {
+                    console.log("image: ", downloadURL);
+                    console.log("form: ", form);
+                    var form2 = {
+                        username: form.username,
+                        email: form.email,
+                        password: form.password,
+                        passwordc: form.passwoordc,
+                        role_id: 1,
+                        url_img: downloadURL,
+                    };
+                    console.log("password form2:", form2.password);
+                    console.log("image form2:", form2.url_img);
+                    axios
+                        .put(`http://localhost:8000/user/${id}`, form2, config)
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                });
             });
-        });
+        }
     };
-
-    useEffect(() => {
-        axios
-            .put(`http://localhost:8000/user/${id}`, form, config)
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }, [form.url_img]);
 
     return (
         <div>
@@ -112,8 +132,7 @@ const DetailPage = () => {
                 <div className="row container m-auto sectionHeight">
                     <div className="col-2 d-flex flex-column align-items-center">
                         <div className="mb-3">
-                            {/* {data?.data?.url_img}*/}
-                            <img src={data?.data?.url_img} alt="photo-profile" className="photoProfile" />
+                            <img src={data?.data?.url_img} alt="profile-img" className="photoProfile" />
                         </div>
                         <div className="fs-5 nameProfile mb-4">{data?.data?.username}</div>
                         {edit ? (
