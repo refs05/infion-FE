@@ -5,9 +5,6 @@ import React, { useEffect, useState } from "react";
 import "./userPage.css";
 import { useParams } from "react-router-dom";
 import fire from "../../components/firebase/firebase";
-
-//dummy
-// import userImg from "../../assets/img/userImg.svg";
 import { useCookies } from "react-cookie";
 
 const DetailPage = () => {
@@ -116,7 +113,7 @@ const DetailPage = () => {
                     <div className="col-2 d-flex flex-column align-items-center">
                         <div className="mb-3">
                             {/* {data?.data?.url_img}*/}
-                            <img src={data.url_img} alt="photo-profile" className="photoProfile" />
+                            <img src={data?.data?.url_img} alt="photo-profile" className="photoProfile" />
                         </div>
                         <div className="fs-5 nameProfile mb-4">{data?.data?.username}</div>
                         {edit ? (
