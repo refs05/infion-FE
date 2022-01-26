@@ -276,7 +276,10 @@ const DetailPage = () => {
               </div>
               <div className="second d-flex flex-column align-items-end">
                 <div className="creator fs-8">
-                  Oleh : {dataDetail?.username}
+                  Oleh :{" "}
+                  <Link to={`/profile/${dataDetail?.user_id}`} className="link">
+                    {dataDetail?.username}
+                  </Link>
                 </div>
                 <div
                   className="follower fs-8"
