@@ -7,7 +7,7 @@
 }
 
 .sectionHeight {
-    height: 100vh;
+    height: 115vh;
 }
 
 .editInput {
@@ -28,6 +28,7 @@
 .photoProfile {
     width: 150px;
     height: 150px;
+    border-radius: 50%;
 }
 
 .nameProfile {
@@ -37,6 +38,10 @@
 .editButton {
     background: #6d05cd;
     color: #fff;
+}
+
+.hiddenButton {
+    display: none;
 }
 
 .previewProfile {
