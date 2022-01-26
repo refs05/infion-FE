@@ -11,6 +11,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Leaderboard from "../../components/leaderboard/leaderboard";
 import { useCookies } from "react-cookie";
+import parse from 'html-react-parser';
 
 //temporary
 import likeThread from "../../assets/img/likeThread.svg";
@@ -236,7 +237,7 @@ const DetailPage = () => {
         </div>
         <div className="container row m-auto">
           <div className="detail col-sm-9">
-            <div className="title fs-3 mb-3">{dataDetail?.title}</div>
+            <div className="title fs-3 mb-3 judul">{dataDetail?.title}</div>
             <div className="headThread d-flex justify-content-between mb-3">
               <div className="first">
                 <div className="date fs-8">
@@ -259,7 +260,7 @@ const DetailPage = () => {
                 </div>
               </div>
             </div>
-            <div className="mb-3 rounded-2">
+            <div className="mb-3 rounded-2 imgWrapper">
               <img src={data?.data?.img} alt="" className="img-fluid w-100" />
             </div>
             <div className="d-flex justify-content-between mb-3">
@@ -386,7 +387,7 @@ const DetailPage = () => {
                 </div>
               </div>
             </div>
-            <div className="mb-3">{dataDetail?.content}</div>
+            <div className="mb-3">{parse(`${dataDetail?.content}`)}</div>
             <div className="titleComment fs-4" id="comment">
               Comment
             </div>

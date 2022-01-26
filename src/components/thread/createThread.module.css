@@ -20,9 +20,14 @@
     text-decoration: none;
     color: #3F6FE3;
 }
-.preview{
+.preview {
     min-height: 200px;
     border-radius: 12px;
+}
+
+.preview img{
+    width: 100%;
+    height:500px;
 }
 .text_editor{
     background-color: #FFFF!important;
