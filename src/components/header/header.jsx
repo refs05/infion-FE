@@ -237,8 +237,7 @@ const Header = () => {
     removeCookies("id", { path: "/" });
     removeCookies("role_id", { path: "/" });
     removeCookies("token", { path: "/" });
-    history.push("/");
-    window.location.reload();
+    window.location.href = "/";
   };
 
   useEffect(() => {
