@@ -7,13 +7,16 @@ import axios from "axios";
 import { useQuill } from "react-quilljs";
 import fire from "../firebase/firebase";
 import ReactTimeout from "react-timeout";
+import { useCookies } from "react-cookie";
 
 function CreateThread() {
   // const [image,setImage] = useState()
   // function preview(e){
 
   // }
-  const [hasTimeElapsed, setHasTimeElapsed] = useState(false);
+  const [cookies, getAll] = useCookies(["username", "id", "token"]);
+
+  const [stat, setStat] = useState(true);
   const [image, setImage] = useState("");
   const [form, setForm] = useState({
     user_id: 2,
@@ -27,6 +30,10 @@ function CreateThread() {
   let tesr;
 
   useEffect(() => {
+    getAll();
+    axios.defaults.headers.common = {
+      Authorization: `bearer ${cookies.token}`,
+    };
     axios
       .post(`http://localhost:8000/threads/create`, form)
       .then(function (response) {
@@ -86,7 +93,37 @@ function CreateThread() {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
 
-    // console.log(e.target.name);
+    if (e.target.name == "ceklis") {
+      if (form.title != "" && form.content != "" && form.category != "") {
+        setStat("");
+      } else {
+        setStat("true");
+      }
+    }
+  };
+  const [selectedFile, setSelectedFile] = useState();
+  const [preview, setPreview] = useState();
+
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview(undefined);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
+
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
+  const onSelectFile = (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(undefined);
+      return;
+    }
+
+    setSelectedFile(e.target.files[0]);
+    setImage(e.target.files[0]);
   };
 
   return (
@@ -130,9 +167,7 @@ function CreateThread() {
                   type="file"
                   placeholder="No File Choosen"
                   // onChange={preview}
-                  onChange={(e) => {
-                    setImage(e.target.files[0]);
-                  }}
+                  onChange={onSelectFile}
                 />
               </div>
               <div className="col-lg-3 ms-5 ps-3">
@@ -158,8 +193,10 @@ function CreateThread() {
               <div>
                 <h5 className="fw-normal  ms-1  my-2">Preview Image</h5>
                 <div
-                  className={`mx-auto border bg-dark ${style.preview}`}
-                ></div>
+                  className={`mx-auto bg-dark ${style.preview}`}
+                >
+                  {selectedFile &&  <img className="img-fluid w-100" src={preview} /> }
+                </div>
                 <br />
                 {/* <button className={`btn  btn-secondary rounded-pill mx-auto ${style.bru}`} onClick={btnUpload}>Upload</button> */}
               </div>
@@ -176,6 +213,8 @@ function CreateThread() {
                     type="checkbox"
                     value=""
                     id="defaultCheck1"
+                    name="ceklis"
+                    onChange={handleChange}
                   />
                   <label>
                     I have read Infion{" "}
@@ -194,6 +233,7 @@ function CreateThread() {
               <button
                 type="button"
                 className={`btn btn-secondary float-end  rounded-pill mx-auto ${style.purple}`}
+                disabled={stat}
                 onClick={handleSubmit}
               >
                 Post
