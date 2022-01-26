@@ -12,6 +12,7 @@ import HomeVisitor from "./components/home/homeVisitor";
 import CreateThread from "./components/thread/createThread";
 import editThread from "./components/thread/editThread";
 import UserThreads from "./pages/userThreads/userThreads";
+import NotFound from "./pages/notFound/notFound";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/createThread" exact component={CreateThread} />
         <Route path="/editThread/:id" exact component={editThread} />
         <Route path="/yourThreads/:id" exact component={UserThreads} />
+        <Route path="*" exact component={NotFound} />
       </Switch>
     </Router>
   );
