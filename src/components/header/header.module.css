@@ -1,85 +1,86 @@
 .logo {
-  width: 6vh;
+    width: 6vh;
 }
 
 .title {
-  font-size: 14px !important;
-  color: #fff;
+    font-size: 14px !important;
+    color: #fff;
 }
 
 .profileSize {
-  width: 40px;
+    width: 40px;
+    border-radius: 50%;
 }
 
 .notifSize {
-  width: 28px;
+    width: 28px;
 }
 
 .wrap {
-  flex-grow: 1;
+    flex-grow: 1;
 }
 
 .grow {
-  flex-grow: 2;
+    flex-grow: 2;
 }
 
 .link {
-  text-decoration: none;
-  color: #fff;
+    text-decoration: none;
+    color: #fff;
 }
 .black {
-  color: #0000 !important;
+    color: #0000 !important;
 }
 .btn {
-  background-color: #6d05cd !important;
-  width: 30%;
+    background-color: #6d05cd !important;
+    width: 30%;
 }
 .radius {
-  border-radius: 50px !important;
-  width: 75% !important;
+    border-radius: 50px !important;
+    width: 75% !important;
 }
 .radius2 {
-  border-radius: 50px !important;
+    border-radius: 50px !important;
 }
 .blue {
-  color: #3f6fe3;
-  text-decoration: none;
+    color: #3f6fe3;
+    text-decoration: none;
 }
 .grey {
-  color: #736e6e;
+    color: #736e6e;
 }
 .size {
-  width: 30%;
+    width: 30%;
 }
 .size2 {
-  width: 15%;
+    width: 15%;
 }
 
 .alert img {
-  width: 70px;
+    width: 70px;
 }
 
 .red {
-  color: #cd0511;
-  font-size: small;
+    color: #cd0511;
+    font-size: small;
 }
 
 .clearDecoration {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .girlLookAtThatBody {
-  overflow-y: inherit !important;
+    overflow-y: inherit !important;
 }
 
 .announce {
-  border: 4px solid #ffcf00 !important;
+    border: 4px solid #ffcf00 !important;
 }
 
 .headerAnnounce {
-  background: #ffcf00;
+    background: #ffcf00;
 }
 
 .bodyAnnounce {
-  height: 150px;
+    height: 150px;
 }
