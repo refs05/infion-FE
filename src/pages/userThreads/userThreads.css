@@ -1,5 +1,5 @@
 .sectionHeight1 {
-  height: 78vh;
+  min-height: 750px;
 }
 
 .deleteThread {

@@ -36,12 +36,12 @@ const UserThreads = () => {
       <Header />
       <div className="bg-hitam">
         <div className="container sectionHeight1">
-          <div className="bag mb-4">
+          <div className="bag pb-2">
             <div className="head d-flex justify-content-center align-items-end mb-1 px-2">
               <div className="title fs-4 mb-2">Your Threads</div>
             </div>
-            <div class="card-group">
-              {data?.data?.slice(0, 5).map((item, index) => (
+            <div class="d-flex flex-wrap">
+              {data?.data?.map((item, index) => (
                 <div class="card bg-transparent p-2 border-0" key={index}>
                   <Link
                     to={`/forum/${item.id}-${item.title
