@@ -14,8 +14,17 @@ const DetailPage = () => {
 
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+    const dataDetail = data?.data;
     const [edit, setEdit] = useState(false);
     const [cookies, setCookies] = useCookies(["token"]);
+    const [form, setForm] = useState({
+        username: dataDetail?.username,
+        email: dataDetail?.email,
+        password: "",
+        passwordc: "",
+        role_id: 1,
+        url_img: dataDetail?.url_img,
+    });
 
     const config = {
         headers: { Authorization: `Bearer ${cookies.token}` },
@@ -35,7 +44,11 @@ const DetailPage = () => {
         };
 
         fetchData();
-    }, []);
+    }, [config, id]);
+
+    const handleChange = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    };
 
     const changeEdit = () => {
         setEdit(!edit);
@@ -83,11 +96,31 @@ const DetailPage = () => {
                         {edit ? (
                             <div className="col">
                                 <label>Email</label>
-                                <input type="text" className="editInput border rounded-3 mb-2 px-2 py-1" />
+                                <input
+                                    type="text"
+                                    className="editInput border rounded-3 mb-2 px-2 py-1"
+                                    name="email"
+                                    value={form?.email}
+                                    onChange={handleChange}
+                                />
                                 <label>Password</label>
-                                <input type="text" className="editInput border rounded-3 mb-2 px-2 py-1" />
+                                <input
+                                    type="text"
+                                    className="editInput border rounded-3 mb-2 px-2 py-1"
+                                    required
+                                    name="password"
+                                    value={form?.password}
+                                    onChange={handleChange}
+                                />
                                 <label>Password Confirmation</label>
-                                <input type="text" className="editInput border rounded-3 mb-2 px-2 py-1" />
+                                <input
+                                    type="text"
+                                    className="editInput border rounded-3 mb-2 px-2 py-1"
+                                    required
+                                    name="passwordc"
+                                    value={form?.passwordc}
+                                    onChange={handleChange}
+                                />
                                 <label>Edit Profile Picture</label>
                                 <div className="position-relative upload border rounded-3 mb-3">
                                     <label htmlFor="uploadPhoto" className="px-3 py-1 border rounded-3">
@@ -95,14 +128,15 @@ const DetailPage = () => {
                                     </label>
                                     <input
                                         type="file"
-                                        name="photo"
                                         className="hideUpload position-absolute"
                                         id="uploadPhoto"
+                                        name="url_img"
+                                        value={form?.url_img}
                                         onChange={onSelectFile}
                                     />
                                 </div>
                                 <div className="d-flex justify-content-center">
-                                    {selectedFile && <img src={preview} className="previewProfile rounded-circle mb-2" />}
+                                    {selectedFile && <img src={preview} alt="profile" className="previewProfile rounded-circle mb-2" />}
                                 </div>
                                 <div className="row d-flex justify-content-between m-auto">
                                     <button onClick={changeEdit} className="cancel col-5 btn btn-danger">
