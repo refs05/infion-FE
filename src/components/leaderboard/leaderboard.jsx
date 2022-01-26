@@ -6,6 +6,7 @@ import "./leaderboard.css";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Leaderboard = () => {
   const [loading, setLoading] = useState(true);
@@ -34,7 +35,9 @@ const Leaderboard = () => {
       {leaderboard?.data?.slice(0, 5).map((item, index) => (
         <React.Fragment key={index}>
           <div className="fs-8">
-            {index + 1}. {item.username}
+            <Link to={`/profile/${item.id}`} className="link">
+              {index + 1}. {item.username}
+            </Link>
           </div>
           <div className="d-flex ms-3">
             <div className="d-flex align-items-center me-3 icon fs-8">
