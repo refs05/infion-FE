@@ -189,7 +189,8 @@ const DetailPage = () => {
                                 </div>
                             </div>
                         ) : (
-                            <button onClick={changeEdit} className="editButton px-3 py-1 border rounded-3">
+                            // className="editButton px-3 py-1 border rounded-3"
+                            <button onClick={changeEdit} className={id !== cookies.id ? "hiddenButton" : "editButton px-3 py-1 border rounded-3"}>
                                 Edit Profile
                             </button>
                         )}

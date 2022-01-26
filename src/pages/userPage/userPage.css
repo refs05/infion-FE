@@ -40,6 +40,10 @@
     color: #fff;
 }
 
+.hiddenButton {
+    display: none;
+}
+
 .previewProfile {
     width: 150px;
     height: 150px;
