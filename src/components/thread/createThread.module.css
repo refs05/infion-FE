@@ -24,3 +24,12 @@
     min-height: 200px;
     border-radius: 12px;
 }
+.text_editor{
+    background-color: #FFFF!important;
+    min-height: 200px;
+    border-radius: 12px;
+}
+.bru{
+    background-color: #3F6FE3!important;
+    /* width: 15%; */
+}
