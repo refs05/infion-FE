@@ -7,12 +7,21 @@ import { Link, useParams } from "react-router-dom";
 import like from "../../assets/img/love.svg";
 import comment from "../../assets/img/comment.svg";
 import logo1 from "../../assets/img/logoWithText.svg";
+import { useCookies } from "react-cookie";
 
 const UserThreads = () => {
   let { id } = useParams();
 
+  const [cookies, setCookies] = useCookies(["token"]);
+
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [status, setStatus] = useState("");
+
+  const config = {
+    headers: { Authorization: `Bearer ${cookies.token}` },
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +39,20 @@ const UserThreads = () => {
 
     fetchData();
   }, []);
+
+  const deleteThread = (id) => {
+    // DELETE request using axios with error handling
+    return function () {
+      axios
+        .delete(`http://localhost:8000/threads/${id}`, config)
+        .then((response) => setStatus("Delete successful"))
+        .catch((error) => {
+          setErrorMessage(error.message);
+          console.error("There was an error!", error);
+        });
+      window.location.reload();
+    };
+  };
 
   return (
     <>
@@ -74,7 +97,9 @@ const UserThreads = () => {
                     </div>
                   </div>
                   <p class="card-text text-end">
-                    <small class="text-muted">Last updated 3 mins ago</small>
+                    <small class="text-muted">
+                      {new Date(item.created_at).toDateString()}
+                    </small>
                   </p>
                   <div className="action d-flex justify-content-end">
                     <div className="editThread me-5" type="button">
@@ -114,6 +139,9 @@ const UserThreads = () => {
                             <button
                               type="button"
                               className={`btn btn-danger rounded-pill mx-auto me-2`}
+                              onClick={deleteThread(item.id)}
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
                             >
                               Yes
                             </button>
