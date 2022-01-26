@@ -6,10 +6,17 @@ import "./userPage.css";
 import { useParams } from "react-router-dom";
 import fire from "../../components/firebase/firebase";
 import { useCookies } from "react-cookie";
+import Swal from "sweetalert2";
 
 const DetailPage = () => {
     let { id } = useParams();
+    const passRegex =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
+    const [errMsg,setErrMsg] = useState({
+        password : "",
+    }
+    ) 
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const dataDetail = data?.data;
@@ -46,6 +53,14 @@ const DetailPage = () => {
     }, []);
 
     const handleChange = (e) => {
+        if(e.target.name=="password"){
+            if (!passRegex.test(e.target.value)){
+                setErrMsg({
+                    ...errMsg,
+                    password: "Wrong Password Format, Password must contain ",
+                  });
+            }
+        }
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
@@ -87,10 +102,13 @@ const DetailPage = () => {
                 .then(function (response) {
                     console.log(response);
                     console.log("password:", form.password);
+                   
+                    
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
+                
         } else {
             e.preventDefault();
             const storageRef = fire.storage().ref();
@@ -113,6 +131,12 @@ const DetailPage = () => {
                         .put(`http://localhost:8000/user/${id}`, form2, config)
                         .then(function (response) {
                             console.log(response);
+                            Swal.fire(
+                                "Success Edit Profile!",
+                                // "Hello" + " " + response.data.data.username,
+                                // "Please Login With Your New Account"
+                              );
+                              window.location.reload();
                         })
                         .catch(function (error) {
                             console.log(error);
@@ -159,7 +183,7 @@ const DetailPage = () => {
                                     type="text"
                                     className="editInput border rounded-3 mb-2 px-2 py-1"
                                     required
-                                    name="passwordc"
+                                    name="passwordconf"
                                     value={form?.passwordc}
                                     onChange={handleChange}
                                 />

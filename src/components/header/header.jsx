@@ -2,7 +2,6 @@ import { Link, useHistory } from "react-router-dom";
 import logo from "../../assets/img/logo.svg";
 import logo1 from "../../assets/img/logoWithText.svg";
 import styles from "./header.module.css";
-import userImg from "../../assets/img/userImg.svg";
 import notifIcon from "../../assets/img/notifIcon.svg";
 import alert from "../../assets/img/alert.svg";
 import React, { useState } from "react";
@@ -203,6 +202,8 @@ const Header = () => {
           username: username,
           email: emailusrRgs,
           password: passRgs,
+          url_img:
+            "https://firebasestorage.googleapis.com/v0/b/alterra-fgd.appspot.com/o/default.jpeg?alt=media&token=507d4d4a-9dda-43ea-9743-0594b66644a6",
         })
         .then(function (response) {
           if (response.data.data.id == 0) {
@@ -249,6 +250,7 @@ const Header = () => {
       setCookies("id", userLoginResult.id, { path: "/" });
       setCookies("token", userLoginResult.token, { path: "/" });
       setCookies("role_id", userLoginResult.role_id, { path: "/" });
+      setCookies("url_img", userLoginResult.url_img, { path: "/" });
     } else if (userLoginError) {
       setEmail("");
       setPass("");
@@ -409,7 +411,7 @@ const Header = () => {
                         aria-expanded="false"
                       >
                         <img
-                          src={userImg}
+                          src={cookies.url_img}
                           alt=""
                           className={`${styles.profileSize}`}
                         />
