@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useQuill } from "react-quilljs";
-// import Editor from "../quillEditor/editor";
+import 'quill/dist/quill.snow.css';
 import fire from "../firebase/firebase";
 import Swal from "sweetalert2";
 

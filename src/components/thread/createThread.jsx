@@ -6,10 +6,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useQuill } from "react-quilljs";
 import fire from "../firebase/firebase";
-import ReactTimeout from "react-timeout";
+import "quill/dist/quill.snow.css";
 import { useCookies } from "react-cookie";
 import Swal from "sweetalert2";
-
 
 function CreateThread() {
   // const [image,setImage] = useState()
@@ -17,7 +16,7 @@ function CreateThread() {
 
   // }
   const [cookies, getAll] = useCookies(["username", "id", "token"]);
-const[done,setDone] = useState("");
+  const [done, setDone] = useState("");
   const [stat, setStat] = useState(true);
   const [image, setImage] = useState("");
   getAll();
@@ -32,28 +31,26 @@ const[done,setDone] = useState("");
   const { quill, quillRef } = useQuill();
   let tesr;
 
-  useEffect(() => {
-    getAll();
-    axios.defaults.headers.common = {
-      Authorization: `bearer ${cookies.token}`,
-    };
-    console.log(form);
-    axios
-      .post(`http://localhost:8000/threads/create`, form)
-      .then(function (response) {
-        console.log(response.data);
-        setDone("berhasil")
-        // // if(response?.data){
-       
-        //   window.location.reload();
-        
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [form.img]);
+  // useEffect(() => {
+  //   getAll();
+  //   axios.defaults.headers.common = {
+  //     Authorization: `bearer ${cookies.token}`,
+  //   };
+  //   console.log(form);
+  //   axios
+  //     .post(`http://localhost:8000/threads/create`, form)
+  //     .then(function (response) {
+  //       console.log(response.data);
+  //       setDone("berhasil")
+  //       // // if(response?.data){
 
+  //       //   window.location.reload();
 
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }, [form.img]);
 
   // useEffect(()=>{
   //  Swal.fire(
@@ -86,8 +83,28 @@ const[done,setDone] = useState("");
     const fileRef = storageRef.child(image.name);
     const upload = fileRef.put(image).then((e) => {
       e.ref.getDownloadURL()?.then(function (downloadURL) {
-        setForm({ ...form, img: downloadURL });
-       
+        // setForm({ ...form, img: downloadURL });
+        var kirim = {
+          user_id: parseInt(cookies.id),
+          title: form.title,
+          category: form.category,
+          img: downloadURL,
+          content: form.content,
+        };
+        getAll();
+        axios.defaults.headers.common = {
+          Authorization: `bearer ${cookies.token}`,
+        };
+        axios
+          .post(`http://localhost:8000/threads/create`, kirim)
+          .then(function (response) {
+            console.log(response.data);
+            setDone("berhasil");
+           
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       });
     });
     //   upload.on(setImage, function progress(snapshot) {
@@ -212,10 +229,10 @@ const[done,setDone] = useState("");
               </div>
               <div>
                 <h5 className="fw-normal  ms-1  my-2">Preview Image</h5>
-                <div
-                  className={`mx-auto bg-dark ${style.preview}`}
-                >
-                  {selectedFile &&  <img className="img-fluid w-100" src={preview} /> }
+                <div className={`mx-auto bg-dark ${style.preview}`}>
+                  {selectedFile && (
+                    <img className="img-fluid w-100" src={preview} />
+                  )}
                 </div>
                 <br />
                 {/* <button className={`btn  btn-secondary rounded-pill mx-auto ${style.bru}`} onClick={btnUpload}>Upload</button> */}
@@ -261,6 +278,7 @@ const[done,setDone] = useState("");
               <button
                 type="button"
                 className={`btn btn-secondary float-end rounded-pill mx-auto me-4 ${style.red}`}
+                onClick={()=>window.location.reload()}
               >
                 Reset
               </button>
