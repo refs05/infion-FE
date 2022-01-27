@@ -74,6 +74,7 @@ function EditThread() {
                 name="title"
                 value={form?.title}
                 onChange={handleChange}
+                maxLength={149}
               />
             </div>
             <div className="row">

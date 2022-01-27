@@ -8,6 +8,8 @@ import { useQuill } from "react-quilljs";
 import fire from "../firebase/firebase";
 import ReactTimeout from "react-timeout";
 import { useCookies } from "react-cookie";
+import Swal from "sweetalert2";
+
 
 function CreateThread() {
   // const [image,setImage] = useState()
@@ -15,11 +17,12 @@ function CreateThread() {
 
   // }
   const [cookies, getAll] = useCookies(["username", "id", "token"]);
-
+const[done,setDone] = useState("");
   const [stat, setStat] = useState(true);
   const [image, setImage] = useState("");
+  getAll();
   const [form, setForm] = useState({
-    user_id: 2,
+    user_id: parseInt(cookies.id),
     title: "",
     category: "",
     img: "",
@@ -34,15 +37,31 @@ function CreateThread() {
     axios.defaults.headers.common = {
       Authorization: `bearer ${cookies.token}`,
     };
+    console.log(form);
     axios
       .post(`http://localhost:8000/threads/create`, form)
       .then(function (response) {
         console.log(response.data);
+        setDone("berhasil")
+        // // if(response?.data){
+       
+        //   window.location.reload();
+        
       })
       .catch(function (error) {
         console.log(error);
       });
   }, [form.img]);
+
+
+
+  // useEffect(()=>{
+  //  Swal.fire(
+  //           "Success!",
+  //           // "Hello" + " " + response.data.data.username,
+  //           // "Please Login With Your New Account"
+  //         );
+  // },done == "berhasil");
 
   React.useEffect(() => {
     if (quill) {
@@ -68,7 +87,7 @@ function CreateThread() {
     const upload = fileRef.put(image).then((e) => {
       e.ref.getDownloadURL()?.then(function (downloadURL) {
         setForm({ ...form, img: downloadURL });
-        console.log(form);
+       
       });
     });
     //   upload.on(setImage, function progress(snapshot) {
@@ -157,6 +176,7 @@ function CreateThread() {
                 name="title"
                 value={form?.title}
                 onChange={handleChange}
+                maxLength={149}
               />
             </div>
             <div className="row">
@@ -213,7 +233,7 @@ function CreateThread() {
                     type="checkbox"
                     value=""
                     id="defaultCheck1"
-                    name="ceklis"
+                    // name="ceklis"
                     onChange={handleChange}
                   />
                   <label>
@@ -233,7 +253,7 @@ function CreateThread() {
               <button
                 type="button"
                 className={`btn btn-secondary float-end  rounded-pill mx-auto ${style.purple}`}
-                disabled={stat}
+                // disabled={stat}
                 onClick={handleSubmit}
               >
                 Post
