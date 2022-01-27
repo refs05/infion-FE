@@ -44,7 +44,7 @@ const ListComment = (props) => {
         <div className="container-sm border rounded-3 mb-3">
           <div className="d-flex bd-highlight mb-1 align-items-center mt-2">
             <div className="p-2 bd-highlight profile">
-              <img src={values.url_img} className="rounded-circle" alt="profile-img" />
+              <img src={cookies.url_img} className="rounded-circle" alt="profile-img" />
             </div>
             <textarea
               className="ms-2 rounded-3 p-2 form-control me-3 text-white bg-dark"
