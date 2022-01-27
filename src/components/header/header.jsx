@@ -24,6 +24,7 @@ const Header = () => {
     "id",
     "role_id",
     "token",
+    "url_img",
   ]);
   const [emailusr, setEmail] = useState("");
   const [emailusrRgs, setEmailRgs] = useState("");
@@ -238,6 +239,7 @@ const Header = () => {
     removeCookies("id", { path: "/" });
     removeCookies("role_id", { path: "/" });
     removeCookies("token", { path: "/" });
+    removeCookies("url_img", { path: "/" });
     window.location.href = "/";
   };
 
