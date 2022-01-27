@@ -20,6 +20,43 @@ const SubComments = ({ data }) => {
     reply_id: 0,
   });
 
+  const [values, setValues] = useState({
+    user_id: parseInt(cookies.id),
+    comment_id: data?.comment_id,
+    reply: "",
+  });
+
+  const handleEdit = async (e) => {
+    e.preventDefault();
+
+    axios
+      .put(`http://localhost:8000/replies/${data?.id}`, values, config)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    setEditComment(false);
+  };
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+
+    axios
+      .delete(`http://localhost:8000/replies/${data?.id}`, config)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
   useEffect(() => {
     if (likeReplies.reply_id != 0) {
       axios
@@ -40,6 +77,8 @@ const SubComments = ({ data }) => {
     });
     e.preventDefault();
   };
+
+  console.log(data);
   return (
     <div className="col-11">
       <div className="d-flex bd-highlight mb-1 align-items-center">
@@ -49,21 +88,18 @@ const SubComments = ({ data }) => {
         <div className="p-2 bd-highlight">{data.username}</div>
         <div className="ms-auto p-2 bd-highlight">
           <div className="p-2 d-flex justify-content-end">
-            {data.updated_at == data.created_at ? (
+            {cookies.id != data?.user_id ? (
               ""
             ) : (
-              <div className="me-3 fs-8">
-                <em>edited</em>
-              </div>
+              <img
+                src={threeDots}
+                alt=""
+                type="button"
+                id="dropdownMenuButton2"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              />
             )}
-            <img
-              src={threeDots}
-              alt=""
-              type="button"
-              id="dropdownMenuButton2"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            />
             <ul
               className="dropdown-menu dropdown-menu-dark"
               aria-labelledby="dropdownMenuButton2"
@@ -71,14 +107,18 @@ const SubComments = ({ data }) => {
               <li>
                 <a
                   className="dropdown-item"
-                  href="#"
                   onClick={() => setEditComment(true)}
+                  type="button"
                 >
                   Edit
                 </a>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
+                <a
+                  className="dropdown-item"
+                  onClick={handleDelete}
+                  type="button"
+                >
                   Delete
                 </a>
               </li>
@@ -97,17 +137,23 @@ const SubComments = ({ data }) => {
             <textarea
               className="ms-2 rounded-3 p-2 form-control me-3 text-white bg-dark"
               placeholder="Type something..."
+              name="reply"
+              onChange={handleChange}
             ></textarea>
           </div>
-          <div className="d-flex justify-content-end me-3">
+          <div className="d-flex justify-content-end me-3 mt-2">
             <div
-              className="send me-4"
+              className="send me-4 px-4 py-1 rounded-3"
               type="button"
               onClick={() => setEditComment(false)}
             >
               Cancel
             </div>
-            <div className="send" type="button">
+            <div
+              className="send px-4 py-1 rounded-3"
+              type="button"
+              onClick={handleEdit}
+            >
               Send
             </div>
           </div>
