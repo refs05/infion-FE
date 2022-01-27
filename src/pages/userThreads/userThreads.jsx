@@ -40,18 +40,25 @@ const UserThreads = () => {
     fetchData();
   }, []);
 
-  const deleteThread = (id) => {
-    // DELETE request using axios with error handling
+  const [threadId, setThreadId] = useState(0);
+
+  const sendThreadId = (idThread) => {
     return function () {
-      axios
-        .delete(`http://localhost:8000/threads/${id}`, config)
-        .then((response) => setStatus("Delete successful"))
-        .catch((error) => {
-          setErrorMessage(error.message);
-          console.error("There was an error!", error);
-        });
-      window.location.reload();
+      setThreadId(idThread);
     };
+  };
+
+  const deleteThread = () => {
+    // DELETE request using axios with error handling
+
+    axios
+      .delete(`http://localhost:8000/threads/${parseInt(threadId)}`, config)
+      .then((response) => setStatus("Delete successful"))
+      .catch((error) => {
+        setErrorMessage(error.message);
+        console.error("There was an error!", error);
+      });
+    window.location.reload();
   };
 
   return (
@@ -112,6 +119,7 @@ const UserThreads = () => {
                       className="deleteThread"
                       data-bs-toggle="modal"
                       data-bs-target="#ModalDelete"
+                      onClick={sendThreadId(item.id)}
                     >
                       Delete
                     </div>
@@ -139,7 +147,7 @@ const UserThreads = () => {
                             <button
                               type="button"
                               className={`btn btn-danger rounded-pill mx-auto me-2`}
-                              onClick={deleteThread(item.id)}
+                              onClick={deleteThread}
                               data-bs-dismiss="modal"
                               aria-label="Close"
                             >
