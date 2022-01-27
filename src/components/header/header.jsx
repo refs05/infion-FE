@@ -417,7 +417,7 @@ const Header = () => {
                       >
                         <img
                           src={cookies.url_img}
-                          alt=""
+                          alt="user_image"
                           className={`${styles.profileSize}`}
                         />
                       </div>
@@ -851,7 +851,7 @@ const Header = () => {
                     <input
                       className={`form-control rounded-pill my-4`}
                       type="text"
-                      placeholder="example@example.com"
+                      placeholder="username"
                       name="username"
                       value={username}
                       onChange={validate}
