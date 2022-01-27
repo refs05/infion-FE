@@ -448,6 +448,7 @@ const DetailPage = () => {
                           .toLowerCase()
                           .replace(/\s/g, "-")}`}
                         className="link"
+                        target="_blank"
                       >
                         <div className="fs-8" type="button">
                           {item.title.length >= 68
@@ -474,6 +475,7 @@ const DetailPage = () => {
                           .toLowerCase()
                           .replace(/\s/g, "-")}`}
                         className="link"
+                        target="_blank"
                       >
                         <div className="fs-8" type="button">
                           {item.title.length >= 68
