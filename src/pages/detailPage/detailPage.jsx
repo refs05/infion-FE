@@ -202,7 +202,12 @@ const DetailPage = () => {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:8000/followUsers/create`, followUser, config)
+      .get(
+        `http://localhost:8000/followUsers/status/?followedID=${
+          dataDetail?.user_id
+        }&followerID=${parseInt(cookies.id)}`,
+        config
+      )
       .then(function (response) {
         console.log(response);
         setStatusFollowUsers(response.data.data.status);
