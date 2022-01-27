@@ -417,6 +417,8 @@ const DetailPage = () => {
                           type="button"
                           class="btn btn-primary bg-send"
                           onClick={handleReports}
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
                         >
                           Send
                         </button>

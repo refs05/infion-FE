@@ -39,7 +39,8 @@ function EditThread() {
                 const { data: response } = await axios.get(`http://localhost:8000/threads/${firstWord}`);
                 setData(response);
                 setForm(response.data);
-                console.log(response.data);
+                console.log(typeof(response.data.content));
+                
             } catch (error) {
                 console.error(error.message);
             }
@@ -49,6 +50,7 @@ function EditThread() {
         fetchData();
     }, [firstWord]);
 
+    
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -110,7 +112,7 @@ function EditThread() {
                         title: form.title,
                         category: form.category,
                         img: downloadURL,
-                        content: "form.content",
+                        content: form.content,
                         user_id: form.user_id,
                     };
                     console.log(form2.img);
@@ -132,22 +134,58 @@ function EditThread() {
     const { quill, quillRef } = useQuill();
     let tesr;
 
+
     React.useEffect(() => {
+       
         if (quill) {
-            quill.on("text-change", (delta, oldDelta, source) => {
-                // setForm({...form,
-                //   content:quill.root.innerHTML
-                // })
-                tesr = quill.root.innerHTML; // Get innerHTML using quill
-                setForm((form) => {
-                    return {
-                        ...form,
-                        content: tesr,
-                    };
-                });
+          quill.clipboard.dangerouslyPasteHTML(`${form?.content}`);
+          tesr = quill.root.innerHTML;
+          quill.on("text-change", (delta, oldDelta, source) => {
+            // setForm({...form,
+            //   content:quill.root.innerHTML
+            // })
+            tesr = quill.root.innerHTML; // Get innerHTML using quill
+            setForm((form) => {
+                return {
+                    ...form,
+                    content: tesr,
+                };
             });
+        });
         }
-    }, [quill]);
+        // else if(quill){
+        //     quill.on("text-change", (delta, oldDelta, source) => {
+        //         // setForm({...form,
+        //         //   content:quill.root.innerHTML
+        //         // })
+        //         tesr = quill.root.innerHTML; // Get innerHTML using quill
+        //         setForm((form) => {
+        //             return {
+        //                 ...form,
+        //                 content: tesr,
+        //             };
+        //         });
+        //     });
+        // }
+      }, [quill && form?.content]);
+
+
+    // React.useEffect(() => {
+    //     if (quill) {
+    //         quill.on("text-change", (delta, oldDelta, source) => {
+    //             // setForm({...form,
+    //             //   content:quill.root.innerHTML
+    //             // })
+    //             tesr = quill.root.innerHTML; // Get innerHTML using quill
+    //             setForm((form) => {
+    //                 return {
+    //                     ...form,
+    //                     content: tesr,
+    //                 };
+    //             });
+    //         });
+    //     }
+    // }, [quill]);
 
     return (
         <>
@@ -239,11 +277,11 @@ function EditThread() {
                                 type="button"
                                 className={`btn btn-secondary float-end  rounded-pill mx-auto ${style.purple}`}
                                 onClick={handleEdit}
-                                disabled={stat}
+                                // disabled={stat}
                             >
                                 Edit
                             </button>
-                            <button type="button" className={`btn btn-secondary float-end rounded-pill mx-auto me-4 ${style.red}`}>
+                            <button type="button" className={`btn btn-secondary float-end rounded-pill mx-auto me-4 ${style.red}`}onClick={()=>window.location.reload()}>
                                 Reset
                             </button>
                         </div>
