@@ -435,9 +435,9 @@ const ListThread = (props) => {
                           alt="..."
                           className="card-img-top adjust mb-1"
                         />
-                        <div className="wrapText my-2 fs-6">
-                          {item.title.length >= 68
-                            ? item.title.slice(0, 68) + "...."
+                        <div className="wrapText my-2 fs-7">
+                          {item.title.length >= 149
+                            ? item.title.slice(0, 149) + "...."
                             : item.title}
                         </div>
                       </Link>
@@ -497,9 +497,9 @@ const ListThread = (props) => {
                           alt="..."
                           className="card-img-top adjust mb-1"
                         />
-                        <div className="wrapText my-2 fs-6">
-                          {item.title.length >= 68
-                            ? item.title.slice(0, 68) + "...."
+                        <div className="wrapText my-2 fs-7">
+                          {item.title.length >= 149
+                            ? item.title.slice(0, 149) + "...."
                             : item.title}
                         </div>
                       </Link>
@@ -559,9 +559,9 @@ const ListThread = (props) => {
                           alt="..."
                           className="card-img-top adjust mb-1"
                         />
-                        <div className="wrapText my-2 fs-6">
-                          {item.title.length >= 68
-                            ? item.title.slice(0, 68) + "...."
+                        <div className="wrapText my-2 fs-7">
+                          {item.title.length >= 149
+                            ? item.title.slice(0, 149) + "...."
                             : item.title}
                         </div>
                       </Link>
@@ -616,9 +616,9 @@ const ListThread = (props) => {
                           alt="..."
                           className="card-img-top adjust mb-1"
                         />
-                        <div className="wrapText my-2 fs-6">
-                          {item.title.length >= 68
-                            ? item.title.slice(0, 68) + "...."
+                        <div className="wrapText my-2 fs-7">
+                          {item.title.length >= 149
+                            ? item.title.slice(0, 149) + "...."
                             : item.title}
                         </div>
                       </Link>
