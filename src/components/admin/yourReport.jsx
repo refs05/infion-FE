@@ -6,7 +6,10 @@ import ReactPaginate from "react-paginate";
 import { useCookies } from "react-cookie";
 
 const YourReport = () => {
-  const [cookies, setCookies] = useCookies(["id"]);
+  const [cookies, setCookies] = useCookies(["id", "username", "token"]);
+  const config = {
+    headers: { Authorization: `Bearer ${cookies.token}` },
+  };
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -38,7 +41,7 @@ const YourReport = () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/reports/listbyuser/${cookies.id}`
+          `http://localhost:8000/reports/listbyuser/${cookies.id}`, config
         );
         setData(response.data);
       } catch (error) {

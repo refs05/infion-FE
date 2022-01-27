@@ -21,6 +21,9 @@ const ListThread = (props) => {
   const [filter, setFilter] = useState("");
   const [category, setCategory] = useState("");
   const [cookies, setCookies] = useCookies(["id"]);
+  const config = {
+    headers: { Authorization: `Bearer ${cookies.token}` },
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,7 +84,7 @@ const ListThread = (props) => {
   useEffect(() => {
     if (followThreads.thread_id != 0) {
       axios
-        .post(`http://localhost:8000/followThreads/create`, followThreads)
+        .post(`http://localhost:8000/followThreads/create`, followThreads, config)
         .then(function (response) {
           console.log(response);
         })
@@ -435,9 +438,9 @@ const ListThread = (props) => {
                           alt="..."
                           className="card-img-top adjust mb-1"
                         />
-                        <div className="wrapText my-2 fs-6">
-                          {item.title.length >= 68
-                            ? item.title.slice(0, 68) + "...."
+                        <div className="wrapText my-2 fs-7">
+                          {item.title.length >= 149
+                            ? item.title.slice(0, 149) + "...."
                             : item.title}
                         </div>
                       </Link>
@@ -497,9 +500,9 @@ const ListThread = (props) => {
                           alt="..."
                           className="card-img-top adjust mb-1"
                         />
-                        <div className="wrapText my-2 fs-6">
-                          {item.title.length >= 68
-                            ? item.title.slice(0, 68) + "...."
+                        <div className="wrapText my-2 fs-7">
+                          {item.title.length >= 149
+                            ? item.title.slice(0, 149) + "...."
                             : item.title}
                         </div>
                       </Link>
@@ -559,9 +562,9 @@ const ListThread = (props) => {
                           alt="..."
                           className="card-img-top adjust mb-1"
                         />
-                        <div className="wrapText my-2 fs-6">
-                          {item.title.length >= 68
-                            ? item.title.slice(0, 68) + "...."
+                        <div className="wrapText my-2 fs-7">
+                          {item.title.length >= 149
+                            ? item.title.slice(0, 149) + "...."
                             : item.title}
                         </div>
                       </Link>
@@ -616,9 +619,9 @@ const ListThread = (props) => {
                           alt="..."
                           className="card-img-top adjust mb-1"
                         />
-                        <div className="wrapText my-2 fs-6">
-                          {item.title.length >= 68
-                            ? item.title.slice(0, 68) + "...."
+                        <div className="wrapText my-2 fs-7">
+                          {item.title.length >= 149
+                            ? item.title.slice(0, 149) + "...."
                             : item.title}
                         </div>
                       </Link>

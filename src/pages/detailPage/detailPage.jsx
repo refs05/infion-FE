@@ -235,7 +235,7 @@ const DetailPage = () => {
     e.preventDefault();
 
     axios
-      .post(`http://localhost:8000/reports/create`, reports)
+      .post(`http://localhost:8000/reports/create`, reports, config)
       .then(function (response) {
         console.log(response);
       })
