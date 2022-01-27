@@ -47,7 +47,7 @@ const Header = () => {
   const emailRegex = /^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/;
   const usernameRegex = /^[a-z0-9_-]{5,16}$/;
   const passRegex =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
 
   const validate = (e) => {
     if (e.target.name === "email") {
@@ -141,7 +141,7 @@ const Header = () => {
       } else if (!passRegex.test(e.target.value)) {
         setErrMsg({
           ...errMsg,
-          passRgs: "Wrong Password Format",
+          passRgs: "Wrong Password Format. Must contain at least one alphabetical and numberical characters. Must at least 8 characters long.",
         });
         setRgsBtnStat("true");
       } else {
@@ -168,7 +168,7 @@ const Header = () => {
       } else {
         setErrMsg({
           ...errMsg,
-          passConf: "Password not Match",
+          passConf: "Password does not Match.",
         });
         setRgsBtnStat("true");
       }
@@ -419,7 +419,7 @@ const Header = () => {
                       >
                         <img
                           src={cookies.url_img}
-                          alt="user_image"
+                          alt="profile-img"
                           className={`${styles.profileSize}`}
                         />
                       </div>

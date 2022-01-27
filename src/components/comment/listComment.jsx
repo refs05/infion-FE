@@ -1,5 +1,4 @@
 import Comments from "./commentDetail";
-import userImg from "../../assets/img/userImg.svg";
 import "./listComment.css";
 import axios from "axios";
 import { useState } from "react";
@@ -45,7 +44,7 @@ const ListComment = (props) => {
         <div className="container-sm border rounded-3 mb-3">
           <div className="d-flex bd-highlight mb-1 align-items-center mt-2">
             <div className="p-2 bd-highlight profile">
-              <img src={userImg} className="rounded-circle" alt="profile" />
+              <img src={cookies.url_img} className="rounded-circle" alt="profile-img" />
             </div>
             <textarea
               className="ms-2 rounded-3 p-2 form-control me-3 text-white bg-dark"

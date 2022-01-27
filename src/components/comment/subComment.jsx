@@ -1,5 +1,4 @@
 import threeDots from "../../assets/img/threeDots.svg";
-import userImg from "../../assets/img/userImg.svg";
 import like from "../../assets/img/love.svg";
 import liked from "../../assets/img/liked.svg";
 import { useState } from "react";
@@ -83,7 +82,7 @@ const SubComments = ({ data }) => {
     <div className="col-11">
       <div className="d-flex bd-highlight mb-1 align-items-center">
         <div className="p-2 bd-highlight profile">
-          <img src={userImg} className="rounded-circle" alt="profile" />
+          <img src={data.url_img} className="rounded-circle" alt="profile-img" />
         </div>
         <div className="p-2 bd-highlight">{data.username}</div>
         <div className="ms-auto p-2 bd-highlight">

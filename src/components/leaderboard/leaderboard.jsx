@@ -35,7 +35,7 @@ const Leaderboard = () => {
       {leaderboard?.data?.slice(0, 5).map((item, index) => (
         <React.Fragment key={index}>
           <div className="fs-8">
-            <Link to={`/profile/${item.id}`} className="link">
+            <Link to={`/profile/${item.id}`} className="link" target="_blank">
               {index + 1}. {item.username}
             </Link>
           </div>
