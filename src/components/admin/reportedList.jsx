@@ -41,7 +41,8 @@ const ReportedList = () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/reports/list`, config
+          `http://174.129.54.139:8000/reports/list`,
+          config
         );
         setData(response.data);
       } catch (error) {
@@ -69,7 +70,7 @@ const ReportedList = () => {
   const deleteThread = () => {
     // DELETE request using axios with error handling
     axios
-      .delete(`http://localhost:8000/threads/${detail.threadId}`, config)
+      .delete(`http://174.129.54.139:8000/threads/${detail.threadId}`, config)
       .then((response) => setStatus("Delete successful"))
       .catch((error) => {
         setErrorMessage(error.message);
@@ -80,7 +81,7 @@ const ReportedList = () => {
   const deleteReport = () => {
     // DELETE request using axios with error handling
     axios
-      .delete(`http://localhost:8000/reports/${detail.id}`, config)
+      .delete(`http://174.129.54.139:8000/reports/${detail.id}`, config)
       .then((response) => setStatus("Delete successful"))
       .catch((error) => {
         setErrorMessage(error.message);

@@ -22,7 +22,7 @@ const ListComment = (props) => {
     e.preventDefault();
 
     axios
-      .post(`http://localhost:8000/comments/create`, values, config)
+      .post(`http://174.129.54.139:8000/comments/create`, values, config)
       .then(function (response) {
         console.log(response);
       })
@@ -44,7 +44,11 @@ const ListComment = (props) => {
         <div className="container-sm border rounded-3 mb-3">
           <div className="d-flex bd-highlight mb-1 align-items-center mt-2">
             <div className="p-2 bd-highlight profile">
-              <img src={cookies.url_img} className="rounded-circle" alt="profile-img" />
+              <img
+                src={cookies.url_img}
+                className="rounded-circle"
+                alt="profile-img"
+              />
             </div>
             <textarea
               className="ms-2 rounded-3 p-2 form-control me-3 text-white bg-dark"

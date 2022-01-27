@@ -29,7 +29,7 @@ const SubComments = ({ data }) => {
     e.preventDefault();
 
     axios
-      .put(`http://localhost:8000/replies/${data?.id}`, values, config)
+      .put(`http://174.129.54.139:8000/replies/${data?.id}`, values, config)
       .then(function (response) {
         console.log(response);
       })
@@ -43,7 +43,7 @@ const SubComments = ({ data }) => {
     e.preventDefault();
 
     axios
-      .delete(`http://localhost:8000/replies/${data?.id}`, config)
+      .delete(`http://174.129.54.139:8000/replies/${data?.id}`, config)
       .then(function (response) {
         console.log(response);
       })
@@ -59,7 +59,11 @@ const SubComments = ({ data }) => {
   useEffect(() => {
     if (likeReplies.reply_id != 0) {
       axios
-        .post(`http://localhost:8000/likeReplies/create`, likeReplies, config)
+        .post(
+          `http://174.129.54.139:8000/likeReplies/create`,
+          likeReplies,
+          config
+        )
         .then(function (response) {
           console.log(response);
         })
@@ -82,7 +86,11 @@ const SubComments = ({ data }) => {
     <div className="col-11">
       <div className="d-flex bd-highlight mb-1 align-items-center">
         <div className="p-2 bd-highlight profile">
-          <img src={data.url_img} className="rounded-circle" alt="profile-img" />
+          <img
+            src={data.url_img}
+            className="rounded-circle"
+            alt="profile-img"
+          />
         </div>
         <div className="p-2 bd-highlight">{data.username}</div>
         <div className="ms-auto p-2 bd-highlight">

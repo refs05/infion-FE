@@ -17,7 +17,7 @@ const Leaderboard = () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/user/leaderboard/`
+          `http://174.129.54.139:8000/user/leaderboard/`
         );
         setLeaderboard(response);
       } catch (error) {

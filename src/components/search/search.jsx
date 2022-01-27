@@ -16,7 +16,7 @@ const Search = ({ home }) => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/threads/list/`
+          `http://174.129.54.139:8000/threads/list/`
         );
         setData(response);
       } catch (error) {
