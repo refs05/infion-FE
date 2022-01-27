@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 const DetailPage = () => {
   let { id } = useParams();
   const passRegex =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
 
   const [errMsg, setErrMsg] = useState({
     password: "",
@@ -70,7 +70,7 @@ const DetailPage = () => {
       } else if (!passRegex.test(e.target.value)) {
         setErrMsg({
           ...errMsg,
-          password: "Wrong Password Format ",
+          password: "Wrong Password Format. Must contain at least one alphabetical and numberical characters. Must at least 8 characters long.",
         });
         setStat("true");
       } else {
@@ -98,7 +98,7 @@ const DetailPage = () => {
       } else {
         setErrMsg({
           ...errMsg,
-          passwordConf: "Password not Match",
+          passwordConf: "Password does not Match.",
         });
         setStat("true");
       }
@@ -167,7 +167,7 @@ const DetailPage = () => {
             email: form.email,
             password: form.password,
             passwordc: form.passwoordc,
-            role_id: 1,
+            role_id: form.role,
             url_img: downloadURL,
           };
           console.log("password form2:", form2.password);
