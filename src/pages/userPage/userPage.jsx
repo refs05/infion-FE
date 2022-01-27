@@ -180,6 +180,7 @@ const DetailPage = () => {
                 "Success Edit Profile!"
                
               );
+              setCookies("url_img", form2.url_img, { path: "/" });
               window.location.reload();
             })
             .catch(function (error) {
