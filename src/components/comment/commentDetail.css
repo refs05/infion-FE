@@ -18,3 +18,8 @@
 .clearLink:hover {
     color: #fff;
 }
+
+.rounded-circle{
+    width: 55px;
+    height: 55px;
+}
