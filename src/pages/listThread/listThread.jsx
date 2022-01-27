@@ -84,7 +84,11 @@ const ListThread = (props) => {
   useEffect(() => {
     if (followThreads.thread_id != 0) {
       axios
-        .post(`http://localhost:8000/followThreads/create`, followThreads, config)
+        .post(
+          `http://localhost:8000/followThreads/create`,
+          followThreads,
+          config
+        )
         .then(function (response) {
           console.log(response);
         })
@@ -132,30 +136,6 @@ const ListThread = (props) => {
   function onChangeCategory(event) {
     setCategory(event.target.value);
   }
-
-  // function timeSince(datetime) {
-  //     var now = new Date(),
-  //         secondsPast = (now.getTime() - Date.parse(datetime)) / 1000;
-
-  //     if (secondsPast < 60) {
-  //         return Math.round(secondsPast) + " seconds ago";
-  //     }
-  //     if (secondsPast < 3600) {
-  //         return parseInt(secondsPast / 60) + " mins ago";
-  //     }
-  //     if (secondsPast <= 86400) {
-  //         return parseInt(secondsPast / 3600) + " hours ago";
-  //     }
-  //     if (secondsPast <= 2628000) {
-  //         return parseInt(secondsPast / 86400) + " days ago";
-  //     }
-  //     if (secondsPast <= 31536000) {
-  //         return parseInt(secondsPast / 2628000) + " months ago";
-  //     }
-  //     if (secondsPast > 31536000) {
-  //         return parseInt(secondsPast / 31536000) + " years ago";
-  //     }
-  // }
 
   return (
     <>
@@ -435,7 +415,7 @@ const ListThread = (props) => {
                       >
                         <img
                           src={item.img}
-                          alt="..."
+                          alt="Thread Image"
                           className="card-img-top adjust mb-1"
                         />
                         <div className="wrapText my-2 fs-7">
@@ -497,7 +477,7 @@ const ListThread = (props) => {
                       >
                         <img
                           src={item.img}
-                          alt="..."
+                          alt="Thread Image"
                           className="card-img-top adjust mb-1"
                         />
                         <div className="wrapText my-2 fs-7">
@@ -559,7 +539,7 @@ const ListThread = (props) => {
                       >
                         <img
                           src={item.img}
-                          alt="..."
+                          alt="Thread Image"
                           className="card-img-top adjust mb-1"
                         />
                         <div className="wrapText my-2 fs-7">
@@ -616,7 +596,7 @@ const ListThread = (props) => {
                       >
                         <img
                           src={item.img}
-                          alt="..."
+                          alt="Thread Image"
                           className="card-img-top adjust mb-1"
                         />
                         <div className="wrapText my-2 fs-7">

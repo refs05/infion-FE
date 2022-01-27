@@ -23,7 +23,6 @@ const DetailPage = () => {
   let { id } = useParams();
 
   let firstWord = id.split("-")[0];
-  let role = "moderator";
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -36,7 +35,12 @@ const DetailPage = () => {
 
   const [loadingAlso, setLoadingAlso] = useState(true);
   const [dataAlso, setDataAlso] = useState([]);
-  const [cookies, setCookies] = useCookies(["id", "username", "token"]);
+  const [cookies, setCookies] = useCookies([
+    "id",
+    "username",
+    "token",
+    "role_id",
+  ]);
 
   const [followUser, setFollowUser] = useState({
     followed_id: 0,
@@ -324,7 +328,7 @@ const DetailPage = () => {
               <div className="moderator">
                 <div
                   className={
-                    role == "common"
+                    cookies.role_id == 1
                       ? `reportHide d-flex align-items-center justify-content-center rounded-circle`
                       : `report d-flex align-items-center justify-content-center rounded-circle`
                   }
