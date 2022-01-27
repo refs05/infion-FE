@@ -417,7 +417,7 @@ const Header = () => {
                       >
                         <img
                           src={cookies.url_img}
-                          alt="user_image"
+                          alt="profile-img"
                           className={`${styles.profileSize}`}
                         />
                       </div>

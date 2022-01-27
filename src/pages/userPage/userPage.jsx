@@ -98,7 +98,7 @@ const DetailPage = () => {
       } else {
         setErrMsg({
           ...errMsg,
-          passwordConf: "Password does not Match.",
+          passwordConf: "Password does   not Match.",
         });
         setStat("true");
       }

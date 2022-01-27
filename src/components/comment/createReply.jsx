@@ -1,4 +1,3 @@
-import userImg from "../../assets/img/userImg.svg";
 import axios from "axios";
 import { useState } from "react";
 import "./createReply.css";
@@ -38,7 +37,7 @@ const CreateReply = (props) => {
       <form>
         <div className="d-flex bd-highlight mb-1 align-items-center">
           <div className="p-2 bd-highlight">
-            <img src={userImg} className="rounded-circle" alt="profile" />
+            <img src={cookies.url_img} className="rounded-circle replyImg" alt="profile-img" />
           </div>
           <input
             className="ms-2 rounded-3 p-2 form-control me-3 text-white bg-dark"

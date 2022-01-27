@@ -1,5 +1,4 @@
 import threeDots from "../../assets/img/threeDots.svg";
-import userImg from "../../assets/img/userImg.svg";
 import like from "../../assets/img/love.svg";
 import comment from "../../assets/img/comment.svg";
 import liked from "../../assets/img/liked.svg";
@@ -91,9 +90,9 @@ const Comments = ({ data }) => {
         <div className="d-flex align-items-center bd-highlight mb-1">
           <div className="p-2 bd-highlight">
             <img
-              src={userImg}
+              src={data.url_img}
               className="rounded-circle"
-              alt="profile"
+              alt="profile-img"
               style={{ width: "55px" }}
             />
           </div>
