@@ -22,7 +22,11 @@ const Announcement = () => {
     e.preventDefault();
 
     axios
-      .post(`http://localhost:8000/announcements/create`, announcement, config)
+      .post(
+        `http://174.129.54.139:8000/announcements/create`,
+        announcement,
+        config
+      )
       .then(function (response) {
         console.log(response);
       })

@@ -41,7 +41,8 @@ const YourReport = () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/reports/listbyuser/${cookies.id}`, config
+          `http://174.129.54.139:8000/reports/listbyuser/${cookies.id}`,
+          config
         );
         setData(response.data);
       } catch (error) {

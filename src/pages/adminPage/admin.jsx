@@ -40,14 +40,14 @@ const Admin = () => {
     removeCookies("id", { path: "/" });
     removeCookies("role_id", { path: "/" });
     removeCookies("token", { path: "/" });
-    history.push("/");
-    window.location.reload();
+    removeCookies("url_img", { path: "/" });
+    window.location.href = "/";
   };
   return (
     <>
       {cookies.role_id == 2 ? (
         <div className="d-flex">
-          <div className="col-sm-2 sidebar vh-100">
+          <div className="col-sm-2 sidebar sectionHeight1">
             <div className="d-flex align-items-center back mt-3">
               <img
                 src={back}

@@ -30,7 +30,7 @@ const ListThread = (props) => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/threads/list/?sortBy=like_count desc`
+          `http://174.129.54.139:8000/threads/list/?sortBy=like_count desc`
         );
         setDataTop(response);
       } catch (error) {
@@ -47,7 +47,7 @@ const ListThread = (props) => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/threads/list/?sortBy=comment_count desc`
+          `http://174.129.54.139:8000/threads/list/?sortBy=comment_count desc`
         );
         setDataRec(response);
       } catch (error) {
@@ -64,7 +64,7 @@ const ListThread = (props) => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/threads/list/?sortBy=created_at desc`
+          `http://174.129.54.139:8000/threads/list/?sortBy=created_at desc`
         );
         setDataNew(response);
       } catch (error) {
@@ -85,7 +85,7 @@ const ListThread = (props) => {
     if (followThreads.thread_id != 0) {
       axios
         .post(
-          `http://localhost:8000/followThreads/create`,
+          `http://174.129.54.139:8000/followThreads/create`,
           followThreads,
           config
         )
@@ -111,7 +111,7 @@ const ListThread = (props) => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/threads/list/?category=${category}&sortBy=${filter}`
+          `http://174.129.54.139:8000/threads/list/?category=${category}&sortBy=${filter}`
         );
         setFilteredThread(response);
       } catch (error) {

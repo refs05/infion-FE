@@ -28,7 +28,7 @@ const UserThreads = () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/threads/listbyuser/${id}`
+          `http://174.129.54.139:8000/threads/listbyuser/${id}`
         );
         setData(response);
       } catch (error) {
@@ -52,7 +52,10 @@ const UserThreads = () => {
     // DELETE request using axios with error handling
 
     axios
-      .delete(`http://localhost:8000/threads/${parseInt(threadId)}`, config)
+      .delete(
+        `http://174.129.54.139:8000/threads/${parseInt(threadId)}`,
+        config
+      )
       .then((response) => setStatus("Delete successful"))
       .catch((error) => {
         setErrorMessage(error.message);

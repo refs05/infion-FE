@@ -34,7 +34,7 @@ const Comments = ({ data }) => {
     e.preventDefault();
 
     axios
-      .put(`http://localhost:8000/comments/${data?.id}`, values, config)
+      .put(`http://174.129.54.139:8000/comments/${data?.id}`, values, config)
       .then(function (response) {
         console.log(response);
       })
@@ -49,7 +49,7 @@ const Comments = ({ data }) => {
     e.preventDefault();
 
     axios
-      .delete(`http://localhost:8000/comments/${data?.id}`, config)
+      .delete(`http://174.129.54.139:8000/comments/${data?.id}`, config)
       .then(function (response) {
         console.log(response);
       })
@@ -65,7 +65,11 @@ const Comments = ({ data }) => {
   useEffect(() => {
     if (likeComments.comment_id != 0) {
       axios
-        .post(`http://localhost:8000/likeComments/create`, likeComments, config)
+        .post(
+          `http://174.129.54.139:8000/likeComments/create`,
+          likeComments,
+          config
+        )
         .then(function (response) {
           console.log(response);
         })

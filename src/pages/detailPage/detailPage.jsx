@@ -61,7 +61,7 @@ const DetailPage = () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/threads/${firstWord}`
+          `http://174.129.54.139:8000/threads/${firstWord}`
         );
         setData(response);
         setFollowUser({
@@ -82,7 +82,7 @@ const DetailPage = () => {
       setLoadingComment(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/comments/listbythread/${firstWord}`
+          `http://174.129.54.139:8000/comments/listbythread/${firstWord}`
         );
         setDataComment(response);
       } catch (error) {
@@ -99,7 +99,7 @@ const DetailPage = () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/threads/list/?sortBy=created_at desc`
+          `http://174.129.54.139:8000/threads/list/?sortBy=created_at desc`
         );
         setDataNewest(response);
       } catch (error) {
@@ -116,7 +116,7 @@ const DetailPage = () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/threads/list/?sortBy=like_count desc`
+          `http://174.129.54.139:8000/threads/list/?sortBy=like_count desc`
         );
         setDataAlso(response);
       } catch (error) {
@@ -136,7 +136,7 @@ const DetailPage = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:8000/likeThreads/status/?threadID=${parseInt(
+        `http://174.129.54.139:8000/likeThreads/status/?threadID=${parseInt(
           firstWord
         )}&userID=${parseInt(cookies.id)}`,
         config
@@ -158,7 +158,7 @@ const DetailPage = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:8000/followThreads/status/?threadID=${parseInt(
+        `http://174.129.54.139:8000/followThreads/status/?threadID=${parseInt(
           firstWord
         )}&userID=${parseInt(cookies.id)}`,
         config
@@ -176,7 +176,11 @@ const DetailPage = () => {
     e.preventDefault();
     setStatusFollowThreads(!statusFollowThreads);
     axios
-      .post(`http://localhost:8000/followThreads/create`, followThreads, config)
+      .post(
+        `http://174.129.54.139:8000/followThreads/create`,
+        followThreads,
+        config
+      )
       .then(function (response) {
         console.log(response);
       })
@@ -189,7 +193,11 @@ const DetailPage = () => {
     e.preventDefault();
     setStatusLike(!statusLike);
     axios
-      .post(`http://localhost:8000/likeThreads/create`, likeThreads, config)
+      .post(
+        `http://174.129.54.139:8000/likeThreads/create`,
+        likeThreads,
+        config
+      )
       .then(function (response) {
         console.log(response);
       })
@@ -203,7 +211,7 @@ const DetailPage = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:8000/followUsers/status/?followedID=${
+        `http://174.129.54.139:8000/followUsers/status/?followedID=${
           dataDetail?.user_id
         }&followerID=${parseInt(cookies.id)}`,
         config
@@ -221,7 +229,7 @@ const DetailPage = () => {
     e.preventDefault();
     setStatusFollowUsers(!statusFollowUsers);
     axios
-      .post(`http://localhost:8000/followUsers/create`, followUser, config)
+      .post(`http://174.129.54.139:8000/followUsers/create`, followUser, config)
       .then(function (response) {
         console.log(response);
       })
@@ -244,7 +252,7 @@ const DetailPage = () => {
     e.preventDefault();
 
     axios
-      .post(`http://localhost:8000/reports/create`, reports, config)
+      .post(`http://174.129.54.139:8000/reports/create`, reports, config)
       .then(function (response) {
         console.log(response);
       })

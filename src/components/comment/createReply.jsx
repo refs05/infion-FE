@@ -19,7 +19,7 @@ const CreateReply = (props) => {
     e.preventDefault();
 
     axios
-      .post(`http://localhost:8000/replies/create`, values, config)
+      .post(`http://174.129.54.139:8000/replies/create`, values, config)
       .then(function (response) {
         console.log(response);
       })
@@ -37,7 +37,11 @@ const CreateReply = (props) => {
       <form>
         <div className="d-flex bd-highlight mb-1 align-items-center">
           <div className="p-2 bd-highlight">
-            <img src={cookies.url_img} className="rounded-circle replyImg" alt="profile-img" />
+            <img
+              src={cookies.url_img}
+              className="rounded-circle replyImg"
+              alt="profile-img"
+            />
           </div>
           <input
             className="ms-2 rounded-3 p-2 form-control me-3 text-white bg-dark"

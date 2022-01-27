@@ -10,8 +10,7 @@ import Swal from "sweetalert2";
 
 const DetailPage = () => {
   let { id } = useParams();
-  const passRegex =
-    /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+  const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
 
   const [errMsg, setErrMsg] = useState({
     password: "",
@@ -23,11 +22,10 @@ const DetailPage = () => {
   const dataDetail = data?.data;
   const [edit, setEdit] = useState(false);
   const [cookies, setCookies] = useCookies(["token", "role_id"]);
-  const [stat,setStat] = useState("true");
+  const [stat, setStat] = useState("true");
   const [form, setForm] = useState({
     username: dataDetail?.username,
     email: dataDetail?.email,
-    // password: "",
     role_id: cookies?.role_id,
     url_img: dataDetail?.url_img,
   });
@@ -42,7 +40,7 @@ const DetailPage = () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/user/${id}`,
+          `http://174.129.54.139:8000/user/${id}`,
           config
         );
         setData(response);
@@ -60,17 +58,16 @@ const DetailPage = () => {
     if (e.target.name == "password") {
       setForm({ ...form, password: e.target.value });
       if (e.target.value === "") {
-       
         setErrMsg({
           ...errMsg,
           password: "",
         });
         setStat("true");
-        
       } else if (!passRegex.test(e.target.value)) {
         setErrMsg({
           ...errMsg,
-          password: "Wrong Password Format. Must contain at least one alphabetical and numberical characters. Must at least 8 characters long.",
+          password:
+            "Wrong Password Format. Must contain at least one alphabetical and numberical characters. Must at least 8 characters long.",
         });
         setStat("true");
       } else {
@@ -78,10 +75,16 @@ const DetailPage = () => {
           ...errMsg,
           password: "",
         });
-        if(form.passwordConf != ""  && form.email != "" && errMsg.password== ""){ setStat("");}
+        if (
+          form.passwordConf != "" &&
+          form.email != "" &&
+          errMsg.password == ""
+        ) {
+          setStat("");
+        }
       }
     } else if (e.target.name == "passwordConf") {
-        setForm({ ...form, passwordConf: e.target.value });
+      setForm({ ...form, passwordConf: e.target.value });
       if (e.target.value === "") {
         setErrMsg({
           ...errMsg,
@@ -93,8 +96,9 @@ const DetailPage = () => {
           ...errMsg,
           passwordConf: "",
         });
-        if(form.password != "" && form.email != ""   && errMsg.password== ""){ setStat("");}
-       
+        if (form.password != "" && form.email != "" && errMsg.password == "") {
+          setStat("");
+        }
       } else {
         setErrMsg({
           ...errMsg,
@@ -142,13 +146,11 @@ const DetailPage = () => {
     if (image === "") {
       setForm({ ...form, url_img: dataDetail?.image });
       axios
-        .put(`http://localhost:8000/user/${id}`, form, config)
+        .put(`http://174.129.54.139:8000/user/${id}`, form, config)
         .then(function (response) {
-          if(response?.data){
-          Swal.fire(
-            "Success Edit Profile!"
-           
-          );}
+          if (response?.data) {
+            Swal.fire("Success Edit Profile!");
+          }
           window.location.reload();
         })
         .catch(function (error) {
@@ -173,13 +175,10 @@ const DetailPage = () => {
           console.log("password form2:", form2.password);
           console.log("image form2:", form2.url_img);
           axios
-            .put(`http://localhost:8000/user/${id}`, form2, config)
+            .put(`http://174.129.54.139:8000/user/${id}`, form2, config)
             .then(function (response) {
               console.log(response);
-              Swal.fire(
-                "Success Edit Profile!"
-               
-              );
+              Swal.fire("Success Edit Profile!");
               setCookies("url_img", form2.url_img, { path: "/" });
               window.location.reload();
             })

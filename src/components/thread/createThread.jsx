@@ -1,6 +1,5 @@
 import Header from "../../../src/components/header/header";
 import style from "./createThread.module.css";
-// import Editor from "../quillEditor/editor";
 import Footer from "../../../src/components/footer/footer";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -11,10 +10,6 @@ import { useCookies } from "react-cookie";
 import Swal from "sweetalert2";
 
 function CreateThread() {
-  // const [image,setImage] = useState()
-  // function preview(e){
-
-  // }
   const [cookies, getAll] = useCookies(["username", "id", "token"]);
   const [done, setDone] = useState("");
   const [stat, setStat] = useState(true);
@@ -31,41 +26,9 @@ function CreateThread() {
   const { quill, quillRef } = useQuill();
   let tesr;
 
-  // useEffect(() => {
-  //   getAll();
-  //   axios.defaults.headers.common = {
-  //     Authorization: `bearer ${cookies.token}`,
-  //   };
-  //   console.log(form);
-  //   axios
-  //     .post(`http://localhost:8000/threads/create`, form)
-  //     .then(function (response) {
-  //       console.log(response.data);
-  //       setDone("berhasil")
-  //       // // if(response?.data){
-
-  //       //   window.location.reload();
-
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }, [form.img]);
-
-  // useEffect(()=>{
-  //  Swal.fire(
-  //           "Success!",
-  //           // "Hello" + " " + response.data.data.username,
-  //           // "Please Login With Your New Account"
-  //         );
-  // },done == "berhasil");
-
   React.useEffect(() => {
     if (quill) {
       quill.on("text-change", (delta, oldDelta, source) => {
-        // setForm({...form,
-        //   content:quill.root.innerHTML
-        // })
         tesr = quill.root.innerHTML; // Get innerHTML using quill
         setForm((form) => {
           return {
@@ -83,7 +46,6 @@ function CreateThread() {
     const fileRef = storageRef.child(image.name);
     const upload = fileRef.put(image).then((e) => {
       e.ref.getDownloadURL()?.then(function (downloadURL) {
-        // setForm({ ...form, img: downloadURL });
         var kirim = {
           user_id: parseInt(cookies.id),
           title: form.title,
@@ -96,35 +58,17 @@ function CreateThread() {
           Authorization: `bearer ${cookies.token}`,
         };
         axios
-          .post(`http://localhost:8000/threads/create`, kirim)
+          .post(`http://174.129.54.139:8000/threads/create`, kirim)
           .then(function (response) {
             console.log(response.data);
             setDone("berhasil");
-           
           })
           .catch(function (error) {
             console.log(error);
           });
       });
     });
-    //   upload.on(setImage, function progress(snapshot) {
-    //     console.log(snapshot.totalBytesTransferred); // progress of upload
-    //  });
   };
-  // useEffect(() => {
-  //   if (isStart) {
-  //     // const timer = setInterval(() => {
-  //     //   if (count > 0) {
-  //     //     setCount(count - 1);
-  //     //     console.log(count-1)
-  //     //   } else {
-  //     //     setCount("Times up");
-  //     //     clearInterval(timer);
-  //     //     console.log(count)
-  //     //   }
-  //     // }, 1000);
-  //   }
-  // }, [isStart]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -278,7 +222,7 @@ function CreateThread() {
               <button
                 type="button"
                 className={`btn btn-secondary float-end rounded-pill mx-auto me-4 ${style.red}`}
-                onClick={()=>window.location.reload()}
+                onClick={() => window.location.reload()}
               >
                 Reset
               </button>

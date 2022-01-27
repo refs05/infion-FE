@@ -6,9 +6,8 @@ import style from "./styles.module.css";
 
 export const Editor = () => {
   const { quill, quillRef } = useQuill();
-  
-  //
-  const blba = "<h5> testing testing </h5>"
+
+  const blba = "<h5> testing testing </h5>";
 
   React.useEffect(() => {
     if (quill) {

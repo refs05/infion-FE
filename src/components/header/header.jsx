@@ -11,12 +11,6 @@ import { useCookies } from "react-cookie";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../../actions/LoginAction";
-// import logo2 from "../../assets/img/logo.svg";
-// import Loading from "../loading/loading"
-
-// const HeaderLogic =() =>{
-//   if
-// };
 
 const Header = () => {
   const [cookies, setCookies, removeCookies] = useCookies([
@@ -46,33 +40,14 @@ const Header = () => {
   const [loginBtnStat, setLoginBtnStat] = useState("true");
   const emailRegex = /^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/;
   const usernameRegex = /^[a-z0-9_-]{5,16}$/;
-  const passRegex =
-    /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+  const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
 
   const validate = (e) => {
     if (e.target.name === "email") {
       setEmail(e.target.value);
       if (e.target.value === "") {
-        // setErrMsg({
-        //   ...errMsg,
-        //   email: "",
-        // });
         setLoginBtnStat("true");
-      }
-      //  else if (!emailRegex.test(e.target.value)) {
-      //   setErrMsg({
-      //     ...errMsg,
-      //     email: "Wrong Email Format",
-      //   });
-      //   setLoginBtnStat("true")
-      // } else {
-      //   setErrMsg({
-      //     ...errMsg,
-      //     email: "",
-      //   });
-
-      // }
-      else if (pass != "" && e.target.value != "") {
+      } else if (pass != "" && e.target.value != "") {
         setLoginBtnStat("");
       }
     } else if (e.target.name === "password") {
@@ -83,12 +58,6 @@ const Header = () => {
         setLoginBtnStat("");
       }
     }
-
-    // if( errMsg.email ==="" && pass != ""){
-    //   setLoginBtnStat("")
-    // }else{
-    //   setLoginBtnStat("true")
-    // }
 
     if (e.target.name === "emailrgs") {
       setEmailRgs(e.target.value);
@@ -141,7 +110,8 @@ const Header = () => {
       } else if (!passRegex.test(e.target.value)) {
         setErrMsg({
           ...errMsg,
-          passRgs: "Wrong Password Format. Must contain at least one alphabetical and numberical characters. Must at least 8 characters long.",
+          passRgs:
+            "Wrong Password Format. Must contain at least one alphabetical and numberical characters. Must at least 8 characters long.",
         });
         setRgsBtnStat("true");
       } else {
@@ -151,8 +121,6 @@ const Header = () => {
         });
       }
     } else if (e.target.name === "passConf") {
-      // console.log(passConf);
-      // console.log(passRgs);
       setPassConf(e.target.value);
       if (e.target.value === "") {
         setErrMsg({
@@ -199,7 +167,7 @@ const Header = () => {
       dispatch(userLogin({ email: emailusr, password: pass }));
     } else if (e.target.name === "btnRegister") {
       axios
-        .post("http://localhost:8000/user/create", {
+        .post("http://174.129.54.139:8000/user/create", {
           username: username,
           email: emailusrRgs,
           password: passRgs,
@@ -288,7 +256,7 @@ const Header = () => {
       setLoading(true);
       try {
         const { data: response } = await axios.get(
-          `http://localhost:8000/announcements/list`,
+          `http://174.129.54.139:8000/announcements/list`,
           config
         );
         setData(response.data);
