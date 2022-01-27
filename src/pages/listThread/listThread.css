@@ -1,41 +1,40 @@
 .content {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .like img,
 .comment img {
-    width: 25px;
+  width: 25px;
 }
 
 .link {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .wrapText {
-    height: 80px;
-    overflow: hidden;
-    font-size: 14px;
-    color: white;
-    max-width: 223px;
+  height: 80px;
+  overflow: hidden;
+  font-size: 14px;
+  color: white;
+  max-width: 223px;
 }
 
 .adjust {
-    max-width: 223px !important;
-    height: 125px !important;
+  width: 223px !important;
+  height: 125px !important;
 }
 
 .follow,
 .like,
 .comment {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .card-text {
-    font-size: 14px;
+  font-size: 14px;
 }
 
-.follow:hover, .viewmore:hover {
-    color: yellow;
+.follow:hover,
+.viewmore:hover {
+  color: yellow;
 }
-
-
