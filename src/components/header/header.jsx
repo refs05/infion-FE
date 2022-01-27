@@ -224,7 +224,7 @@ const Header = () => {
         .catch(function (error) {
           Swal.fire({
             title: "Error!",
-            text: "Error Login",
+            text: "Error Register",
             icon: "error",
             confirmButtonText: "Close",
           });
@@ -256,7 +256,7 @@ const Header = () => {
       setPass("");
       Swal.fire({
         title: "Error!",
-        text: "User Not Found",
+        text: "Error Login!",
         icon: "error",
         confirmButtonText: "Close",
       });
@@ -935,6 +935,8 @@ const Header = () => {
               className={`btn btn-secondary btn-lg rounded-pill mx-auto ${styles.btn}`}
               onClick={handleLogin}
               name="btnRegister"
+              data-bs-dismiss="modal"
+              aria-label="Close"
             >
               Register
             </button>
