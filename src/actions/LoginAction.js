@@ -17,7 +17,7 @@ export const userLogin = (data) => {
 
     axios({
       method: "POST",
-      url: "http://localhost:8000/user/login",
+      url: "http://174.129.54.139:8000/user/login",
       timeout: 120000,
       data: data,
     })
